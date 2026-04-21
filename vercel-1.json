@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "bumil_pintar.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/bumil_pintar.html"
+    },
+    {
+      "src": "/bumil-pintar",
+      "dest": "/bumil_pintar.html"
+    }
+  ],
+  "analytics": {
+    "enabled": true
+  }
+}

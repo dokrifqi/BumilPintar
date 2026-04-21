@@ -581,6 +581,63 @@ body {
 .lab-input:focus { outline: none; border-color: var(--primary); }
 .lab-unit { font-size: 11px; color: var(--gray-600); font-weight: 600; flex-shrink: 0; }
 
+/* ── AL-QUR'AN TAB ── */
+.quran-choice-card {
+  background: var(--gray-100);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  padding: 12px 10px;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.quran-choice-card:active { transform: scale(0.96); }
+.quran-choice-active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+.qchoice-label {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--gray-600);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.qchoice-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gray-800);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.qchoice-sub {
+  font-size: 10px;
+  color: var(--gray-600);
+  line-height: 1.4;
+}
+.quran-juz-card {
+  display: block;
+  background: white;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  padding: 14px 12px;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.12s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.quran-juz-card:active { background: var(--primary-light); transform: scale(0.97); }
+.qjuz-num { font-size: 12px; font-weight: 800; color: var(--primary); margin-bottom: 3px; }
+.qjuz-title { font-size: 13px; font-weight: 700; color: var(--gray-800); margin-bottom: 2px; }
+.qjuz-sub { font-size: 11px; color: var(--gray-600); }
+
+/* Kecilkan nav label agar 6 item muat */
+.nav-label { font-size: 8px; color: var(--gray-600); margin-top: 2px; font-weight: 500; }
+.nav-item.active .nav-label { color: var(--primary); font-weight: 700; }
+
 /* ── KEPERLUAN SHOPEE ── */
 .keperluan-item {
   display: flex;
@@ -1311,22 +1368,22 @@ body {
   <div class="header-top">
     <div class="app-brand">
       💙 Bumil Pintar
-      <span id="headerGreeting">Asisten Kehamilan Cerdas</span>
+      <span id="headerGreeting">Asisten Kehamilan Cerdas by <a href="https://lynk.id/dokterrifqi" target="_blank" style="color:rgba(255,255,255,0.95);text-decoration:none;font-weight:700;">@dokrifqi</a></span>
     </div>
     <div class="header-badge" id="trimesterBadge">Trimester 3</div>
   </div>
   <div class="header-stats">
     <div class="hstat">
-      <div class="hstat-val" id="headerWeek">30</div>
-      <div class="hstat-lbl">Minggu</div>
+      <div class="hstat-val" id="headerWeek">—</div>
+      <div class="hstat-lbl" id="headerWeekLbl">Minggu</div>
     </div>
-    <div class="hstat">
-      <div class="hstat-val" id="headerKick">0</div>
-      <div class="hstat-lbl">Gerakan Hari Ini</div>
+    <div class="hstat" id="hstat2">
+      <div class="hstat-val" id="headerStat2">—</div>
+      <div class="hstat-lbl" id="headerStat2Lbl">—</div>
     </div>
-    <div class="hstat">
-      <div class="hstat-val" id="headerContr">0</div>
-      <div class="hstat-lbl">Kontraksi</div>
+    <div class="hstat" id="hstat3">
+      <div class="hstat-val" id="headerStat3">—</div>
+      <div class="hstat-lbl" id="headerStat3Lbl">—</div>
     </div>
   </div>
 </div>
@@ -2634,6 +2691,124 @@ body {
 
   </div>
 
+  <!-- ══ TAB: AL-QUR'AN ══ -->
+  <div class="tab-panel" id="tab-quran" style="padding-bottom:20px;background:var(--gray-100);">
+
+    <!-- Header biru -->
+    <div style="background:linear-gradient(135deg,#1565C0,#42A5F5);padding:20px 18px 22px;text-align:center;margin-bottom:-8px;">
+      <div style="font-size:30px;margin-bottom:6px;">📖</div>
+      <div style="font-size:20px;font-weight:800;color:white;margin-bottom:4px;">Al-Qur'an</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.85);">Pilih mode bacaan yang kamu inginkan</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.65);margin-top:3px;">Terjemahan Bahasa Indonesia · quran.com</div>
+    </div>
+
+    <!-- MENU QUR'AN card utama -->
+    <div class="card" style="margin:14px 14px 10px;padding:16px;">
+      <div style="font-size:10px;font-weight:800;color:var(--primary);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">MENU QUR'AN</div>
+      <div style="font-size:16px;font-weight:800;color:var(--gray-800);line-height:1.4;margin-bottom:6px;">Lanjutkan, simpan ayat,<br>atau pilih juz</div>
+      <div style="font-size:12px;color:var(--gray-600);line-height:1.6;">Tampilan ini dibuat bertahap supaya kamu tidak perlu scroll panjang. Tinggal pilih dulu mode yang paling pas.</div>
+    </div>
+
+    <!-- 3 PILIHAN CARD horizontal -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0 14px 12px;">
+
+      <!-- Pilihan 1: Lanjutkan terakhir -->
+      <div onclick="quranLanjutkan()" class="quran-choice-card quran-choice-active" id="qChoiceCard1">
+        <div class="qchoice-label" style="color:var(--primary);">PILIHAN 1</div>
+        <div class="qchoice-title">Lanjutkan terakhir</div>
+        <div class="qchoice-sub" id="qLastJuzLabel">Buka bacaan yang terakhir disimpan.</div>
+      </div>
+
+      <!-- Pilihan 2: Simpan ayat (input surah:ayat) -->
+      <div onclick="quranShowAyat()" class="quran-choice-card" id="qChoiceCard2">
+        <div class="qchoice-label">PILIHAN 2</div>
+        <div class="qchoice-title">Simpan ayat</div>
+        <div class="qchoice-sub">Masukkan surah dan ayat tertentu.</div>
+      </div>
+
+      <!-- Pilihan 3: Pilih juz -->
+      <div onclick="quranShowJuz()" class="quran-choice-card" id="qChoiceCard3">
+        <div class="qchoice-label">PILIHAN 3</div>
+        <div class="qchoice-title">Pilih juz</div>
+        <div class="qchoice-sub">Langsung buka juz 1 sampai 30.</div>
+      </div>
+
+    </div>
+
+    <!-- SECTION: Simpan Ayat (tersembunyi default) -->
+    <div id="quranSectionAyat" style="display:none;margin:0 14px 10px;">
+      <div class="card" style="padding:14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--gray-800);margin-bottom:10px;">📌 Simpan Posisi Bacaan</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+          <div>
+            <div style="font-size:11px;color:var(--gray-600);font-weight:600;margin-bottom:4px;">Juz (1–30)</div>
+            <input type="number" id="qInputJuz" min="1" max="30" placeholder="mis: 5" class="setting-input" style="width:100%;text-align:center;" onchange="quranSavePosition()">
+          </div>
+          <div>
+            <div style="font-size:11px;color:var(--gray-600);font-weight:600;margin-bottom:4px;">Surah (1–114)</div>
+            <input type="number" id="qInputSurah" min="1" max="114" placeholder="mis: 18" class="setting-input" style="width:100%;text-align:center;" onchange="quranSavePosition()">
+          </div>
+        </div>
+        <div style="margin-bottom:10px;">
+          <div style="font-size:11px;color:var(--gray-600);font-weight:600;margin-bottom:4px;">Ayat</div>
+          <input type="number" id="qInputAyat" min="1" placeholder="mis: 1" class="setting-input" style="width:100%;text-align:center;" onchange="quranSavePosition()">
+        </div>
+        <button class="btn-primary" style="width:100%;" onclick="quranOpenAyat()">📖 Buka Ayat Ini</button>
+      </div>
+    </div>
+
+    <!-- SECTION: Pilih Juz (tersembunyi default) -->
+    <div id="quranSectionJuz" style="display:none;margin:0 14px 10px;">
+      <div style="font-size:10px;font-weight:800;color:var(--primary);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">PILIH JUZ</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:8px;">
+        <a href="https://quran.com/id/juz/1?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 1</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/2?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 2</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/3?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 3</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/4?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 4</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/5?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 5</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/6?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 6</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/7?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 7</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/8?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 8</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/9?translations=33"  target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 9</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/10?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 10</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/11?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 11</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/12?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 12</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/13?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 13</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/14?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 14</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/15?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 15</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/16?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 16</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/17?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 17</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/18?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 18</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/19?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 19</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/20?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 20</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/21?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 21</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/22?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 22</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/23?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 23</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/24?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 24</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/25?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 25</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/26?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 26</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/27?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 27</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/28?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 28</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/29?translations=33" target="_blank" class="quran-juz-card"><div class="qjuz-num">Juz 29</div><div class="qjuz-title">Buka bacaan</div><div class="qjuz-sub">Terjemahan Indonesia</div></a>
+        <a href="https://quran.com/id/juz/30?translations=33" target="_blank" class="quran-juz-card" style="border-color:var(--primary);"><div class="qjuz-num" style="color:var(--primary);">Juz 30 ✨</div><div class="qjuz-title">Juz Amma</div><div class="qjuz-sub">An-Naba' s.d. An-Nas</div></a>
+      </div>
+    </div>
+
+    <!-- PINTASAN CEPAT (selalu tampil) -->
+    <div style="margin:0 14px 10px;">
+      <div style="font-size:10px;font-weight:800;color:var(--primary);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">PINTASAN CEPAT</div>
+      <div id="quranPintasan" class="card" style="padding:14px;cursor:pointer;" onclick="quranLanjutkan()">
+        <div style="font-size:10px;font-weight:700;color:var(--gray-600);letter-spacing:0.5px;margin-bottom:4px;" id="qPintasanLabel">TERAKHIR DIBACA</div>
+        <div style="font-size:15px;font-weight:800;color:var(--gray-800);" id="qPintasanJudul">Juz 1</div>
+        <div style="font-size:12px;color:var(--gray-600);margin-top:2px;" id="qPintasanSub">Tap untuk lanjutkan bacaan yang terakhir kamu buka.</div>
+        <div style="margin-top:10px;">
+          <span style="background:var(--primary);color:white;padding:7px 18px;border-radius:20px;font-size:12px;font-weight:700;">Lanjutkan →</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <!-- ══ TAB: SUPPORT / SPONSOR ══ -->
   <div class="tab-panel" id="tab-support" style="padding-bottom:20px;">
 
@@ -2842,10 +3017,13 @@ body {
     <div class="nav-icon">🏠</div><div class="nav-label">Beranda</div>
   </button>
   <button class="nav-item" data-tab="edukasi" onclick="switchTab('edukasi', this)">
-    <div class="nav-icon">📖</div><div class="nav-label">Bacaan KIA</div>
+    <div class="nav-icon">📖</div><div class="nav-label">KIA</div>
   </button>
   <button class="nav-item" data-tab="tasrs" onclick="switchTab('tasrs', this)">
     <div class="nav-icon">🎒</div><div class="nav-label">Persiapan</div>
+  </button>
+  <button class="nav-item" data-tab="quran" onclick="switchTab('quran', this)">
+    <div class="nav-icon">📗</div><div class="nav-label">Al-Qur'an</div>
   </button>
   <button class="nav-item" data-tab="pengaturan" onclick="switchTab('pengaturan', this)">
     <div class="nav-icon">⚙️</div><div class="nav-label">Profil</div>
@@ -4244,7 +4422,7 @@ function renderKickCounter() {
   const count = todayKicks.length;
 
   document.getElementById('kickCount').textContent = count;
-  document.getElementById('headerKick').textContent = count;
+  updateHeaderStats();
 
   const pct = Math.min(100, count * 10);
   document.getElementById('kickProgressBar').style.width = pct + '%';
@@ -4461,7 +4639,11 @@ function updateEmergencyBtn() {
     }
   }
   if (greeting) {
-    greeting.textContent = s.name ? 'Halo, Bunda ' + s.name + ' 👋' : 'Asisten Kehamilan Cerdas';
+    if (s.name) {
+      greeting.textContent = 'Halo, Bunda ' + s.name + ' 👋';
+    } else {
+      greeting.innerHTML = 'Asisten Kehamilan Cerdas by <a href="https://lynk.id/dokterrifqi" target="_blank" style="color:rgba(255,255,255,0.95);text-decoration:none;font-weight:700;">@dokrifqi</a>';
+    }
   }
 }
 
@@ -4517,6 +4699,7 @@ function updateProgress() {
   document.getElementById('progressWeekLabel').textContent = `Minggu ${weeks} dari 40`;
   document.getElementById('progressNote').textContent =
     remaining > 0 ? `Tersisa sekitar ${remaining} hari lagi 🍼` : '🎉 Selamat! HPL sudah tiba!';
+  updateHeaderStats();
 }
 
 function checkHPLSmart() {
@@ -4533,11 +4716,47 @@ function checkHPLSmart() {
 
 function updateHeaderStats() {
   const today = new Date().toDateString();
-  const todayKicks = state.kicks.filter(k => new Date(k.time).toDateString() === today);
-  const todayContr = state.contractions.filter(c => new Date(c.time).toDateString() === today).length;
-  // Header bar (top)
-  const hk = document.getElementById('headerKick');   if (hk) hk.textContent = todayKicks.length;
-  const hc = document.getElementById('headerContr');  if (hc) hc.textContent = todayContr;
+  const s = state.settings;
+
+  // Hitung minggu kehamilan
+  let weeks = 0;
+  if (s.hpl) {
+    const hpl = new Date(s.hpl);
+    const conc = new Date(hpl); conc.setDate(conc.getDate() - 280);
+    weeks = Math.max(0, Math.floor((Date.now() - conc) / 604800000));
+  }
+
+  const stat2Val  = document.getElementById('headerStat2');
+  const stat2Lbl  = document.getElementById('headerStat2Lbl');
+  const stat3Val  = document.getElementById('headerStat3');
+  const stat3Lbl  = document.getElementById('headerStat3Lbl');
+  if (!stat2Val) return;
+
+  if (weeks >= 28) {
+    // ── TRIMESTER 3 (≥28 minggu): Gerakan Janin + Kontraksi ──
+    const kicks = (state.kicks || []).filter(k => new Date(k.time).toDateString() === today).length;
+    const contrs = (state.contractions || []).filter(c => new Date(c.time).toDateString() === today).length;
+    stat2Val.textContent = kicks;
+    stat2Lbl.textContent = '👶 Gerakan';
+    stat3Val.textContent = contrs;
+    stat3Lbl.textContent = '⏱️ Kontraksi';
+  } else {
+    // ── TRIMESTER 1 & 2: Status Suplemen + Hari Menuju HPL ──
+    // Cek suplemen TTD hari ini
+    const todayKey = today;
+    const ttdDone  = !!(state.ttd && state.ttd[todayKey]);
+    stat2Val.textContent = ttdDone ? '✅' : '—';
+    stat2Lbl.textContent = '💊 Suplemen';
+
+    // Hitung hari menuju HPL
+    let hariHPL = '—';
+    if (s.hpl) {
+      const diff = Math.max(0, Math.floor((new Date(s.hpl) - new Date()) / 86400000));
+      hariHPL = diff > 0 ? diff : '🎉';
+    }
+    stat3Val.textContent = hariHPL;
+    stat3Lbl.textContent = '📅 Hari HPL';
+  }
 }
 
 function renderHomeNotifPreview() {
@@ -6102,6 +6321,78 @@ ${(() => {
   win.document.close();
 }
 
+// ══════════════════════════════════════
+// AL-QUR'AN
+// ══════════════════════════════════════
+function quranSetActiveChoice(num) {
+  [1,2,3].forEach(n => {
+    const el = document.getElementById('qChoiceCard' + n);
+    if (el) el.classList.toggle('quran-choice-active', n === num);
+  });
+  document.getElementById('quranSectionAyat').style.display = num === 2 ? 'block' : 'none';
+  document.getElementById('quranSectionJuz').style.display  = num === 3 ? 'block' : 'none';
+}
+
+function quranLanjutkan() {
+  quranSetActiveChoice(1);
+  const pos = state.quranPos || {};
+  const juz = pos.juz || 1;
+  window.open(`https://quran.com/id/juz/${juz}?translations=33`, '_blank');
+  // Update pintasan
+  state.quranPos = state.quranPos || { juz: 1 };
+  saveState();
+}
+
+function quranShowAyat() { quranSetActiveChoice(2); }
+function quranShowJuz()  { quranSetActiveChoice(3); }
+
+function quranSavePosition() {
+  if (!state.quranPos) state.quranPos = {};
+  const j = document.getElementById('qInputJuz');
+  const s = document.getElementById('qInputSurah');
+  const a = document.getElementById('qInputAyat');
+  if (j && j.value) state.quranPos.juz   = parseInt(j.value);
+  if (s && s.value) state.quranPos.surah = parseInt(s.value);
+  if (a && a.value) state.quranPos.ayat  = parseInt(a.value);
+  saveState();
+}
+
+function quranOpenAyat() {
+  quranSavePosition();
+  const pos = state.quranPos || {};
+  const surah = pos.surah || 1;
+  const ayat  = pos.ayat  || 1;
+  const juz   = pos.juz   || 1;
+  // Buka ke surah:ayat jika ada, fallback ke juz
+  if (pos.surah) {
+    window.open(`https://quran.com/id/${surah}/${ayat}?translations=33`, '_blank');
+  } else {
+    window.open(`https://quran.com/id/juz/${juz}?translations=33`, '_blank');
+  }
+  updateQuranPintasan();
+}
+
+function updateQuranPintasan() {
+  const pos = state.quranPos || {};
+  const lblEl  = document.getElementById('qPintasanJudul');
+  const subEl  = document.getElementById('qPintasanSub');
+  if (!lblEl) return;
+  if (pos.surah) {
+    lblEl.textContent = `Surah ${pos.surah}${pos.ayat ? ':' + pos.ayat : ''}`;
+    subEl.textContent = `Juz ${pos.juz || 1} · Tap untuk lanjutkan bacaan.`;
+  } else if (pos.juz) {
+    lblEl.textContent = `Juz ${pos.juz}`;
+    subEl.textContent = 'Tap untuk lanjutkan bacaan yang terakhir kamu buka.';
+  }
+  // Update input fields jika ada
+  const j = document.getElementById('qInputJuz');
+  const s = document.getElementById('qInputSurah');
+  const a = document.getElementById('qInputAyat');
+  if (j && pos.juz)   j.value = pos.juz;
+  if (s && pos.surah) s.value = pos.surah;
+  if (a && pos.ayat)  a.value = pos.ayat;
+}
+
 function init() {
   renderContractionList();
   renderKickCounter();
@@ -6136,6 +6427,7 @@ function init() {
   // Fitur 2: ANC countdown
   updateANCCountdown();
   setInterval(updateANCCountdown, 60000);
+  updateQuranPintasan();
 }
 
 function updateWeightCurrentWeek() {

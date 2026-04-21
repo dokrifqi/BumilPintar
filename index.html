@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bumil Pintar</title>
+<meta name="description" content="Asisten digital ibu hamil — tracking kehamilan, catatan harian, bacaan KIA">
+<meta name="theme-color" content="#1565C0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bumil Pintar">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231565C0'/><text y='.9em' font-size='80' x='10'>💙</text></svg>">
+<link rel="manifest" href='data:application/manifest+json,{"name":"Bumil Pintar","short_name":"BumilPintar","description":"Asisten digital ibu hamil","start_url":".","display":"standalone","background_color":"%231565C0","theme_color":"%231565C0","orientation":"portrait","icons":[{"src":"data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 192 192%27><rect width=%27192%27 height=%27192%27 rx=%2738%27 fill=%27%231565C0%27/><text y=%27.9em%27 font-size=%27150%27 x=%2720%27>💙</text></svg>","sizes":"192x192","type":"image/svg+xml"},{"src":"data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 512 512%27><rect width=%27512%27 height=%27512%27 rx=%27102%27 fill=%27%231565C0%27/><text y=%27.9em%27 font-size=%27400%27 x=%2755%27>💙</text></svg>","sizes":"512x512","type":"image/svg+xml"}]}'>
 <style>
 :root {
   --primary: #1976D2;
@@ -23,6 +30,14 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Global touch optimization untuk semua elemen interaktif */
+button, [onclick], .menu-icon-btn, .cs-header, .nav-item, .quick-item {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+button:active, [onclick]:active { opacity: 0.85; }
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
@@ -210,6 +225,8 @@ body {
   text-align: center;
   flex: 1;
   transition: background 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-item.active { background: var(--primary-light); }
 .nav-icon { font-size: 18px; }
@@ -447,6 +464,9 @@ body {
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  text-align: left;
 }
 .cs-header-left { display: flex; align-items: center; gap: 8px; }
 .cs-title { font-size: 13px; font-weight: 700; color: var(--gray-800); }
@@ -509,21 +529,85 @@ body {
   align-items: center;
   padding: 12px 0;
   border-bottom: 1px solid var(--gray-100);
+  gap: 10px;
 }
 .setting-row:last-child { border-bottom: none; }
+.setting-label-wrap { flex: 1; min-width: 0; }
 .setting-label { font-size: 13px; font-weight: 600; color: var(--gray-800); }
 .setting-sub { font-size: 11px; color: var(--gray-600); margin-top: 2px; }
 .setting-input {
   border: 1.5px solid var(--gray-200);
   border-radius: 10px;
-  padding: 7px 10px;
+  padding: 8px 10px;
   font-size: 13px;
-  width: 130px;
+  width: 140px;
   text-align: right;
+  font-family: inherit;
+  flex-shrink: 0;
 }
 .setting-input:focus { outline: none; border-color: var(--primary); }
+.setting-input[type="date"] { text-align: left; }
 
-/* ── EMPTY STATE ── */
+/* ── LAB RESULTS ── */
+.lab-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+  gap: 10px;
+}
+.lab-row:last-of-type { border-bottom: none; }
+.lab-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-800);
+  flex: 1;
+  line-height: 1.4;
+}
+.lab-input {
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  background: white;
+  color: var(--gray-800);
+  width: 130px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.lab-input-sm { width: 80px; }
+.lab-input:focus { outline: none; border-color: var(--primary); }
+.lab-unit { font-size: 11px; color: var(--gray-600); font-weight: 600; flex-shrink: 0; }
+
+/* ── KEPERLUAN SHOPEE ── */
+.keperluan-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-800);
+  text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+}
+.keperluan-item:last-child { border-bottom: none; }
+.keperluan-item:active { background: var(--gray-100); border-radius: 8px; }
+.kep-shop {
+  font-size: 11px;
+  font-weight: 700;
+  color: #EE4D2D;
+  background: #FFF0ED;
+  padding: 3px 8px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
 .empty-state {
   text-align: center;
   padding: 30px 16px;
@@ -907,16 +991,21 @@ body {
 .smart-status { cursor: pointer; }
 
 /* ── MODAL OVERLAY ── */
+.feature-modal {
   display: none;
+  visibility: hidden;
   position: fixed;
   inset: 0;
   z-index: 500;
   background: var(--gray-100);
   overflow-y: auto;
   padding-bottom: 80px;
-  animation: modalIn 0.28s cubic-bezier(0.34,1.2,0.64,1);
 }
-.feature-modal.active { display: block; }
+.feature-modal.active {
+  display: block;
+  visibility: visible;
+  animation: modalIn 0.25s cubic-bezier(0.34,1.2,0.64,1);
+}
 @keyframes modalIn {
   from { opacity:0; transform: translateY(24px); }
   to   { opacity:1; transform: translateY(0); }
@@ -964,6 +1053,10 @@ body {
   justify-content: center;
   cursor: pointer;
   transition: transform 0.18s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .menu-icon-btn:active { transform: scale(0.88); }
 .m-icon {
@@ -1218,7 +1311,7 @@ body {
   <div class="header-top">
     <div class="app-brand">
       💙 Bumil Pintar
-      <span>Asisten Kehamilan Cerdas</span>
+      <span id="headerGreeting">Asisten Kehamilan Cerdas</span>
     </div>
     <div class="header-badge" id="trimesterBadge">Trimester 3</div>
   </div>
@@ -1238,15 +1331,6 @@ body {
   </div>
 </div>
 
-<!-- SMART STATUS -->
-<div class="smart-status normal" id="smartStatus">
-  <span class="ss-icon">🧠</span>
-  <div>
-    <div style="font-size:13px;font-weight:700;" id="smartStatusText">Status Normal</div>
-    <div style="font-size:11px;margin-top:2px;" id="smartStatusSub">Semua parameter dalam batas aman</div>
-  </div>
-</div>
-
 <!-- MAIN CONTENT -->
 <div class="main-content">
 
@@ -1263,6 +1347,18 @@ body {
         <div class="progress-fill" id="progressBar" style="width:0%"></div>
       </div>
       <div style="font-size:11px;color:var(--gray-600);" id="progressNote">Atur HPL untuk melihat progres kehamilan</div>
+    </div>
+
+    <!-- Jadwal ANC Countdown -->
+    <div id="ancCountdownCard" style="display:none;background:linear-gradient(135deg,#7B1FA2,#AB47BC);color:white;border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 4px 14px rgba(123,31,162,0.3);">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="font-size:32px;flex-shrink:0;" id="ancCountdownIcon">📅</div>
+        <div style="flex:1;">
+          <div style="font-size:11px;font-weight:700;opacity:0.85;letter-spacing:0.5px;">JADWAL KONTROL BERIKUTNYA</div>
+          <div style="font-size:17px;font-weight:800;margin-top:2px;" id="ancCountdownText">—</div>
+          <div style="font-size:11px;opacity:0.9;margin-top:2px;" id="ancCountdownDetail">—</div>
+        </div>
+      </div>
     </div>
 
     <!-- Status Card (collapsible) -->
@@ -1289,53 +1385,52 @@ body {
     <!-- Menu Grid Pencatatan -->
     <div class="section-title">CATATAN HARIAN BUNDA</div>
     <div class="menu-grid" id="catatanGrid">
-      <div class="menu-icon-btn" data-feature="kontraksi" onclick="openCatatan('kontraksi',this)">
-        <div class="m-icon">⏱️</div><div class="m-label">Kontraksi</div>
-      </div>
-      <div class="menu-icon-btn" data-feature="gerakan" onclick="openCatatan('gerakan',this)">
-        <div class="m-icon">👶</div><div class="m-label">Gerakan Bayi</div>
-      </div>
-      <div class="menu-icon-btn" data-feature="gejala" onclick="openCatatan('gejala',this)">
-        <div class="m-icon">📋</div><div class="m-label">Gejala</div>
-      </div>
-      <div class="menu-icon-btn" data-feature="suplemen" onclick="openCatatan('suplemen',this)">
+      <!-- 1. Suplemen — wajib sejak awal kehamilan -->
+      <div class="menu-icon-btn" onclick="openPanel('suplemen')">
         <div class="m-icon">💊</div><div class="m-label">Suplemen</div>
       </div>
-      <div class="menu-icon-btn" data-feature="tensi" onclick="openCatatan('tensi',this)">
-        <div class="m-icon">🩺</div><div class="m-label">Tensi</div>
-      </div>
-      <div class="menu-icon-btn" data-feature="berat" onclick="openCatatan('berat',this)">
-        <div class="m-icon">⚖️</div><div class="m-label">Berat</div>
-      </div>
-      <div class="menu-icon-btn" data-feature="mood" onclick="openCatatan('mood',this)">
-        <div class="m-icon">😊</div><div class="m-label">Mood</div>
-      </div>
-      <div class="menu-icon-btn" data-feature="notifikasi" onclick="openCatatan('notifikasi',this)">
-        <div class="m-icon">🔔</div><div class="m-label">Notifikasi</div>
-      </div>
-      <div class="menu-icon-btn" data-feature="dokumen" onclick="openCatatan('dokumen',this)">
-        <div class="m-icon">📷</div><div class="m-label">Lab & USG</div>
-      </div>
-      <div class="menu-icon-btn" data-feature="nutrisi" onclick="openCatatan('nutrisi',this)">
+      <!-- 2. Nutrisi & Hidrasi — penting seluruh kehamilan -->
+      <div class="menu-icon-btn" onclick="openPanel('nutrisi')">
         <div class="m-icon">🥗</div><div class="m-label">Nutrisi</div>
       </div>
-      <div class="menu-icon-btn" data-feature="tabungan" onclick="openCatatan('tabungan',this)">
+      <!-- 3. Berat Badan — dipantau tiap ANC -->
+      <div class="menu-icon-btn" onclick="openPanel('berat')">
+        <div class="m-icon">⚖️</div><div class="m-label">Berat</div>
+      </div>
+      <!-- 4. Tekanan Darah — deteksi preeklampsia dini -->
+      <div class="menu-icon-btn" onclick="openPanel('tensi')">
+        <div class="m-icon">🩺</div><div class="m-label">Tensi</div>
+      </div>
+      <!-- 5. Gejala — catat keluhan sejak T1 -->
+      <div class="menu-icon-btn" onclick="openPanel('gejala')">
+        <div class="m-icon">📋</div><div class="m-label">Gejala</div>
+      </div>
+      <!-- 6. Gerakan Bayi — aktif sejak T2 (minggu 18-20) -->
+      <div class="menu-icon-btn" onclick="openPanel('gerakan')">
+        <div class="m-icon">👶</div><div class="m-label">Gerakan Bayi</div>
+      </div>
+      <!-- 7. Tabungan — siapkan sejak awal -->
+      <div class="menu-icon-btn" onclick="openPanel('tabungan')">
         <div class="m-icon">💰</div><div class="m-label">Tabungan</div>
+      </div>
+      <!-- 8. Lab & USG — dokumentasi hasil ANC -->
+      <div class="menu-icon-btn" onclick="openPanel('dokumen')">
+        <div class="m-icon">🧪</div><div class="m-label">Lab</div>
+      </div>
+      <!-- 9. Mood Journal — kesehatan mental -->
+      <div class="menu-icon-btn" onclick="openPanel('mood')">
+        <div class="m-icon">😊</div><div class="m-label">Mood</div>
+      </div>
+      <!-- 10. Kontraksi — aktif mendekati persalinan T3 -->
+      <div class="menu-icon-btn" onclick="openPanel('kontraksi')">
+        <div class="m-icon">⏱️</div><div class="m-label">Kontraksi</div>
+      </div>
+      <!-- 11. Notifikasi — riwayat alert -->
+      <div class="menu-icon-btn" onclick="openPanel('notifikasi')">
+        <div class="m-icon">🔔</div><div class="m-label">Notifikasi</div>
       </div>
     </div>
 
-    <!-- Panel Catatan Inline (muncul di bawah grid) -->
-    <div id="catatanPanel" style="display:none;margin-bottom:14px;">
-      <div style="background:white;border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,0.08);overflow:hidden;">
-        <!-- Topbar panel -->
-        <div id="catatanPanelHeader" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:linear-gradient(135deg,#1565C0,#42A5F5);color:white;">
-          <div style="font-size:14px;font-weight:800;" id="catatanPanelTitle">—</div>
-          <button onclick="closeCatatan()" style="background:rgba(255,255,255,0.2);border:none;border-radius:8px;color:white;font-size:14px;padding:4px 10px;cursor:pointer;font-weight:700;">✕</button>
-        </div>
-        <!-- Body panel (konten diisi JS) -->
-        <div id="catatanPanelBody" style="padding:14px;max-height:70vh;overflow-y:auto;"></div>
-      </div>
-    </div>
 
     <!-- Perkembangan Janin di Beranda -->
     <div class="section-title">🍼 PERKEMBANGAN JANIN HARI INI</div>
@@ -1404,6 +1499,196 @@ body {
     </div>
 
     <div id="checklistContainer"></div>
+
+    <!-- ══ KEPERLUAN IBU HAMIL & MENYUSUI ══ -->
+    <div class="section-title" style="margin-top:8px;">🛍️ KEPERLUAN IBU HAMIL & MENYUSUI</div>
+    <div class="card" style="padding:12px 14px 8px;margin-bottom:10px;background:linear-gradient(135deg,#E8F5E9,#F1F8E9);">
+      <div style="font-size:12px;color:#2E7D32;line-height:1.6;">
+        💚 Ketuk nama barang untuk langsung belanja di Shopee. Link sudah dikurasi khusus untuk kebutuhan kehamilan & menyusui.
+      </div>
+    </div>
+
+    <!-- Kategori 1: Pakaian Ibu Hamil -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_1')">
+        <div class="cs-header-left"><span>👗</span><span class="cs-title">Pakaian Ibu Hamil</span></div>
+        <span class="cs-arrow" id="arrow_kep_1">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_1">
+        <a href="https://s.shopee.co.id/5AohMYvlnE" target="_blank" class="keperluan-item">Baju hamil longgar <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/40cjyUakWI" target="_blank" class="keperluan-item">Dress maternity <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/7AZlkKyelf" target="_blank" class="keperluan-item">Legging maternity <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/1BIZi32MHg" target="_blank" class="keperluan-item">Bra menyusui <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/1BIZhz6nDh" target="_blank" class="keperluan-item">Tank top ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4LFaNDjRJ0" target="_blank" class="keperluan-item">Piyama ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/5L87Z6RMJh" target="_blank" class="keperluan-item">Cardigan ringan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/8pi0q6hKsP" target="_blank" class="keperluan-item">Underwear ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/40cjyhwrIt" target="_blank" class="keperluan-item">Kaos kaki anti slip <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 2: Persiapan Melahirkan -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_2')">
+        <div class="cs-header-left"><span>🏥</span><span class="cs-title">Persiapan Melahirkan</span></div>
+        <span class="cs-arrow" id="arrow_kep_2">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_2">
+        <a href="https://s.shopee.co.id/AUqDii8zFg" target="_blank" class="keperluan-item">Tas khusus melahirkan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/2g7MOLhubs" target="_blank" class="keperluan-item">Pembalut nifas <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/9KeGKe8WNy" target="_blank" class="keperluan-item">Baju ganti ibu <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/AUqEpIvPLJ" target="_blank" class="keperluan-item">Handuk lembut <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/40cjytW0qz" target="_blank" class="keperluan-item">Sendal anti slip <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/qfjJbZGbv" target="_blank" class="keperluan-item">Botol minum <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/gMJ7KzQIG" target="_blank" class="keperluan-item">Charger & power bank <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/gMJ7Ml0Ha" target="_blank" class="keperluan-item">Kantung plastik pakaian kotor <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4qBs53UoZV" target="_blank" class="keperluan-item">Selimut ringan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/qfjJizrWr" target="_blank" class="keperluan-item">Perlengkapan mandi travel <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 3: Perlengkapan Bayi Baru Lahir -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_3')">
+        <div class="cs-header-left"><span>👶</span><span class="cs-title">Perlengkapan Bayi Baru Lahir</span></div>
+        <span class="cs-arrow" id="arrow_kep_3">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_3">
+        <a href="https://s.shopee.co.id/2VnwCGOFTC" target="_blank" class="keperluan-item">Paket baju bayi newborn <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3qJJmkrYvs" target="_blank" class="keperluan-item">Popok bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4LFaNhomZP" target="_blank" class="keperluan-item">Bedong instan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/AADNKS5uFl" target="_blank" class="keperluan-item">Selimut bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/8Klj98ks6F" target="_blank" class="keperluan-item">Kain flannel <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/7AZll1qIDA" target="_blank" class="keperluan-item">Perlak bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/20rfbZMQDA" target="_blank" class="keperluan-item">Gendongan bayi <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 4: Perawatan Bayi -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_4')">
+        <div class="cs-header-left"><span>🧴</span><span class="cs-title">Perawatan Bayi</span></div>
+        <span class="cs-arrow" id="arrow_kep_4">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_4">
+        <a href="https://s.shopee.co.id/W2ros8uvs" target="_blank" class="keperluan-item">Sabun bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/W2ros8uvs" target="_blank" class="keperluan-item">Shampoo bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4VZ0aGInaY" target="_blank" class="keperluan-item">Minyak telon <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3qJJn5N9LO" target="_blank" class="keperluan-item">Lotion bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/1BIYcD1UPj" target="_blank" class="keperluan-item">Tisu basah bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3fztaqWpA2" target="_blank" class="keperluan-item">Handuk bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/2BB6sXNtEl" target="_blank" class="keperluan-item">Waslap bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/6VK62WacQ1" target="_blank" class="keperluan-item">Baby oil <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 5: Perlengkapan Tidur Bayi -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_5')">
+        <div class="cs-header-left"><span>🛏️</span><span class="cs-title">Perlengkapan Tidur Bayi</span></div>
+        <span class="cs-arrow" id="arrow_kep_5">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_5">
+        <a href="https://s.shopee.co.id/7fW33HO0YP" target="_blank" class="keperluan-item">Box bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/808tRxcNW7" target="_blank" class="keperluan-item">Kasur bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3B3e4SYYuz" target="_blank" class="keperluan-item">Bantal pegang <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/20rggL8Uui" target="_blank" class="keperluan-item">Kelambu bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/7fW3QnSwhJ" target="_blank" class="keperluan-item">Sleep sack bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/808tpS4Sz6" target="_blank" class="keperluan-item">Selimut hangat <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3LN4GuinVT" target="_blank" class="keperluan-item">Lampu tidur <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3qJKrvYlSY" target="_blank" class="keperluan-item">Perlak kasur <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 6: Perlengkapan Menyusui -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_6')">
+        <div class="cs-header-left"><span>🍼</span><span class="cs-title">Perlengkapan Menyusui</span></div>
+        <span class="cs-arrow" id="arrow_kep_6">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_6">
+        <a href="https://s.shopee.co.id/7AZmq5vMH3" target="_blank" class="keperluan-item">Pompa ASI manual <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/6L0fqcDXiY" target="_blank" class="keperluan-item">Pompa ASI elektrik <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/7ppTdPTA1O" target="_blank" class="keperluan-item">Botol ASI <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3LN4HA1lHq" target="_blank" class="keperluan-item">Kantong ASI <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/6L0fqhG3nx" target="_blank" class="keperluan-item">Cooler bag ASI <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/AADOPlbynF" target="_blank" class="keperluan-item">Nursing cover <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/5AoiSeHs70" target="_blank" class="keperluan-item">Bra menyusui <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4LFbT61J16" target="_blank" class="keperluan-item">Bantal menyusui <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/AKWocB7qOm" target="_blank" class="keperluan-item">Sterilizer botol <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/5L88f0mgCP" target="_blank" class="keperluan-item">Penghangat susu <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 7: Nutrisi & Kesehatan Ibu -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_7')">
+        <div class="cs-header-left"><span>🥗</span><span class="cs-title">Nutrisi & Kesehatan Ibu</span></div>
+        <span class="cs-arrow" id="arrow_kep_7">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_7">
+        <a href="https://s.shopee.co.id/qfjIpSBnc" target="_blank" class="keperluan-item">Vitamin prenatal <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/20rgh0DjCt" target="_blank" class="keperluan-item">Susu ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4AwBH0VgFH" target="_blank" class="keperluan-item">Snack sehat <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/6pwwRvokoO" target="_blank" class="keperluan-item">Buah kering <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/9fH7pB3YfN" target="_blank" class="keperluan-item">Madu <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/70GMeIagBr" target="_blank" class="keperluan-item">Kurma <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 8: Perawatan Ibu Pasca Melahirkan -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_8')">
+        <div class="cs-header-left"><span>💆</span><span class="cs-title">Perawatan Ibu Pasca Melahirkan</span></div>
+        <span class="cs-arrow" id="arrow_kep_8">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_8">
+        <a href="https://s.shopee.co.id/1LbztxyhVZ" target="_blank" class="keperluan-item">Pembalut nifas <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/7VCdFKN9IU" target="_blank" class="keperluan-item">Korset pasca melahirkan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/60NpSbHbOS" target="_blank" class="keperluan-item">Minyak pijat <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4AwBHIVUS6" target="_blank" class="keperluan-item">Sabun antiseptik <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3qJKsiAZU6" target="_blank" class="keperluan-item">Breast pad <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/6L0frKjxAn" target="_blank" class="keperluan-item">Salep puting <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/2BB6tibIbl" target="_blank" class="keperluan-item">Cooling pad <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 9: Mobilitas & Keamanan Bayi -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_9')">
+        <div class="cs-header-left"><span>🚗</span><span class="cs-title">Mobilitas & Keamanan Bayi</span></div>
+        <span class="cs-arrow" id="arrow_kep_9">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_9">
+        <a href="https://s.shopee.co.id/5fkz1tfp80" target="_blank" class="keperluan-item">Car seat bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/1qYGStJ2q9" target="_blank" class="keperluan-item">Stroller <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/gMJ4lxaPK" target="_blank" class="keperluan-item">Gendongan ergonomis <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3VgUS0FTXF" target="_blank" class="keperluan-item">Tas diaper bag <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/AUqEmtf59R" target="_blank" class="keperluan-item">Baby carrier wrap <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/70GMcUbvNI" target="_blank" class="keperluan-item">Kursi makan bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/901R0Bo7Mp" target="_blank" class="keperluan-item">Playpen <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/6L0fpL1wGT" target="_blank" class="keperluan-item">Safety belt bayi <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
+
+    <!-- Kategori 10: Edukasi & Stimulasi Bayi -->
+    <div class="checklist-section">
+      <button class="cs-header" onclick="toggleSection('kep_10')">
+        <div class="cs-header-left"><span>🧸</span><span class="cs-title">Edukasi & Stimulasi Bayi</span></div>
+        <span class="cs-arrow" id="arrow_kep_10">▼</span>
+      </button>
+      <div class="cs-items" id="items_kep_10">
+        <a href="https://s.shopee.co.id/W2srt423N" target="_blank" class="keperluan-item">Buku bayi kontras tinggi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4AwBEf9xS4" target="_blank" class="keperluan-item">Mainan gantung <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/AKWoa2Y0CA" target="_blank" class="keperluan-item">Teether bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4AwBElqpzb" target="_blank" class="keperluan-item">Playmat <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/7VCdCvQD3R" target="_blank" class="keperluan-item">Musik bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/4fsRpklfVP" target="_blank" class="keperluan-item">Cermin bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/3fzue7xHmG" target="_blank" class="keperluan-item">Boneka lembut <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/50VIEOfXGg" target="_blank" class="keperluan-item">Rattle bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="https://s.shopee.co.id/5L88dDrqrV" target="_blank" class="keperluan-item">Busy board sederhana <span class="kep-shop">🛒 Shopee</span></a>
+      </div>
+    </div>
 
   </div>
 
@@ -2154,34 +2439,192 @@ body {
     </div>
 
     <div style="height:10px;"></div>
+
   </div>
 
   <!-- ══ TAB: PENGATURAN ══ -->
   <div class="tab-panel" id="tab-pengaturan" style="padding-bottom:20px;">
 
+    <!-- Header -->
+    <div class="card" style="background:linear-gradient(135deg,#1565C0,#42A5F5);color:white;padding:18px;margin-bottom:14px;">
+      <div style="font-size:16px;font-weight:800;margin-bottom:2px;">⚙️ Data Kehamilan Bunda</div>
+      <div style="font-size:12px;opacity:0.85;">Lengkapi data untuk pengalaman terbaik</div>
+    </div>
+
+    <!-- 🧍 DATA IBU -->
+    <div class="section-title">🧍 DATA IBU</div>
     <div class="card">
-      <div class="card-title">⚙️ Data Kehamilan</div>
+
       <div class="setting-row">
-        <div>
-          <div class="setting-label">Hari Perkiraan Lahir (HPL)</div>
-          <div class="setting-sub">Format: YYYY-MM-DD</div>
+        <div class="setting-label-wrap">
+          <div class="setting-label">Nama Ibu</div>
+        </div>
+        <input type="text" class="setting-input" id="settingName" placeholder="Nama lengkap" onchange="saveSettings()">
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">Usia Ibu</div>
+        </div>
+        <input type="number" class="setting-input" id="settingUsia" placeholder="Tahun" min="15" max="60" onchange="saveSettings()">
+      </div>
+
+    </div>
+
+    <!-- 🤰 DATA KEHAMILAN -->
+    <div class="section-title">🤰 DATA KEHAMILAN</div>
+    <div class="card">
+
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">HPHT</div>
+          <div class="setting-sub">Hari Pertama Haid Terakhir → HPL auto-hitung</div>
+        </div>
+        <input type="date" class="setting-input" id="settingHPHT" onchange="onHPHTChange()">
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">HPL</div>
+          <div class="setting-sub" id="hplSubLabel">Hari Perkiraan Lahir (auto dari HPHT)</div>
         </div>
         <input type="date" class="setting-input" id="settingHPL" onchange="saveSettings()">
       </div>
+
       <div class="setting-row">
-        <div>
-          <div class="setting-label">Nama Bunda</div>
+        <div class="setting-label-wrap">
+          <div class="setting-label">Kehamilan Ke-</div>
         </div>
-        <input type="text" class="setting-input" id="settingName" placeholder="Nama kamu" onchange="saveSettings()">
+        <input type="number" class="setting-input" id="settingKehamilanKe" placeholder="Contoh: 2" min="1" max="20" onchange="saveSettings()">
       </div>
+
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">Pernah Melahirkan</div>
+          <div class="setting-sub">Jumlah persalinan sebelumnya</div>
+        </div>
+        <input type="number" class="setting-input" id="settingMelahirkan" placeholder="0" min="0" max="20" onchange="saveSettings()">
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">Pernah Keguguran</div>
+          <div class="setting-sub">Jumlah keguguran sebelumnya</div>
+        </div>
+        <input type="number" class="setting-input" id="settingKeguguran" placeholder="0" min="0" max="20" onchange="saveSettings()">
+      </div>
+
     </div>
 
+    <!-- 📋 RIWAYAT KEHAMILAN -->
+    <div class="section-title">📋 RIWAYAT KEHAMILAN</div>
+    <div class="card">
+
+      <div style="margin-bottom:14px;">
+        <div class="setting-label" style="margin-bottom:6px;">Riwayat Kehamilan Sebelumnya</div>
+        <div class="setting-sub" style="margin-bottom:8px;">Komplikasi, kondisi khusus, dll.</div>
+        <textarea id="settingRiwayatKehamilan" placeholder="Contoh: Sempat mengalami HEG di T1, tekanan darah normal..." onchange="saveSettings()" style="width:100%;border:1.5px solid var(--gray-200);border-radius:12px;padding:10px 12px;font-size:13px;font-family:inherit;resize:none;min-height:80px;line-height:1.6;"></textarea>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--gray-100);">
+        <div>
+          <div class="setting-label">Riwayat Operasi Caesar (SC)</div>
+          <div class="setting-sub">Apakah pernah SC sebelumnya?</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button id="btnSCYa" class="sc-toggle" onclick="setSC(true)" style="padding:8px 16px;border-radius:20px;border:2px solid var(--gray-200);background:white;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;">Ya</button>
+          <button id="btnSCTidak" class="sc-toggle active-sc" onclick="setSC(false)" style="padding:8px 16px;border-radius:20px;border:2px solid var(--primary);background:var(--primary-light);color:var(--primary);font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;">Tidak</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 👩‍⚕️ DATA BIDAN -->
+    <div class="section-title">👩‍⚕️ BIDAN / DOKTER PENDAMPING</div>
+    <div class="card">
+
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">Nama Bidan/Dokter</div>
+        </div>
+        <input type="text" class="setting-input" id="settingNamaBidan" placeholder="Nama lengkap" onchange="saveSettings()">
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">No. Telepon</div>
+          <div class="setting-sub">Untuk panggilan darurat</div>
+        </div>
+        <input type="tel" class="setting-input" id="settingTelpBidan" placeholder="08xx-xxxx-xxxx" onchange="saveSettings()">
+      </div>
+
+      <!-- Tombol Emergency Call -->
+      <div style="margin-top:14px;">
+        <button onclick="emergencyCall()" id="btnEmergency"
+          style="width:100%;background:linear-gradient(135deg,#C62828,#E53935);color:white;border:none;border-radius:16px;padding:16px;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 6px 20px rgba(229,57,53,0.4);touch-action:manipulation;-webkit-tap-highlight-color:transparent;">
+          <span style="font-size:22px;">📞</span>
+          <div style="text-align:left;">
+            <div>Hubungi Bidan Sekarang</div>
+            <div id="emergencyNamaBidan" style="font-size:11px;font-weight:400;opacity:0.85;">Atur nomor bidan di atas</div>
+          </div>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Tentang & Reset -->
     <div class="card">
       <div class="card-title">ℹ️ Tentang Bumil Pintar</div>
       <div style="font-size:13px;color:var(--gray-600);line-height:1.7;">
         💙 <strong>Bumil Pintar</strong> adalah asisten digital untuk ibu hamil berbasis panduan <strong>Buku KIA Kemenkes RI 2024</strong>.<br><br>
         App ini tidak menggantikan konsultasi medis. Selalu konsultasikan kondisi kepada bidan atau dokter kandungan.
       </div>
+    </div>
+
+    <!-- 📅 JADWAL KONTROL -->
+    <div class="section-title">📅 JADWAL KONTROL (ANC)</div>
+    <div class="card">
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">Tanggal Kontrol Berikutnya</div>
+          <div class="setting-sub">Pengingat akan muncul di Beranda</div>
+        </div>
+        <input type="date" class="setting-input" id="settingNextANC" onchange="saveSettings()">
+      </div>
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">Jam Kontrol</div>
+        </div>
+        <input type="time" class="setting-input" id="settingNextANCTime" onchange="saveSettings()">
+      </div>
+      <div class="setting-row">
+        <div class="setting-label-wrap">
+          <div class="setting-label">Lokasi / Catatan</div>
+        </div>
+        <input type="text" class="setting-input" id="settingNextANCNote" placeholder="RS/Klinik..." onchange="saveSettings()">
+      </div>
+    </div>
+
+    <!-- 📄 LAPORAN KEHAMILAN -->
+    <div class="section-title">📄 LAPORAN & BACKUP</div>
+    <div class="card">
+      <div class="card-title">📋 Laporan Kehamilan</div>
+      <div style="font-size:12px;color:var(--gray-600);margin-bottom:12px;line-height:1.6;">Cetak laporan rekap untuk ditunjukkan saat kontrol ANC. Berisi riwayat tensi, berat, gerakan, gejala, dan nutrisi.</div>
+      <button class="btn-primary" style="width:100%;margin-bottom:10px;" onclick="generateLaporan()">
+        🖨️ Cetak / Simpan PDF
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💾 Backup & Restore Data</div>
+      <div style="font-size:12px;color:var(--gray-600);margin-bottom:12px;line-height:1.6;">Simpan semua data ke file agar aman jika ganti HP atau hapus cache browser.</div>
+      <button class="btn-primary" style="width:100%;margin-bottom:8px;background:linear-gradient(135deg,#2E7D32,#66BB6A);" onclick="backupData()">
+        💾 Download Backup (.json)
+      </button>
+      <button class="btn-secondary" style="width:100%;" onclick="document.getElementById('restoreInput').click()">
+        📂 Restore dari File Backup
+      </button>
+      <input type="file" id="restoreInput" accept=".json,application/json" style="display:none;" onchange="restoreData(event)">
     </div>
 
     <div class="card">
@@ -2194,76 +2637,198 @@ body {
   <!-- ══ TAB: SUPPORT / SPONSOR ══ -->
   <div class="tab-panel" id="tab-support" style="padding-bottom:20px;">
 
+    <!-- 💼 PENAWARAN CUSTOM -->
+    <div onclick="window.open('https://wa.me/6281235555450?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20Custom%20Bumil%20Pintar%20untuk%20praktek%20pribadi%20saya.','_blank')"
+         style="cursor:pointer;background:linear-gradient(135deg,#1a237e,#1565C0,#0288D1);border-radius:18px;padding:18px;margin-bottom:14px;color:white;box-shadow:0 6px 24px rgba(21,101,192,0.45);position:relative;overflow:hidden;touch-action:manipulation;-webkit-tap-highlight-color:transparent;">
+      <!-- Dekorasi background -->
+      <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+      <div style="position:absolute;bottom:-30px;right:30px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
+
+      <div style="font-size:11px;font-weight:800;letter-spacing:1.2px;opacity:0.8;margin-bottom:6px;text-transform:uppercase;">🏥 Penawaran Khusus</div>
+      <div style="font-size:16px;font-weight:800;line-height:1.4;margin-bottom:6px;">
+        Ingin Custom Bumil Pintar<br>untuk Praktek Pribadi?
+      </div>
+      <div style="font-size:12px;opacity:0.9;line-height:1.6;margin-bottom:14px;">
+        Cocok untuk <strong>Klinik / Praktek Pribadi</strong> — branded dengan nama & logo Bidan/Dokter, fitur sesuai kebutuhan.
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:10px 16px;display:flex;align-items:center;gap:8px;flex:1;">
+          <span style="font-size:20px;">💬</span>
+          <div>
+            <div style="font-size:11px;opacity:0.8;">Hubungi Admin</div>
+            <div style="font-size:14px;font-weight:800;">0812-3555-5450</div>
+          </div>
+        </div>
+        <div style="background:white;color:#1565C0;border-radius:12px;padding:10px 14px;font-size:12px;font-weight:800;flex-shrink:0;">
+          Chat WA →
+        </div>
+      </div>
+    </div>
+
     <!-- Hero -->
     <div class="support-hero">
       <div class="support-hero-icon">💖</div>
       <div class="support-hero-title">Dukungan & Sponsor</div>
-      <div class="support-hero-sub">Bumil Pintar dapat terus hadir dan bebas iklan berkat dukungan para sponsor. Terima kasih! 🙏</div>
+      <div class="support-hero-sub">Bumil Pintar hadir gratis & bebas iklan berkat dukungan para sponsor dan mitra. Terima kasih! 🙏</div>
+    </div>
+
+    <!-- ⭐ SPONSOR UTAMA -->
+    <div class="section-title">⭐ SPONSOR UTAMA</div>
+    <div class="card" style="border:2px solid #FFB300;background:linear-gradient(135deg,#FFFDE7,#FFF8E1);">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:56px;height:56px;border-radius:16px;background:#FFB300;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;">🌟</div>
+        <div style="flex:1;">
+          <div style="font-size:15px;font-weight:800;color:#E65100;">Slot Sponsor Utama</div>
+          <div style="font-size:12px;color:#795548;margin-top:2px;line-height:1.5;">Logo + nama tampil di beranda app, sebutan di setiap update, dan link langsung ke website/medsos Anda.</div>
+        </div>
+      </div>
+      <button class="btn-primary" style="width:100%;margin-top:12px;background:linear-gradient(135deg,#E65100,#FFB300);" onclick="window.open('https://wa.me/62812XXXXXXXX?text=Halo,%20saya%20tertarik%20menjadi%20Sponsor%20Utama%20Bumil%20Pintar','_blank')">
+        💬 Hubungi untuk Kerjasama
+      </button>
+    </div>
+
+    <!-- 💙 SPONSOR PENDUKUNG -->
+    <div class="section-title">💙 SPONSOR PENDUKUNG</div>
+
+    <!-- Pendukung 1: dr. Rifqi -->
+    <div class="card" style="cursor:pointer;transition:transform 0.15s;" onclick="window.open('https://lynk.id/dokterrifqi','_blank')" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform=''">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#1565C0,#42A5F5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">👨‍⚕️</div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:800;color:var(--gray-800);">dr. Mochamad Rifqie N K</div>
+          <div style="font-size:11px;color:var(--primary);font-weight:600;margin-top:1px;">lynk.id/dokterrifqi</div>
+          <div style="font-size:11px;color:var(--gray-600);margin-top:2px;">Sponsor Pendukung Bumil Pintar</div>
+        </div>
+        <div style="font-size:18px;color:var(--primary);">→</div>
+      </div>
+    </div>
+
+    <!-- Pendukung 2–5: Slot kosong -->
+    <div class="card" style="border:2px dashed var(--gray-200);background:var(--gray-100);">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:48px;height:48px;border-radius:14px;background:var(--gray-200);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">➕</div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:800;color:var(--gray-600);">Slot Sponsor Pendukung 2</div>
+          <div style="font-size:11px;color:var(--gray-600);margin-top:2px;">Tersedia — hubungi kami untuk info</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border:2px dashed var(--gray-200);background:var(--gray-100);">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:48px;height:48px;border-radius:14px;background:var(--gray-200);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">➕</div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:800;color:var(--gray-600);">Slot Sponsor Pendukung 3</div>
+          <div style="font-size:11px;color:var(--gray-600);margin-top:2px;">Tersedia — hubungi kami untuk info</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border:2px dashed var(--gray-200);background:var(--gray-100);">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:48px;height:48px;border-radius:14px;background:var(--gray-200);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">➕</div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:800;color:var(--gray-600);">Slot Sponsor Pendukung 4</div>
+          <div style="font-size:11px;color:var(--gray-600);margin-top:2px;">Tersedia — hubungi kami untuk info</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border:2px dashed var(--gray-200);background:var(--gray-100);">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:48px;height:48px;border-radius:14px;background:var(--gray-200);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">➕</div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:800;color:var(--gray-600);">Slot Sponsor Pendukung 5</div>
+          <div style="font-size:11px;color:var(--gray-600);margin-top:2px;">Tersedia — hubungi kami untuk info</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🩺 DOKTER PENDUKUNG -->
+    <div class="section-title">🩺 DOKTER PENDUKUNG</div>
+    <div style="font-size:11px;color:var(--gray-600);margin-bottom:8px;font-style:italic;">10 slot tersedia untuk dokter / bidan / tenaga kesehatan mitra</div>
+
+    <!-- 10 slot dokter -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <!-- Slot 1–10 -->
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 1</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 2</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 3</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 4</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 5</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 6</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 7</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 8</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 9</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
+      <div class="card" style="padding:12px;border:2px dashed var(--gray-200);background:var(--gray-100);text-align:center;">
+        <div style="font-size:24px;margin-bottom:4px;">🩺</div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-600);">Slot Dokter 10</div>
+        <div style="font-size:10px;color:var(--gray-600);">Tersedia</div>
+      </div>
     </div>
 
     <!-- Kontak -->
     <div class="card">
-      <div class="card-title">📞 Kontak Kerjasama</div>
-      <div class="card-subtitle">Hubungi kami untuk info sponsor & kerjasama</div>
-
+      <div class="card-title">📞 Daftarkan Diri / Kerjasama</div>
       <div class="support-contact-item">
         <div class="support-contact-icon" style="background:#E8F5E9;">📱</div>
         <div>
-          <div class="support-contact-label">WhatsApp / Telepon</div>
+          <div class="support-contact-label">WhatsApp</div>
           <div class="support-contact-value">0812-XXXX-XXXX</div>
         </div>
       </div>
-
       <div class="support-contact-item">
         <div class="support-contact-icon" style="background:#E3F2FD;">📧</div>
         <div>
-          <div class="support-contact-label">Email Operasional</div>
+          <div class="support-contact-label">Email</div>
           <div class="support-contact-value">halo@bumilpintar.com</div>
         </div>
       </div>
-
-      <div class="support-contact-item">
-        <div class="support-contact-icon" style="background:#F3E5F5;">🌐</div>
-        <div>
-          <div class="support-contact-label">Website</div>
-          <div class="support-contact-value">www.bumilpintar.com</div>
-        </div>
-      </div>
-
-      <button class="btn-primary" style="width:100%;margin-top:14px;"
-              onclick="window.open('https://wa.me/62812XXXXXXXX','_blank')">
+      <button class="btn-primary" style="width:100%;margin-top:12px;" onclick="window.open('https://wa.me/62812XXXXXXXX','_blank')">
         💬 Hubungi via WhatsApp
       </button>
     </div>
 
-    <!-- Paket Sponsor -->
-    <div class="card">
-      <div class="card-title">🌟 Paket Sponsor</div>
-      <div class="card-subtitle">Pilihan dukungan untuk keberlangsungan app</div>
-
-      <div class="sponsor-card" style="border-color:#FFB300;background:#FFFDE7;">
-        <div class="sponsor-card-title" style="color:#F57F17;">⭐ Sponsor Utama</div>
-        <div class="sponsor-card-sub">Logo + nama di halaman utama app, disebut dalam setiap update, dan link ke website/medsos Anda.</div>
-      </div>
-
-      <div class="sponsor-card" style="border-color:var(--primary);background:var(--primary-light);">
-        <div class="sponsor-card-title">💙 Sponsor Pendukung</div>
-        <div class="sponsor-card-sub">Nama tercantum di halaman Sponsor sebagai pendukung resmi Bumil Pintar.</div>
-      </div>
-
-      <div class="sponsor-card" style="border-color:var(--success);background:var(--success-light);">
-        <div class="sponsor-card-title" style="color:var(--success);">🤝 Donatur</div>
-        <div class="sponsor-card-sub">Donasi bebas nominal untuk membantu biaya operasional dan pengembangan fitur baru.</div>
-      </div>
-    </div>
-
-    <!-- Tentang App -->
+    <!-- Tentang -->
     <div class="card">
       <div class="card-title">ℹ️ Tentang Bumil Pintar</div>
       <div style="font-size:13px;color:var(--gray-600);line-height:1.7;">
-        💙 <strong>Bumil Pintar</strong> adalah asisten digital ibu hamil berbasis panduan <strong>Buku KIA Kemenkes RI 2024</strong>.<br><br>
-        App ini gratis, bebas iklan, dan tidak mengumpulkan data pribadi pengguna. Semua data tersimpan lokal di perangkat Bunda.<br><br>
-        App ini tidak menggantikan konsultasi medis. Selalu konsultasikan kondisi kepada bidan atau dokter kandungan.
+        💙 <strong>Bumil Pintar</strong> adalah asisten digital ibu hamil berbasis <strong>Buku KIA Kemenkes RI 2024</strong>.<br><br>
+        Gratis, bebas iklan, dan tidak mengumpulkan data pribadi. Semua data tersimpan lokal di perangkat Bunda.<br><br>
+        Tidak menggantikan konsultasi medis. Selalu konsultasikan kondisi kepada bidan atau dokter kandungan.
       </div>
     </div>
 
@@ -2290,6 +2855,9 @@ body {
   </button>
 </nav>
 
+
+<!-- ═══ PANEL CONTAINER (fixed overlay, outside flow) ═══ -->
+
   <div class="feature-modal" id="panel-kontraksi"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">⏱️ Timer Kontraksi</div></div><div class="modal-body">
 
     <div class="card">
@@ -2311,6 +2879,19 @@ body {
       </div>
     </div>
 
+    <!-- Panduan Pernapasan -->
+    <div class="card" id="breathingCard" style="display:none;text-align:center;background:linear-gradient(135deg,#E8F5E9,#C8E6C9);">
+      <div class="card-title" style="text-align:center;color:#1B5E20;">🫁 Panduan Pernapasan</div>
+      <div style="font-size:12px;color:#2E7D32;margin-bottom:16px;">Ikuti ritme napas untuk mengurangi nyeri</div>
+      <div style="position:relative;height:200px;display:flex;align-items:center;justify-content:center;margin:10px 0;">
+        <div id="breathCircle" style="width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#43A047,#66BB6A);box-shadow:0 0 40px rgba(76,175,80,0.5);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:15px;transition:transform 4s ease-in-out,box-shadow 4s ease-in-out;">
+          Bernapas...
+        </div>
+      </div>
+      <div id="breathingPhase" style="font-size:18px;font-weight:800;color:#1B5E20;margin-top:6px;">Siap-siap...</div>
+      <div style="font-size:11px;color:#388E3C;margin-top:8px;line-height:1.6;">Teknik Lamaze: tarik napas lewat hidung 4 detik, tahan sebentar, hembuskan lewat mulut perlahan.</div>
+    </div>
+
     <div class="card" id="contractionSummaryCard" style="display:none">
       <div class="card-title">📊 Ringkasan</div>
       <div id="contractionSummary" style="font-size:13px;color:var(--gray-600);"></div>
@@ -2329,7 +2910,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ TAB: GERAKAN ══ -->
   <div class="feature-modal" id="panel-gerakan"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">👶 Gerakan Bayi</div></div><div class="modal-body">
 
     <div class="card">
@@ -2370,7 +2950,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ TAB: GEJALA ══ -->
   <div class="feature-modal" id="panel-gejala"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">📋 Catat Gejala</div></div><div class="modal-body">
 
     <div class="card">
@@ -2457,7 +3036,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ TAB: CHECKLIST TAS RS ══ -->
   <div class="feature-modal" id="panel-notifikasi"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">🔔 Riwayat Notifikasi</div></div><div class="modal-body">
     <div class="card">
       <div class="card-title">🔔 Riwayat Notifikasi</div>
@@ -2475,7 +3053,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ TAB: TTD ══ -->
   <div class="feature-modal" id="panel-suplemen"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">💊 Suplemen Harian</div></div><div class="modal-body">
     <div class="card">
       <div class="card-title">💊 Pengingat Suplemen Harian</div>
@@ -2510,7 +3087,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ TAB: TEKANAN DARAH ══ -->
   <div class="feature-modal" id="panel-tensi"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">🩺 Tekanan Darah</div></div><div class="modal-body">
     <div class="card">
       <div class="card-title">🩺 Catat Tekanan Darah</div>
@@ -2543,7 +3119,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ TAB: BERAT BADAN ══ -->
   <div class="feature-modal" id="panel-berat"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">⚖️ Berat Badan</div></div><div class="modal-body">
     <div class="card">
       <div class="card-title">⚖️ Kalkulator Kenaikan Berat Badan</div>
@@ -2575,7 +3150,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ TAB: PERKEMBANGAN JANIN ══ -->
   <div class="feature-modal" id="panel-janin"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">🍼 Perkembangan Janin</div></div><div class="modal-body">
     <div class="card">
       <div class="card-title">🍼 Perkembangan Janin Mingguan</div>
@@ -2598,7 +3172,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ TAB: MOOD JOURNAL ══ -->
   <div class="feature-modal" id="panel-mood"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">😊 Jurnal Mood</div></div><div class="modal-body">
     <div class="card">
       <div class="card-title">😊 Jurnal Mood & Perasaan</div>
@@ -2638,53 +3211,169 @@ body {
   </div>
   </div>
 
-  <!-- ══ PANEL: HASIL LAB & USG ══ -->
-  <div class="feature-modal" id="panel-dokumen"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">📷 Hasil Lab & USG</div></div><div class="modal-body">
-    <div class="card">
-      <div class="card-title">📷 Simpan Hasil Pemeriksaan</div>
-      <div class="card-subtitle">Foto hasil lab, USG, atau dokumen medis lainnya</div>
+  <div class="feature-modal" id="panel-dokumen"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">🧪 Laboratorium</div></div><div class="modal-body">
 
-      <!-- Kategori tabs -->
-      <div class="foto-kategori-tabs">
-        <button class="foto-tab active" id="fotoTab_lab" onclick="switchFotoTab('lab')">🧪 Lab</button>
-        <button class="foto-tab" id="fotoTab_usg" onclick="switchFotoTab('usg')">🔬 USG</button>
-        <button class="foto-tab" id="fotoTab_lain" onclick="switchFotoTab('lain')">📄 Lainnya</button>
-      </div>
-
-      <!-- Area upload / kamera -->
-      <div class="foto-upload-area" onclick="triggerFotoInput()">
-        <div class="foto-upload-icon">📸</div>
-        <div class="foto-upload-label">Ambil Foto atau Pilih dari Galeri</div>
-        <div class="foto-upload-sub">Hasil akan disimpan dengan tanggal hari ini</div>
-      </div>
-      <!-- Input file tersembunyi -->
-      <input type="file" id="fotoInput" accept="image/*" capture="environment"
-             style="display:none;" onchange="handleFotoInput(event)">
-
-      <!-- Catatan opsional -->
-      <input type="text" id="fotoCatatan" placeholder="Catatan (opsional, mis: Hb 12.5, USG minggu 28...)"
-             style="width:100%;border:1.5px solid var(--gray-200);border-radius:10px;padding:9px 12px;font-size:13px;margin-bottom:12px;font-family:inherit;">
+    <!-- Header -->
+    <div class="card" style="background:linear-gradient(135deg,#0D47A1,#1976D2);color:white;padding:14px;">
+      <div style="font-size:14px;font-weight:800;margin-bottom:2px;">🧪 Hasil Pemeriksaan Laboratorium</div>
+      <div style="font-size:11px;opacity:0.85;line-height:1.5;">Isi hasil lab dari bidan/dokter. Data ini tersimpan di HP dan akan masuk ke laporan cetak PDF.</div>
     </div>
 
-    <!-- Galeri foto -->
+    <!-- TRIMESTER 1 -->
     <div class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-        <div class="card-title" style="margin-bottom:0;">🗂️ Riwayat Foto</div>
-        <div style="font-size:11px;color:var(--gray-600);" id="fotoCount">0 foto</div>
+      <div class="card-title" style="color:#1565C0;">🔵 Trimester 1</div>
+      <div class="card-subtitle">Pemeriksaan awal kehamilan</div>
+
+      <div class="lab-row">
+        <div class="lab-label">Golongan Darah & Rhesus</div>
+        <input class="lab-input" id="lab_gol_darah" placeholder="cth: A+" onchange="saveLab()">
       </div>
-      <!-- Filter kategori galeri -->
-      <div class="foto-kategori-tabs" style="margin-bottom:10px;">
-        <button class="foto-tab active" id="galeriTab_semua" onclick="switchGaleriTab('semua')">Semua</button>
-        <button class="foto-tab" id="galeriTab_lab" onclick="switchGaleriTab('lab')">🧪 Lab</button>
-        <button class="foto-tab" id="galeriTab_usg" onclick="switchGaleriTab('usg')">🔬 USG</button>
-        <button class="foto-tab" id="galeriTab_lain" onclick="switchGaleriTab('lain')">📄 Lainnya</button>
+      <div class="lab-row">
+        <div class="lab-label">Hemoglobin (Hb)</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <input class="lab-input lab-input-sm" id="lab_hb_t1" placeholder="g/dL" type="number" step="0.1" onchange="saveLab()">
+          <span class="lab-unit">g/dL</span>
+        </div>
       </div>
-      <div id="fotoGaleri" class="foto-grid"></div>
+      <div class="lab-row">
+        <div class="lab-label">HBsAg</div>
+        <select class="lab-input" id="lab_hbsag" onchange="saveLab()">
+          <option value="">-- Pilih --</option>
+          <option value="Non-Reaktif">Non-Reaktif</option>
+          <option value="Reaktif">Reaktif</option>
+        </select>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">Sifilis / VDRL</div>
+        <select class="lab-input" id="lab_sifilis" onchange="saveLab()">
+          <option value="">-- Pilih --</option>
+          <option value="Non-Reaktif">Non-Reaktif</option>
+          <option value="Reaktif">Reaktif</option>
+        </select>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">HIV</div>
+        <select class="lab-input" id="lab_hiv" onchange="saveLab()">
+          <option value="">-- Pilih --</option>
+          <option value="Non-Reaktif">Non-Reaktif</option>
+          <option value="Reaktif">Reaktif</option>
+          <option value="Indeterminate">Indeterminate</option>
+        </select>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">Gula Darah (GDS/GDP)</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <input class="lab-input lab-input-sm" id="lab_gds" placeholder="mg/dL" type="number" onchange="saveLab()">
+          <span class="lab-unit">mg/dL</span>
+        </div>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">Protein Urine</div>
+        <select class="lab-input" id="lab_protein_t1" onchange="saveLab()">
+          <option value="">-- Pilih --</option>
+          <option value="Negatif">Negatif</option>
+          <option value="+1">+1</option>
+          <option value="+2">+2</option>
+          <option value="+3">+3</option>
+          <option value="+4">+4</option>
+        </select>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">Glukosa Urine</div>
+        <select class="lab-input" id="lab_glukosa_urine" onchange="saveLab()">
+          <option value="">-- Pilih --</option>
+          <option value="Negatif">Negatif</option>
+          <option value="+1">+1</option>
+          <option value="+2">+2</option>
+          <option value="+3">+3</option>
+        </select>
+      </div>
     </div>
+
+    <!-- TRIMESTER 2 -->
+    <div class="card">
+      <div class="card-title" style="color:#2E7D32;">🟢 Trimester 2</div>
+      <div class="card-subtitle">Evaluasi pertengahan kehamilan</div>
+
+      <div class="lab-row">
+        <div class="lab-label">Hemoglobin (Hb) — Evaluasi</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <input class="lab-input lab-input-sm" id="lab_hb_t2" placeholder="g/dL" type="number" step="0.1" onchange="saveLab()">
+          <span class="lab-unit">g/dL</span>
+        </div>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">TTGO / Gula Darah</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <input class="lab-input lab-input-sm" id="lab_ttgo" placeholder="mg/dL" type="number" onchange="saveLab()">
+          <span class="lab-unit">mg/dL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRIMESTER 3 -->
+    <div class="card">
+      <div class="card-title" style="color:#E65100;">🟠 Trimester 3</div>
+      <div class="card-subtitle">Pemeriksaan menjelang persalinan</div>
+
+      <div class="lab-row">
+        <div class="lab-label">Hemoglobin (Hb) — Evaluasi</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <input class="lab-input lab-input-sm" id="lab_hb_t3" placeholder="g/dL" type="number" step="0.1" onchange="saveLab()">
+          <span class="lab-unit">g/dL</span>
+        </div>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">Protein Urine</div>
+        <select class="lab-input" id="lab_protein_t3" onchange="saveLab()">
+          <option value="">-- Pilih --</option>
+          <option value="Negatif">Negatif</option>
+          <option value="+1">+1</option>
+          <option value="+2">+2</option>
+          <option value="+3">+3</option>
+          <option value="+4">+4</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- TAMBAHAN -->
+    <div class="card">
+      <div class="card-title" style="color:#6A1B9A;">🟣 Tambahan (Sesuai Indikasi)</div>
+      <div class="card-subtitle">Jika ada pemeriksaan tambahan dari dokter/bidan</div>
+
+      <div class="lab-row">
+        <div class="lab-label">Apusan Darah Tepi (Malaria)</div>
+        <select class="lab-input" id="lab_malaria" onchange="saveLab()">
+          <option value="">-- Pilih --</option>
+          <option value="Negatif">Negatif</option>
+          <option value="Positif P. falciparum">Positif P. falciparum</option>
+          <option value="Positif P. vivax">Positif P. vivax</option>
+          <option value="Positif Mix">Positif Mix</option>
+        </select>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">Dahak BTA (TBC)</div>
+        <select class="lab-input" id="lab_bta" onchange="saveLab()">
+          <option value="">-- Pilih --</option>
+          <option value="Negatif">Negatif</option>
+          <option value="Positif +1">Positif +1</option>
+          <option value="Positif +2">Positif +2</option>
+          <option value="Positif +3">Positif +3</option>
+        </select>
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">Catatan Tambahan</div>
+      </div>
+      <textarea id="lab_catatan" placeholder="Catatan hasil lab lainnya dari dokter/bidan..." onchange="saveLab()" style="width:100%;border:1.5px solid var(--gray-200);border-radius:10px;padding:10px 12px;font-size:13px;font-family:inherit;resize:none;min-height:72px;line-height:1.6;"></textarea>
+    </div>
+
+    <button class="btn-primary" style="width:100%;margin-bottom:16px;" onclick="saveLab(); showToast('success','Tersimpan ✅','Hasil lab berhasil disimpan.')">
+      💾 Simpan Hasil Lab
+    </button>
+
   </div>
   </div>
 
-  <!-- ══ PANEL: NUTRISI & HIDRASI ══ -->
   <div class="feature-modal" id="panel-nutrisi"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">🥗 Nutrisi & Cairan Hari Ini</div></div><div class="modal-body">
 
     <!-- Air Putih -->
@@ -2771,7 +3460,6 @@ body {
   </div>
   </div>
 
-  <!-- ══ PANEL: TABUNGAN PERSALINAN ══ -->
   <div class="feature-modal" id="panel-tabungan"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">💰 Tabungan Persalinan</div></div><div class="modal-body">
 
     <!-- Hero card: saldo & progress -->
@@ -2828,6 +3516,9 @@ body {
 
   </div>
   </div>
+
+
+
 
 <script>
 // ══════════════════════════════════════
@@ -2894,8 +3585,10 @@ let state = loadState();
 // NAVIGATION — 4 TAB + MODAL SYSTEM
 // ══════════════════════════════════════
 function switchTab(tabId, btn) {
-  // Tutup semua modal dulu
+  // Tutup semua panel dulu
   document.querySelectorAll('.feature-modal').forEach(m => m.classList.remove('active'));
+  const nav = document.querySelector('nav.bottom-nav');
+  if (nav) nav.style.display = '';
   // Sembunyikan semua tab panel
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   // Tampilkan tab yang dipilih
@@ -2903,100 +3596,49 @@ function switchTab(tabId, btn) {
   if (panel) panel.classList.add('active');
   // Update nav active state
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const navBtn = document.querySelector(`[data-tab="${tabId}"]`);
-  if (navBtn) navBtn.classList.add('active');
-  window.scrollTo(0, 0);
-}
-
-function openFeature(featureId) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.feature-modal').forEach(m => m.classList.remove('active'));
-  const modal = document.getElementById('panel-' + featureId);
-  if (modal) {
-    modal.classList.add('active');
-    // Sembunyikan nav bawah — panel adalah sub-halaman penuh
-    const nav = document.querySelector('nav.bottom-nav');
-    if (nav) nav.style.display = 'none';
-    window.scrollTo(0,0);
+  if (btn) btn.classList.add('active');
+  else {
+    const navBtn = document.querySelector(`[data-tab="${tabId}"]`);
+    if (navBtn) navBtn.classList.add('active');
   }
+  window.scrollTo(0, 0);
+  // Re-render konten dinamis saat tab dibuka
+  if (tabId === 'tasrs') renderChecklist();
 }
 
-function closeFeature() {
+// ══════════════════════════════════════
+// PANEL SYSTEM — sub-halaman fullscreen
+// ══════════════════════════════════════
+function openPanel(featureId) {
+  const modal = document.getElementById('panel-' + featureId);
+  if (!modal) return;
+  // Tutup semua panel lain
   document.querySelectorAll('.feature-modal').forEach(m => m.classList.remove('active'));
-  // Tampilkan kembali nav bawah
+  // Buka panel ini
+  modal.classList.add('active');
+  // Sembunyikan nav bawah
+  const nav = document.querySelector('nav.bottom-nav');
+  if (nav) nav.style.display = 'none';
+  window.scrollTo(0, 0);
+  // Render konten dinamis
+  if (featureId === 'dokumen')  { renderFotoGaleri(); loadLab(); }
+  if (featureId === 'nutrisi')  setTimeout(openNutrisiPanel, 50);
+  if (featureId === 'tabungan') setTimeout(renderTabungan, 50);
+}
+
+function closePanel() {
+  document.querySelectorAll('.feature-modal').forEach(m => m.classList.remove('active'));
+  // Tampilkan kembali nav
   const nav = document.querySelector('nav.bottom-nav');
   if (nav) nav.style.display = '';
-  // Kembali ke beranda
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  const beranda = document.getElementById('tab-beranda');
-  if (beranda) beranda.classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const homeBtn = document.querySelector('[data-tab="beranda"]');
-  if (homeBtn) homeBtn.classList.add('active');
   window.scrollTo(0, 0);
 }
 
-// ── Inline catatan panel (beranda) ──
-const CATATAN_TITLES = {
-  kontraksi: '⏱️ Timer Kontraksi',
-  gerakan:   '👶 Gerakan Bayi',
-  gejala:    '📋 Catat Gejala',
-  suplemen:  '💊 Suplemen Harian',
-  tensi:     '🩺 Tekanan Darah',
-  berat:     '⚖️ Berat Badan',
-  mood:      '😊 Jurnal Mood',
-  notifikasi:'🔔 Notifikasi',
-  dokumen:   '📷 Hasil Lab & USG',
-  nutrisi:   '🥗 Nutrisi & Cairan',
-  tabungan:  '💰 Tabungan Persalinan',
-};
-
-let _activeCatatan = null;
-
-function openCatatan(featureId, btnEl) {
-  const panel  = document.getElementById('catatanPanel');
-  const title  = document.getElementById('catatanPanelTitle');
-  const body   = document.getElementById('catatanPanelBody');
-  const source = document.getElementById('panel-' + featureId);
-
-  // Toggle: klik ikon yg sama → tutup
-  if (_activeCatatan === featureId) {
-    closeCatatan(); return;
-  }
-
-  // Reset active icon
-  document.querySelectorAll('.menu-icon-btn').forEach(b => b.classList.remove('active-feature'));
-  if (btnEl) btnEl.classList.add('active-feature');
-
-  _activeCatatan = featureId;
-  title.textContent = CATATAN_TITLES[featureId] || featureId;
-
-  if (source) {
-    const modalBody = source.querySelector('.modal-body');
-    body.innerHTML = modalBody ? modalBody.innerHTML : '<p style="padding:16px;color:#78909C;">Konten tidak tersedia.</p>';
-  } else {
-    body.innerHTML = '<p style="padding:16px;color:#78909C;">Konten tidak ditemukan.</p>';
-  }
-
-  panel.style.display = 'block';
-  // Jika dokumen → render galeri foto
-  if (featureId === 'dokumen') renderFotoGaleri();
-  // Jika nutrisi → init tracker + load data
-  if (featureId === 'nutrisi') setTimeout(openNutrisiPanel, 50);
-  if (featureId === 'tabungan') setTimeout(renderTabungan, 50);
-  setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
-}
-
-function closeCatatan() {
-  document.getElementById('catatanPanel').style.display = 'none';
-  document.querySelectorAll('.menu-icon-btn').forEach(b => b.classList.remove('active-feature'));
-  _activeCatatan = null;
-}
-
-// Override openFeature agar tidak keluar dari beranda
-function openFeature(featureId) {
-  openCatatan(featureId, document.querySelector(`[data-feature="${featureId}"]`));
-}
+// Alias untuk kompatibilitas tombol ← di panel (onclick="closeFeature()")
+function openFeature(id) { openPanel(id); }
+function closeFeature()  { closePanel(); }
+function openCatatan(id) { openPanel(id); }
+function closeCatatan()  { closePanel(); }
 
 // ── Ambang batas klinis ──
 const THRESHOLDS = {
@@ -3199,7 +3841,7 @@ function toggleStatusDetail() {
   const body  = document.getElementById('statusDetailBody');
   const arrow = document.getElementById('statusToggleArrow');
   _statusDetailOpen = !_statusDetailOpen;
-  body.style.display  = _statusDetailOpen ? 'block' : 'none';
+  if (body)  body.style.display  = _statusDetailOpen ? 'block' : 'none';
   if (arrow) arrow.style.transform = _statusDetailOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 }
 
@@ -3207,28 +3849,22 @@ function toggleStatusDetail() {
 function renderStatusCard() {
   const { overall, icon, title, sub, ctaClass, ctaIcon, ctaText, params } = computeOverallStatus();
 
-  // Header
   const header  = document.getElementById('statusDetailHeader');
   const iconEl  = document.getElementById('statusDetailIcon');
   const titleEl = document.getElementById('statusDetailTitle');
   const subEl   = document.getElementById('statusDetailSub');
-  if (header)  header.className  = `status-detail-header ${overall}`;
+  if (header)  header.className    = `status-detail-header ${overall}`;
   if (iconEl)  iconEl.textContent  = icon;
   if (titleEl) titleEl.textContent = title;
   if (subEl)   subEl.textContent   = sub;
 
-  // Auto-expand jika bahaya, auto-collapse jika aman
   const body  = document.getElementById('statusDetailBody');
   const arrow = document.getElementById('statusToggleArrow');
-  if (overall === 'danger') {
-    _statusDetailOpen = true;
-  } else if (overall === 'safe') {
-    _statusDetailOpen = false;
-  }
-  if (body)  body.style.display  = _statusDetailOpen ? 'block' : 'none';
+  if (overall === 'danger') _statusDetailOpen = true;
+  else if (overall === 'safe') _statusDetailOpen = false;
+  if (body)  body.style.display    = _statusDetailOpen ? 'block' : 'none';
   if (arrow) arrow.style.transform = _statusDetailOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 
-  // Parameter rows
   const rowsEl = document.getElementById('statusParamRows');
   if (rowsEl) {
     rowsEl.innerHTML = params.map(p => `
@@ -3249,19 +3885,17 @@ function renderStatusCard() {
     `).join('');
   }
 
-  // CTA button
   const ctaBtn    = document.getElementById('statusCtaBtn');
   const ctaIconEl = document.getElementById('statusCtaIcon');
   const ctaTxtEl  = document.getElementById('statusCtaText');
-  if (ctaBtn)    ctaBtn.className       = `status-cta-btn ${ctaClass}`;
-  if (ctaIconEl) ctaIconEl.textContent  = ctaIcon;
-  if (ctaTxtEl)  ctaTxtEl.textContent   = ctaText;
+  if (ctaBtn)    ctaBtn.className      = `status-cta-btn ${ctaClass}`;
+  if (ctaIconEl) ctaIconEl.textContent = ctaIcon;
+  if (ctaTxtEl)  ctaTxtEl.textContent  = ctaText;
 
-  // Sinkron strip atas
   const strip    = document.getElementById('smartStatus');
   const stripTxt = document.getElementById('smartStatusText');
   const stripSub = document.getElementById('smartStatusSub');
-  if (strip)    strip.className    = `smart-status ${overall === 'safe' ? 'normal' : overall}`;
+  if (strip)    strip.className     = `smart-status ${overall === 'safe' ? 'normal' : overall}`;
   if (stripTxt) stripTxt.textContent = (overall === 'danger' ? '🚨 ' : overall === 'warning' ? '⚠️ ' : '✅ ') + title;
   if (stripSub) stripSub.textContent = sub;
 }
@@ -3270,19 +3904,12 @@ function updateSmartStatus() { renderStatusCard(); }
 function handleStatusCTA() {
   const { overall } = computeOverallStatus();
   if (overall === 'danger') {
-    showToast('danger', 'Segera Hubungi Tenaga Medis',
-      'Hubungi bidan atau dokter kandungan Bunda sekarang. Jangan tunda!');
+    showToast('danger', 'Segera Hubungi Tenaga Medis', 'Hubungi bidan atau dokter kandungan Bunda sekarang. Jangan tunda!');
   } else if (overall === 'warning') {
-    showToast('warning', 'Pantau & Konsultasikan',
-      'Ada parameter perlu dipantau. Jadwalkan konsultasi dengan bidan ya Bunda.');
+    showToast('warning', 'Pantau & Konsultasikan', 'Ada parameter perlu dipantau. Jadwalkan konsultasi dengan bidan ya Bunda.');
   } else {
-    showToast('success', 'Status Aman 💙',
-      'Semua parameter normal. Tetap catat data harian ya Bunda!');
+    showToast('success', 'Status Aman 💙', 'Semua parameter normal. Tetap catat data harian ya Bunda!');
   }
-}
-
-function updateSmartStatus() {
-  renderStatusCard();
 }
 
 function checkContractionSmart() {
@@ -3321,7 +3948,6 @@ function runSmartCheck() {
   updateSmartStatus();
 }
 
-function updateSmartInsight() { /* dihapus — tidak digunakan */ }
 function showToast(type, title, message) {
   const container = document.getElementById('toastContainer');
   const icon = type === 'danger' ? '🚨' : type === 'warning' ? '⚠️' : type === 'success' ? '✅' : '💡';
@@ -3500,10 +4126,13 @@ function startContraction() {
   }, 1000);
   document.getElementById('ctStartBtn').style.display = 'none';
   document.getElementById('ctStopBtn').style.display = '';
+  // Fitur 5: mulai panduan pernapasan
+  startBreathing();
 }
 
 function stopContraction() {
   clearInterval(ctInterval);
+  stopBreathing();
   const duration = ctElapsed;
   const now = Date.now();
   let gap = null;
@@ -3749,18 +4378,123 @@ function toggleSection(id) {
 // ══════════════════════════════════════
 // SETTINGS & HPL
 // ══════════════════════════════════════
+
+// Rumus Naegele: HPL = HPHT + 7 hari + 9 bulan (kalender)
+// Implementasi paling robust: HPHT + 280 hari
+function calcHPLFromHPHT(hpht) {
+  if (!hpht) return '';
+  const d = new Date(hpht);
+  if (isNaN(d.getTime())) return '';
+  d.setDate(d.getDate() + 280);
+  // format YYYY-MM-DD
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${dd}`;
+}
+
+function onHPHTChange() {
+  const hphtEl = document.getElementById('settingHPHT');
+  const hplEl  = document.getElementById('settingHPL');
+  if (!hphtEl || !hplEl) return;
+  const hpht = hphtEl.value;
+  if (hpht) {
+    const newHPL = calcHPLFromHPHT(hpht);
+    hplEl.value = newHPL;
+    const sub = document.getElementById('hplSubLabel');
+    if (sub) sub.textContent = 'Auto-dihitung dari HPHT (boleh diubah jika berbeda)';
+    showToast('info', 'HPL Terhitung ✨', 'HPL otomatis dihitung dari HPHT. Boleh disesuaikan jika dokter memberi tanggal berbeda.');
+  }
+  saveSettings();
+}
+
 function saveSettings() {
-  state.settings.hpl = document.getElementById('settingHPL').value;
-  state.settings.name = document.getElementById('settingName').value;
+  const s = state.settings;
+  s.hpl   = (document.getElementById('settingHPL')   || {}).value   || s.hpl   || '';
+  s.name  = (document.getElementById('settingName')  || {}).value   || s.name  || '';
+  s.usia  = (document.getElementById('settingUsia')  || {}).value   || s.usia  || '';
+  s.hpht  = (document.getElementById('settingHPHT')  || {}).value   || s.hpht  || '';
+  s.kehamilanKe   = (document.getElementById('settingKehamilanKe')  || {}).value || s.kehamilanKe  || '';
+  s.melahirkan    = (document.getElementById('settingMelahirkan')   || {}).value || s.melahirkan   || '';
+  s.keguguran     = (document.getElementById('settingKeguguran')    || {}).value || s.keguguran    || '';
+  s.riwayatKehamilan = (document.getElementById('settingRiwayatKehamilan') || {}).value || s.riwayatKehamilan || '';
+  s.namaBidan  = (document.getElementById('settingNamaBidan')  || {}).value || s.namaBidan  || '';
+  s.telpBidan  = (document.getElementById('settingTelpBidan')  || {}).value || s.telpBidan  || '';
+  // Fitur 2: ANC Schedule
+  s.nextANC      = (document.getElementById('settingNextANC')     || {}).value || '';
+  s.nextANCTime  = (document.getElementById('settingNextANCTime') || {}).value || '';
+  s.nextANCNote  = (document.getElementById('settingNextANCNote') || {}).value || '';
   saveState();
   updateProgress();
   updateWeightCurrentWeek();
   checkHPLSmart();
+  updateEmergencyBtn();
+  updateANCCountdown();
+}
+
+function setSC(val) {
+  state.settings.riwayatSC = val;
+  saveState();
+  const ya     = document.getElementById('btnSCYa');
+  const tidak  = document.getElementById('btnSCTidak');
+  if (!ya || !tidak) return;
+  if (val) {
+    ya.style.cssText    = 'padding:8px 16px;border-radius:20px;border:2px solid var(--danger);background:var(--danger-light);color:var(--danger);font-size:12px;font-weight:700;cursor:pointer;';
+    tidak.style.cssText = 'padding:8px 16px;border-radius:20px;border:2px solid var(--gray-200);background:white;color:var(--gray-600);font-size:12px;font-weight:700;cursor:pointer;';
+  } else {
+    ya.style.cssText    = 'padding:8px 16px;border-radius:20px;border:2px solid var(--gray-200);background:white;color:var(--gray-600);font-size:12px;font-weight:700;cursor:pointer;';
+    tidak.style.cssText = 'padding:8px 16px;border-radius:20px;border:2px solid var(--primary);background:var(--primary-light);color:var(--primary);font-size:12px;font-weight:700;cursor:pointer;';
+  }
+}
+
+function updateEmergencyBtn() {
+  const s = state.settings;
+  const label = document.getElementById('emergencyNamaBidan');
+  const greeting = document.getElementById('headerGreeting');
+  if (label) {
+    if (s.namaBidan && s.telpBidan) {
+      label.textContent = s.namaBidan + ' · ' + s.telpBidan;
+    } else if (s.namaBidan) {
+      label.textContent = s.namaBidan + ' · (nomor belum diisi)';
+    } else {
+      label.textContent = 'Atur nomor bidan di atas';
+    }
+  }
+  if (greeting) {
+    greeting.textContent = s.name ? 'Halo, Bunda ' + s.name + ' 👋' : 'Asisten Kehamilan Cerdas';
+  }
+}
+
+function emergencyCall() {
+  const telp = state.settings.telpBidan;
+  if (!telp) {
+    showToast('warning', 'Nomor Belum Diisi', 'Isi dulu nomor telepon bidan di bagian Profil ⚙️');
+    return;
+  }
+  const clean = telp.replace(/[\s\-\.()]/g, '');
+  window.location.href = 'tel:' + clean;
 }
 
 function loadSettings() {
-  if (state.settings.hpl) document.getElementById('settingHPL').value = state.settings.hpl;
-  if (state.settings.name) document.getElementById('settingName').value = state.settings.name;
+  const s = state.settings;
+  const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+  set('settingName',            s.name);
+  set('settingUsia',            s.usia);
+  set('settingHPHT',            s.hpht);
+  set('settingHPL',             s.hpl);
+  set('settingKehamilanKe',     s.kehamilanKe);
+  set('settingMelahirkan',      s.melahirkan);
+  set('settingKeguguran',       s.keguguran);
+  set('settingRiwayatKehamilan',s.riwayatKehamilan);
+  set('settingNamaBidan',       s.namaBidan);
+  set('settingTelpBidan',       s.telpBidan);
+  set('settingNextANC',         s.nextANC);
+  set('settingNextANCTime',     s.nextANCTime);
+  set('settingNextANCNote',     s.nextANCNote);
+  // SC toggle
+  if (typeof s.riwayatSC !== 'undefined') setSC(s.riwayatSC);
+  updateEmergencyBtn();
+  updateANCCountdown();
 }
 
 function updateProgress() {
@@ -4613,8 +5347,6 @@ const NUTRI_KEYS = ['protein','kalsium','serat','karbo'];
 
 let _nutrisiState = { protein:0, kalsium:0, serat:0, karbo:0 };
 
-function getTodayKey() { return new Date().toDateString(); }
-
 // ── HIDRASI ──
 function initWaterTracker() {
   const grid = document.getElementById('waterTrackerGrid');
@@ -4903,18 +5635,45 @@ function triggerFotoInput() {
   if (el) el.click();
 }
 
-function handleFotoInput(event) {
+// Fitur 3: Kompresi foto via Canvas API sebelum simpan
+function compressImage(file, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = reject;
+    reader.onload = e => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        let { width, height } = img;
+        // Resize: jaga aspect ratio, kecilkan sisi terbesar ke maxDim
+        if (width > maxDim || height > maxDim) {
+          if (width > height) { height = Math.round(height * maxDim / width); width = maxDim; }
+          else                { width  = Math.round(width  * maxDim / height); height = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleFotoInput(event) {
   const file = event.target.files[0];
   if (!file) return;
 
   const catatan = (document.getElementById('fotoCatatan') || {}).value || '';
-  const reader = new FileReader();
+  showToast('info', 'Mengompres Foto...', 'Mengecilkan ukuran agar hemat memori 📦');
 
-  reader.onload = function(e) {
-    const base64 = e.target.result;
+  try {
+    // Compress ke max 1400px sisi terbesar, kualitas JPEG 60%
+    const base64 = await compressImage(file, 1400, 0.6);
+
     if (!state.foto) state.foto = [];
-
-    // Simpan — base64 + metadata
     state.foto.unshift({
       id: Date.now(),
       time: new Date().toISOString(),
@@ -4923,21 +5682,31 @@ function handleFotoInput(event) {
       data: base64
     });
 
-    // Batasi max 50 foto agar localStorage tidak penuh
     if (state.foto.length > 50) state.foto = state.foto.slice(0, 50);
-    saveState();
 
-    // Reset input
+    try {
+      saveState();
+    } catch (err) {
+      // localStorage penuh — hapus foto tertua, coba lagi
+      if (state.foto.length > 1) {
+        state.foto = state.foto.slice(0, state.foto.length - 1);
+        try { saveState(); } catch(e2) {
+          showToast('danger', 'Penyimpanan Penuh', 'Hapus beberapa foto lama dulu di galeri ya Bunda.');
+          return;
+        }
+      }
+    }
+
     event.target.value = '';
-    if (document.getElementById('fotoCatatan'))
-      document.getElementById('fotoCatatan').value = '';
+    if (document.getElementById('fotoCatatan')) document.getElementById('fotoCatatan').value = '';
 
     renderFotoGaleri();
-    showToast('success', 'Foto Tersimpan! 📷',
-      `Hasil ${_fotoKategori.toUpperCase()} disimpan — ${new Date().toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}`);
-  };
-
-  reader.readAsDataURL(file);
+    const sizeKB = Math.round(base64.length * 0.75 / 1024);
+    showToast('success', 'Foto Tersimpan! 📷', `Ukuran setelah kompresi: ~${sizeKB}KB`);
+  } catch (err) {
+    showToast('danger', 'Gagal Menyimpan', 'Coba foto lain atau ukuran lebih kecil.');
+    console.error(err);
+  }
 }
 
 function hapusFoto(id) {
@@ -5012,6 +5781,327 @@ function lihatFoto(id) {
 // ══════════════════════════════════════
 // INIT
 // ══════════════════════════════════════
+// ══════════════════════════════════════
+// FITUR 2: JADWAL ANC COUNTDOWN
+// ══════════════════════════════════════
+function updateANCCountdown() {
+  const card = document.getElementById('ancCountdownCard');
+  if (!card) return;
+  const s = state.settings;
+  if (!s.nextANC) { card.style.display = 'none'; return; }
+
+  const now  = new Date();
+  const anc  = new Date(s.nextANC + (s.nextANCTime ? 'T' + s.nextANCTime : 'T09:00'));
+  const diff = anc - now;
+  const days = Math.floor(diff / 86400000);
+  const hrs  = Math.floor(diff / 3600000);
+
+  const textEl   = document.getElementById('ancCountdownText');
+  const detailEl = document.getElementById('ancCountdownDetail');
+  const iconEl   = document.getElementById('ancCountdownIcon');
+
+  if (diff < 0) {
+    if (diff > -86400000) {
+      card.style.display = 'block';
+      iconEl.textContent = '⏰';
+      textEl.textContent = 'Jadwal kontrol hari ini';
+      detailEl.textContent = 'Jangan sampai terlewat!' + (s.nextANCNote ? ' · ' + s.nextANCNote : '');
+    } else {
+      card.style.display = 'none';
+    }
+    return;
+  }
+
+  card.style.display = 'block';
+  const tanggal = anc.toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  const jam     = s.nextANCTime || '—';
+
+  if (days === 0) {
+    iconEl.textContent = '🔔';
+    textEl.textContent = `Hari ini! (${hrs} jam lagi)`;
+  } else if (days === 1) {
+    iconEl.textContent = '⏳';
+    textEl.textContent = 'Besok!';
+  } else {
+    iconEl.textContent = '📅';
+    textEl.textContent = `${days} hari lagi`;
+  }
+  detailEl.textContent = `${tanggal}${jam!=='—' ? ' · '+jam : ''}${s.nextANCNote ? ' · '+s.nextANCNote : ''}`;
+}
+
+// ══════════════════════════════════════
+// FITUR 5: PANDUAN PERNAPASAN
+// ══════════════════════════════════════
+let _breathInterval = null;
+function startBreathing() {
+  const card    = document.getElementById('breathingCard');
+  const circle  = document.getElementById('breathCircle');
+  const phase   = document.getElementById('breathingPhase');
+  if (!card || !circle || !phase) return;
+
+  card.style.display = 'block';
+  let step = 0; // 0=inhale, 1=hold, 2=exhale
+  const phases = [
+    { label: '🌬️ Tarik napas...',  scale: 1.6, color: '#43A047', dur: 4000 },
+    { label: '✋ Tahan...',          scale: 1.6, color: '#FF9800', dur: 1500 },
+    { label: '💨 Hembuskan...',     scale: 0.85, color: '#1976D2', dur: 5000 },
+  ];
+
+  function tick() {
+    const p = phases[step];
+    phase.textContent = p.label;
+    circle.style.transitionDuration = p.dur + 'ms';
+    circle.style.transform = `scale(${p.scale})`;
+    circle.style.background = `linear-gradient(135deg, ${p.color}, ${p.color}CC)`;
+    circle.style.boxShadow = `0 0 50px ${p.color}80`;
+    step = (step + 1) % 3;
+  }
+  tick();
+  _breathInterval = setInterval(tick, 4000);
+}
+
+function stopBreathing() {
+  if (_breathInterval) { clearInterval(_breathInterval); _breathInterval = null; }
+  const card = document.getElementById('breathingCard');
+  if (card) card.style.display = 'none';
+  const circle = document.getElementById('breathCircle');
+  if (circle) circle.style.transform = 'scale(1)';
+}
+
+// ══════════════════════════════════════
+// FITUR 6: BACKUP & RESTORE
+// ══════════════════════════════════════
+function backupData() {
+  const data = {
+    app: 'Bumil Pintar',
+    version: '1.0',
+    exportDate: new Date().toISOString(),
+    state: state
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  const d    = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `bumil-pintar-backup-${d}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('success', 'Backup Berhasil 💾', 'File backup sudah terunduh. Simpan di Google Drive / email untuk keamanan!');
+}
+
+function restoreData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  if (!confirm('Restore akan MENGGANTI semua data saat ini dengan data dari file backup. Lanjutkan?')) {
+    event.target.value = ''; return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      if (!parsed.state || parsed.app !== 'Bumil Pintar') throw new Error('File backup tidak valid');
+      Object.assign(state, parsed.state);
+      saveState();
+      showToast('success', 'Restore Berhasil ✅', 'Data sudah dikembalikan. Memuat ulang...');
+      setTimeout(() => location.reload(), 1500);
+    } catch (err) {
+      showToast('danger', 'File Tidak Valid', 'Pastikan file backup Bumil Pintar yang benar.');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ══════════════════════════════════════
+// FITUR 1: LAPORAN KEHAMILAN (Print-friendly HTML)
+// ══════════════════════════════════════
+// ══════════════════════════════════════
+// LABORATORIUM
+// ══════════════════════════════════════
+const LAB_FIELDS = [
+  'gol_darah','hb_t1','hbsag','sifilis','hiv','gds','protein_t1','glukosa_urine',
+  'hb_t2','ttgo',
+  'hb_t3','protein_t3',
+  'malaria','bta','catatan'
+];
+
+function saveLab() {
+  if (!state.lab) state.lab = {};
+  LAB_FIELDS.forEach(f => {
+    const el = document.getElementById('lab_' + f);
+    if (el) state.lab[f] = el.value;
+  });
+  saveState();
+}
+
+function loadLab() {
+  if (!state.lab) return;
+  LAB_FIELDS.forEach(f => {
+    const el = document.getElementById('lab_' + f);
+    if (el && state.lab[f] !== undefined) el.value = state.lab[f];
+  });
+}
+
+function generateLaporan() {
+  const s = state.settings;
+  const today = new Date().toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+  // Usia kehamilan
+  let ukLabel = '—';
+  if (s.hpl) {
+    const hpl = new Date(s.hpl);
+    const conc = new Date(hpl); conc.setDate(conc.getDate() - 280);
+    const days = Math.floor((Date.now() - conc) / 86400000);
+    const w = Math.floor(days / 7), d = days % 7;
+    ukLabel = `${w} minggu ${d} hari`;
+  }
+
+  // Tensi 10 terakhir
+  const bpRows = (state.bp || []).slice(0, 10).map(b => {
+    const when = new Date(b.time).toLocaleString('id-ID', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    const status = b.sistol >= 140 || b.diastol >= 90 ? '🚨 Tinggi' : b.sistol >= 130 || b.diastol >= 80 ? '⚠️ Waspada' : '✅ Normal';
+    return `<tr><td>${when}</td><td><strong>${b.sistol}/${b.diastol}</strong> mmHg</td><td>${status}</td></tr>`;
+  }).join('') || '<tr><td colspan="3" style="text-align:center;color:#999;">Belum ada data</td></tr>';
+
+  // Berat 10 terakhir
+  const weightRows = (state.weight || []).slice(0, 10).map(w => {
+    const when = new Date(w.time).toLocaleDateString('id-ID', {day:'2-digit',month:'short',year:'numeric'});
+    return `<tr><td>${when}</td><td><strong>${w.kg}</strong> kg</td><td>${w.week ? 'Minggu '+w.week : '—'}</td></tr>`;
+  }).join('') || '<tr><td colspan="3" style="text-align:center;color:#999;">Belum ada data</td></tr>';
+
+  // Gerakan 7 hari
+  const today0 = new Date(); today0.setHours(0,0,0,0);
+  const kicksRows = Array.from({length: 7}, (_, i) => {
+    const d = new Date(today0); d.setDate(d.getDate() - i);
+    const dEnd = new Date(d); dEnd.setDate(dEnd.getDate()+1);
+    const count = (state.kicks || []).filter(k => {
+      const kd = new Date(k.time); return kd >= d && kd < dEnd;
+    }).length;
+    const status = count >= 10 ? '✅ Aktif' : count >= 5 ? '⚠️ Kurang' : count > 0 ? '🚨 Rendah' : '—';
+    return `<tr><td>${d.toLocaleDateString('id-ID',{day:'2-digit',month:'short'})}</td><td><strong>${count}</strong> gerakan</td><td>${status}</td></tr>`;
+  }).join('');
+
+  // Gejala terakhir
+  const sympRows = (state.symptoms || []).slice(0, 10).map(s => {
+    const when = new Date(s.time).toLocaleDateString('id-ID', {day:'2-digit',month:'short',year:'numeric'});
+    const gej = Array.isArray(s.symptoms) ? s.symptoms.join(', ') : s.symptoms;
+    return `<tr><td>${when}</td><td>${gej || '—'}</td></tr>`;
+  }).join('') || '<tr><td colspan="2" style="text-align:center;color:#999;">Belum ada catatan</td></tr>';
+
+  const html = `<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>Laporan Kehamilan — ${s.name || 'Bunda'}</title>
+<style>
+@media print { body { margin: 0; } .no-print { display: none !important; } }
+* { box-sizing: border-box; }
+body { font-family: 'Segoe UI', Roboto, system-ui, sans-serif; max-width: 780px; margin: 0 auto; padding: 20px; color: #212121; line-height: 1.5; font-size: 13px; }
+h1 { color: #1565C0; margin: 0 0 4px; font-size: 24px; }
+h2 { color: #1565C0; border-bottom: 2px solid #1565C0; padding-bottom: 6px; margin-top: 24px; font-size: 16px; }
+.header { text-align:center; border-bottom: 3px solid #1565C0; padding-bottom: 14px; margin-bottom: 20px; }
+.header .sub { color: #757575; font-size: 13px; }
+.info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px; background: #E3F2FD; padding: 14px; border-radius: 10px; margin: 12px 0; }
+.info-item { font-size: 13px; }
+.info-item .lbl { color: #666; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+.info-item .val { color: #1565C0; font-size: 14px; font-weight: 700; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 12px; }
+th, td { border: 1px solid #ccc; padding: 7px 9px; text-align: left; }
+th { background: #1565C0; color: white; font-size: 12px; font-weight: 700; }
+tr:nth-child(even) { background: #F5F5F5; }
+.footer { margin-top: 30px; padding-top: 14px; border-top: 1px solid #ccc; color: #666; font-size: 11px; text-align: center; }
+.btn { background: #1565C0; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; margin: 10px 4px; }
+.btn:hover { background: #0D47A1; }
+</style></head><body>
+
+<div class="no-print" style="text-align:center;padding:14px;background:#E3F2FD;border-radius:10px;margin-bottom:20px;">
+  <strong>💡 Tekan tombol Cetak untuk menyimpan sebagai PDF atau mencetak di kertas</strong><br>
+  <button class="btn" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+  <button class="btn" style="background:#757575;" onclick="window.close()">Tutup</button>
+</div>
+
+<div class="header">
+  <h1>📋 LAPORAN KEHAMILAN</h1>
+  <div class="sub">Dihasilkan: ${today}</div>
+  <div class="sub">Bumil Pintar — Asisten Digital Kehamilan</div>
+</div>
+
+<h2>👤 Data Ibu</h2>
+<div class="info-grid">
+  <div class="info-item"><div class="lbl">Nama</div><div class="val">${s.name || '—'}</div></div>
+  <div class="info-item"><div class="lbl">Usia</div><div class="val">${s.usia ? s.usia + ' tahun' : '—'}</div></div>
+  <div class="info-item"><div class="lbl">HPHT</div><div class="val">${s.hpht || '—'}</div></div>
+  <div class="info-item"><div class="lbl">HPL</div><div class="val">${s.hpl || '—'}</div></div>
+  <div class="info-item"><div class="lbl">Usia Kehamilan Saat Ini</div><div class="val">${ukLabel}</div></div>
+  <div class="info-item"><div class="lbl">Kehamilan Ke</div><div class="val">${s.kehamilanKe || '—'}</div></div>
+  <div class="info-item"><div class="lbl">Pernah Melahirkan</div><div class="val">${s.melahirkan || '0'} kali</div></div>
+  <div class="info-item"><div class="lbl">Pernah Keguguran</div><div class="val">${s.keguguran || '0'} kali</div></div>
+  <div class="info-item"><div class="lbl">Riwayat SC</div><div class="val">${s.riwayatSC ? 'Ya' : 'Tidak'}</div></div>
+  <div class="info-item"><div class="lbl">Bidan/Dokter</div><div class="val">${s.namaBidan || '—'}</div></div>
+</div>
+
+${s.riwayatKehamilan ? `<h2>📋 Riwayat Kehamilan Sebelumnya</h2><p style="background:#FFF3E0;padding:12px;border-radius:8px;">${s.riwayatKehamilan}</p>` : ''}
+
+<h2>🩺 Riwayat Tekanan Darah (10 Terakhir)</h2>
+<table><thead><tr><th>Waktu</th><th>Tekanan</th><th>Status</th></tr></thead><tbody>${bpRows}</tbody></table>
+
+<h2>⚖️ Riwayat Berat Badan (10 Terakhir)</h2>
+<table><thead><tr><th>Tanggal</th><th>Berat</th><th>Usia Kehamilan</th></tr></thead><tbody>${weightRows}</tbody></table>
+
+<h2>👶 Gerakan Bayi (7 Hari Terakhir)</h2>
+<table><thead><tr><th>Tanggal</th><th>Jumlah</th><th>Status</th></tr></thead><tbody>${kicksRows}</tbody></table>
+<p style="font-size:11px;color:#666;font-style:italic;">* Normal: ≥10 gerakan/hari (T2-T3). Hitung saat bayi paling aktif (biasanya setelah makan).</p>
+
+<h2>📝 Riwayat Gejala (10 Terakhir)</h2>
+<table><thead><tr><th>Tanggal</th><th>Gejala</th></tr></thead><tbody>${sympRows}</tbody></table>
+
+<h2>🧪 Hasil Laboratorium</h2>
+${(() => {
+  const L = state.lab || {};
+  const row = (label, val, unit='') => val ? `<tr><td>${label}</td><td><strong>${val}${unit ? ' '+unit : ''}</strong></td></tr>` : '';
+  const t1 = [
+    row('Golongan Darah & Rhesus', L.gol_darah),
+    row('Hemoglobin (Hb) T1', L.hb_t1, 'g/dL'),
+    row('HBsAg', L.hbsag),
+    row('Sifilis / VDRL', L.sifilis),
+    row('HIV', L.hiv),
+    row('Gula Darah (GDS/GDP)', L.gds, 'mg/dL'),
+    row('Protein Urine T1', L.protein_t1),
+    row('Glukosa Urine', L.glukosa_urine),
+  ].filter(Boolean).join('');
+  const t2 = [
+    row('Hemoglobin (Hb) T2', L.hb_t2, 'g/dL'),
+    row('TTGO / Gula Darah', L.ttgo, 'mg/dL'),
+  ].filter(Boolean).join('');
+  const t3 = [
+    row('Hemoglobin (Hb) T3', L.hb_t3, 'g/dL'),
+    row('Protein Urine T3', L.protein_t3),
+  ].filter(Boolean).join('');
+  const tambahan = [
+    row('Apusan Darah Tepi (Malaria)', L.malaria),
+    row('Dahak BTA (TBC)', L.bta),
+  ].filter(Boolean).join('');
+
+  let html2 = '';
+  if (t1) html2 += `<p style="font-weight:700;color:#1565C0;margin:8px 0 4px;">Trimester 1</p><table><thead><tr><th>Pemeriksaan</th><th>Hasil</th></tr></thead><tbody>${t1}</tbody></table>`;
+  if (t2) html2 += `<p style="font-weight:700;color:#2E7D32;margin:8px 0 4px;">Trimester 2</p><table><thead><tr><th>Pemeriksaan</th><th>Hasil</th></tr></thead><tbody>${t2}</tbody></table>`;
+  if (t3) html2 += `<p style="font-weight:700;color:#E65100;margin:8px 0 4px;">Trimester 3</p><table><thead><tr><th>Pemeriksaan</th><th>Hasil</th></tr></thead><tbody>${t3}</tbody></table>`;
+  if (tambahan) html2 += `<p style="font-weight:700;color:#6A1B9A;margin:8px 0 4px;">Tambahan</p><table><thead><tr><th>Pemeriksaan</th><th>Hasil</th></tr></thead><tbody>${tambahan}</tbody></table>`;
+  if (L.catatan) html2 += `<p style="background:#FFF3E0;padding:10px;border-radius:8px;font-size:12px;"><strong>Catatan:</strong> ${L.catatan}</p>`;
+  return html2 || '<p style="color:#999;font-style:italic;">Belum ada data laboratorium yang diisi.</p>';
+})()}
+
+<div class="footer">
+  Laporan ini dihasilkan otomatis dari Bumil Pintar. <br>
+  Mohon tetap diverifikasi oleh tenaga medis saat kontrol ANC.
+</div>
+
+</body></html>`;
+
+  const win = window.open('', '_blank');
+  if (!win) { showToast('danger', 'Pop-up Diblokir', 'Izinkan pop-up di browser lalu coba lagi.'); return; }
+  win.document.write(html);
+  win.document.close();
+}
+
 function init() {
   renderContractionList();
   renderKickCounter();
@@ -5043,6 +6133,9 @@ function init() {
   if (homeBtn) homeBtn.classList.add('active');
   // Update weight current week display
   updateWeightCurrentWeek();
+  // Fitur 2: ANC countdown
+  updateANCCountdown();
+  setInterval(updateANCCountdown, 60000);
 }
 
 function updateWeightCurrentWeek() {

@@ -3,8 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bumil Pintar</title>
-<meta name="description" content="Asisten digital ibu hamil — tracking kehamilan, catatan harian, bacaan KIA">
+<title>Bumil Pintar — Asisten Kehamilan Cerdas</title>
+
+<!-- SEO -->
+<meta name="description" content="Bumil Pintar — asisten kehamilan digital terlengkap untuk ibu hamil Indonesia. Catatan harian, jadwal USG, lab, edukasi KIIA, Al-Qur'an. Gratis & bebas iklan.">
+<meta name="keywords" content="bumil pintar, kehamilan, ibu hamil, asisten kehamilan, KIIA, USG, ANC, HPL, edukasi ibu hamil islami">
+<meta name="author" content="dr. Mochamad Rifqie N K">
+
+<!-- Open Graph (WhatsApp, Facebook, Telegram preview) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bumil Pintar — Asisten Kehamilan Cerdas 💙">
+<meta property="og:description" content="App lengkap untuk ibu hamil Indonesia: catatan harian, jadwal USG, lab, edukasi islami KIIA, Al-Qur'an. Gratis!">
+<meta property="og:image" content="https://bumil-pintar.vercel.app/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:url" content="https://bumil-pintar.vercel.app">
+<meta property="og:site_name" content="Bumil Pintar">
+<meta property="og:locale" content="id_ID">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bumil Pintar — Asisten Kehamilan Cerdas">
+<meta name="twitter:description" content="App kehamilan terlengkap untuk Bunda Indonesia 💙">
+<meta name="twitter:image" content="https://bumil-pintar.vercel.app/icon-512.png">
+
 <meta name="theme-color" content="#1565C0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -581,6 +603,37 @@ body {
 .lab-input:focus { outline: none; border-color: var(--primary); }
 .lab-unit { font-size: 11px; color: var(--gray-600); font-weight: 600; flex-shrink: 0; }
 
+/* ── KIIA PROGRESS ── */
+.kiia-done-wrap {
+  margin: 12px 0 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--gray-100);
+}
+.kiia-done-btn {
+  width: 100%;
+  background: var(--gray-100);
+  border: 2px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-600);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.kiia-done-btn.done {
+  background: #E8F5E9;
+  border-color: #4CAF50;
+  color: #2E7D32;
+}
+.kiia-done-btn:active { transform: scale(0.97); }
+
 /* ── AL-QUR'AN TAB ── */
 .quran-choice-card {
   background: var(--gray-100);
@@ -637,6 +690,68 @@ body {
 /* Kecilkan nav label agar 6 item muat */
 .nav-label { font-size: 8px; color: var(--gray-600); margin-top: 2px; font-weight: 500; }
 .nav-item.active .nav-label { color: var(--primary); font-weight: 700; }
+
+/* ── PREMIUM ANIMATIONS & ENHANCEMENTS ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseSoft {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.05); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.tab-panel { animation: fadeInUp 0.35s ease-out; }
+.menu-icon-btn { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.menu-icon-btn:active { transform: scale(0.94); }
+
+/* Improved trimester badges */
+.trim-badge-t1 { background: linear-gradient(135deg,#66BB6A,#43A047); color:white; }
+.trim-badge-t2 { background: linear-gradient(135deg,#42A5F5,#1976D2); color:white; }
+.trim-badge-t3 { background: linear-gradient(135deg,#AB47BC,#7B1FA2); color:white; }
+
+/* Share Card Modal */
+#shareCardModal {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85); z-index: 9999;
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+#shareCardModal.active { display: flex; }
+#shareCardCanvas {
+  max-width: 100%; max-height: 70vh;
+  border-radius: 18px; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.share-card-actions {
+  position: fixed; bottom: 30px; left: 20px; right: 20px;
+  display: flex; gap: 10px; max-width: 400px; margin: 0 auto;
+}
+.share-card-btn {
+  flex: 1; padding: 14px; border-radius: 14px; border: none;
+  font-size: 13px; font-weight: 800; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+
+/* Loading splash for app start */
+#splashScreen {
+  position: fixed; inset: 0; z-index: 99998;
+  background: linear-gradient(135deg,#0D47A1,#1565C0,#42A5F5);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 20px;
+  animation: fadeOut 0.5s ease-in 1.2s forwards;
+}
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+.splash-icon {
+  width: 100px; height: 100px; border-radius: 24px; background: white;
+  display: flex; align-items: center; justify-content: center;
+  animation: pulseSoft 1.4s ease-in-out infinite;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3); overflow: hidden;
+}
+.splash-text { color: white; font-size: 22px; font-weight: 900; letter-spacing: 0.5px; }
+.splash-sub { color: rgba(255,255,255,0.85); font-size: 12px; }
 
 /* ── KEPERLUAN SHOPEE ── */
 .keperluan-item {
@@ -1363,10 +1478,115 @@ body {
 </head>
 <body>
 
+<!-- ════════ SPLASH SCREEN ════════ -->
+<div id="splashScreen">
+  <div class="splash-icon" id="splashIcon"></div>
+  <div class="splash-text">Bumil Pintar 💙</div>
+  <div class="splash-sub">Asisten Kehamilan Cerdas</div>
+</div>
+
+<!-- ════════ ONBOARDING SCREEN ════════ -->
+<div id="onboarding" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#0D47A1,#1565C0,#42A5F5);z-index:99999;color:white;overflow:hidden;">
+  <div id="onboardingSlides" style="height:100vh;display:flex;transition:transform 0.4s ease;width:300vw;">
+    <!-- Slide 1 -->
+    <div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;">
+      <div id="onboardingIcon1" style="width:140px;height:140px;border-radius:30px;background:white;display:flex;align-items:center;justify-content:center;margin-bottom:30px;box-shadow:0 20px 50px rgba(0,0,0,0.25);overflow:hidden;"></div>
+      <div style="font-size:32px;font-weight:900;margin-bottom:14px;letter-spacing:0.5px;">Selamat Datang!</div>
+      <div style="font-size:18px;font-weight:700;color:#FFD54F;margin-bottom:18px;">di Bumil Pintar 💙</div>
+      <div style="font-size:14px;line-height:1.7;opacity:0.9;max-width:340px;">
+        Asisten kehamilan digital terlengkap untuk Bunda Indonesia.<br><br>
+        Pantau kehamilan, baca edukasi islami, dan persiapkan persalinan dengan tenang.
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;">
+      <div style="font-size:64px;margin-bottom:16px;">✨</div>
+      <div style="font-size:26px;font-weight:900;margin-bottom:20px;">Fitur Lengkap</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:360px;width:100%;">
+        <div style="background:rgba(255,255,255,0.15);border-radius:14px;padding:14px 8px;backdrop-filter:blur(10px);">
+          <div style="font-size:28px;margin-bottom:4px;">📅</div>
+          <div style="font-size:11px;font-weight:700;">Catatan Harian</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:14px;padding:14px 8px;backdrop-filter:blur(10px);">
+          <div style="font-size:28px;margin-bottom:4px;">🔬</div>
+          <div style="font-size:11px;font-weight:700;">Jadwal USG 6x</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:14px;padding:14px 8px;backdrop-filter:blur(10px);">
+          <div style="font-size:28px;margin-bottom:4px;">📖</div>
+          <div style="font-size:11px;font-weight:700;">39 Kajian KIIA</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:14px;padding:14px 8px;backdrop-filter:blur(10px);">
+          <div style="font-size:28px;margin-bottom:4px;">📗</div>
+          <div style="font-size:11px;font-weight:700;">Al-Qur'an</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:14px;padding:14px 8px;backdrop-filter:blur(10px);">
+          <div style="font-size:28px;margin-bottom:4px;">🧪</div>
+          <div style="font-size:11px;font-weight:700;">Lab + PDF</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:14px;padding:14px 8px;backdrop-filter:blur(10px);">
+          <div style="font-size:28px;margin-bottom:4px;">💰</div>
+          <div style="font-size:11px;font-weight:700;">Tabungan</div>
+        </div>
+      </div>
+      <div style="font-size:12px;opacity:0.85;margin-top:20px;">Semuanya gratis & bebas iklan ✨</div>
+    </div>
+    <!-- Slide 3 -->
+    <div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;">
+      <div style="font-size:64px;margin-bottom:16px;">🤲</div>
+      <div style="font-size:24px;font-weight:900;margin-bottom:14px;">Mari Mulai Perjalanan</div>
+      <div style="font-size:14px;opacity:0.9;line-height:1.7;margin-bottom:28px;max-width:320px;">
+        Isi data dasar kehamilan untuk pengalaman yang lebih personal. Kamu bisa lengkapi nanti.
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:18px;padding:18px;width:100%;max-width:320px;backdrop-filter:blur(10px);">
+        <div style="font-size:11px;font-weight:700;opacity:0.8;margin-bottom:6px;text-align:left;">Nama Bunda (opsional)</div>
+        <input type="text" id="onbName" placeholder="cth: Aisyah" style="width:100%;border:none;border-radius:10px;padding:10px 12px;font-size:14px;font-family:inherit;margin-bottom:12px;">
+        <div style="font-size:11px;font-weight:700;opacity:0.8;margin-bottom:6px;text-align:left;">Hari Pertama Haid Terakhir (HPHT)</div>
+        <input type="date" id="onbHPHT" style="width:100%;border:none;border-radius:10px;padding:10px 12px;font-size:14px;font-family:inherit;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Dots indicator -->
+  <div style="position:absolute;bottom:90px;left:0;right:0;display:flex;justify-content:center;gap:8px;">
+    <div class="onb-dot active" id="onbDot1"></div>
+    <div class="onb-dot" id="onbDot2"></div>
+    <div class="onb-dot" id="onbDot3"></div>
+  </div>
+
+  <!-- Buttons -->
+  <div style="position:absolute;bottom:24px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:center;">
+    <button id="onbSkip" onclick="skipOnboarding()" style="background:transparent;border:none;color:rgba(255,255,255,0.85);font-size:13px;font-weight:600;cursor:pointer;padding:10px;">Lewati →</button>
+    <button id="onbNext" onclick="nextOnboarding()" style="background:white;color:#1565C0;border:none;border-radius:30px;padding:12px 28px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.2);">Lanjut →</button>
+  </div>
+</div>
+<style>
+.onb-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.4); transition:all 0.3s; }
+.onb-dot.active { background:white; width:24px; border-radius:4px; }
+</style>
+
 <!-- TOAST CONTAINER -->
 <div id="toastContainer"></div>
 
+<!-- ════════ SHARE CARD MODAL ════════ -->
+<div id="shareCardModal" onclick="if(event.target.id==='shareCardModal') closeShareCard()">
+  <div style="position:relative;">
+    <canvas id="shareCardCanvas" width="540" height="720"></canvas>
+    <button onclick="closeShareCard()" style="position:absolute;top:-15px;right:-15px;width:36px;height:36px;border-radius:50%;border:none;background:white;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.3);">✕</button>
+  </div>
+  <div class="share-card-actions">
+    <button class="share-card-btn" style="background:#25D366;color:white;" onclick="shareCardWA()">
+      💬 Kirim WA
+    </button>
+    <button class="share-card-btn" style="background:white;color:#1565C0;" onclick="downloadShareCard()">
+      💾 Download
+    </button>
+  </div>
+</div>
+
 <!-- APP HEADER -->
+<div id="offlineBanner" style="display:none;background:#E53935;color:white;text-align:center;padding:6px;font-size:11px;font-weight:700;">
+  📵 Kamu sedang offline — data tetap aman tersimpan di HP
+</div>
 <div class="app-header">
   <div class="header-top">
     <div class="app-brand">
@@ -1495,6 +1715,18 @@ body {
       </div>
     </div>
 
+    <!-- 💌 Bagikan ke Suami / Keluarga -->
+    <div class="card" onclick="generateShareCard()" style="cursor:pointer;background:linear-gradient(135deg,#FF6B9D,#C06FBE);color:white;border:none;margin-top:14px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:50px;height:50px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">💌</div>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:800;margin-bottom:2px;">Bagikan ke Suami / Keluarga</div>
+          <div style="font-size:11px;opacity:0.9;line-height:1.4;">Buat kartu kehamilan digital cantik untuk dikirim via WA atau IG</div>
+        </div>
+        <div style="font-size:20px;">→</div>
+      </div>
+    </div>
+
 
     <!-- Perkembangan Janin di Beranda -->
     <div class="section-title">🍼 PERKEMBANGAN JANIN HARI INI</div>
@@ -1579,15 +1811,15 @@ body {
         <span class="cs-arrow" id="arrow_kep_1">▼</span>
       </button>
       <div class="cs-items" id="items_kep_1">
-        <a href="https://s.shopee.co.id/5AohMYvlnE" target="_blank" class="keperluan-item">Baju hamil longgar <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/40cjyUakWI" target="_blank" class="keperluan-item">Dress maternity <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/7AZlkKyelf" target="_blank" class="keperluan-item">Legging maternity <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/1BIZi32MHg" target="_blank" class="keperluan-item">Bra menyusui <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/1BIZhz6nDh" target="_blank" class="keperluan-item">Tank top ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4LFaNDjRJ0" target="_blank" class="keperluan-item">Piyama ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/5L87Z6RMJh" target="_blank" class="keperluan-item">Cardigan ringan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/8pi0q6hKsP" target="_blank" class="keperluan-item">Underwear ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/40cjyhwrIt" target="_blank" class="keperluan-item">Kaos kaki anti slip <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Baju hamil longgar', 'https://s.shopee.co.id/5AohMYvlnE');return false;" class="keperluan-item">Baju hamil longgar <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Dress maternity', 'https://s.shopee.co.id/40cjyUakWI');return false;" class="keperluan-item">Dress maternity <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Legging maternity', 'https://s.shopee.co.id/7AZlkKyelf');return false;" class="keperluan-item">Legging maternity <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bra menyusui', 'https://s.shopee.co.id/1BIZi32MHg');return false;" class="keperluan-item">Bra menyusui <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Tank top ibu hamil', 'https://s.shopee.co.id/1BIZhz6nDh');return false;" class="keperluan-item">Tank top ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Piyama ibu hamil', 'https://s.shopee.co.id/4LFaNDjRJ0');return false;" class="keperluan-item">Piyama ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Cardigan ringan', 'https://s.shopee.co.id/5L87Z6RMJh');return false;" class="keperluan-item">Cardigan ringan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Underwear ibu hamil', 'https://s.shopee.co.id/8pi0q6hKsP');return false;" class="keperluan-item">Underwear ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kaos kaki anti slip', 'https://s.shopee.co.id/40cjyhwrIt');return false;" class="keperluan-item">Kaos kaki anti slip <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1598,16 +1830,16 @@ body {
         <span class="cs-arrow" id="arrow_kep_2">▼</span>
       </button>
       <div class="cs-items" id="items_kep_2">
-        <a href="https://s.shopee.co.id/AUqDii8zFg" target="_blank" class="keperluan-item">Tas khusus melahirkan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/2g7MOLhubs" target="_blank" class="keperluan-item">Pembalut nifas <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/9KeGKe8WNy" target="_blank" class="keperluan-item">Baju ganti ibu <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/AUqEpIvPLJ" target="_blank" class="keperluan-item">Handuk lembut <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/40cjytW0qz" target="_blank" class="keperluan-item">Sendal anti slip <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/qfjJbZGbv" target="_blank" class="keperluan-item">Botol minum <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/gMJ7KzQIG" target="_blank" class="keperluan-item">Charger & power bank <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/gMJ7Ml0Ha" target="_blank" class="keperluan-item">Kantung plastik pakaian kotor <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4qBs53UoZV" target="_blank" class="keperluan-item">Selimut ringan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/qfjJizrWr" target="_blank" class="keperluan-item">Perlengkapan mandi travel <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Tas khusus melahirkan', 'https://s.shopee.co.id/AUqDii8zFg');return false;" class="keperluan-item">Tas khusus melahirkan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Pembalut nifas', 'https://s.shopee.co.id/2g7MOLhubs');return false;" class="keperluan-item">Pembalut nifas <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Baju ganti ibu', 'https://s.shopee.co.id/9KeGKe8WNy');return false;" class="keperluan-item">Baju ganti ibu <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Handuk lembut', 'https://s.shopee.co.id/AUqEpIvPLJ');return false;" class="keperluan-item">Handuk lembut <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sendal anti slip', 'https://s.shopee.co.id/40cjytW0qz');return false;" class="keperluan-item">Sendal anti slip <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Botol minum', 'https://s.shopee.co.id/qfjJbZGbv');return false;" class="keperluan-item">Botol minum <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Charger & power bank', 'https://s.shopee.co.id/gMJ7KzQIG');return false;" class="keperluan-item">Charger & power bank <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kantung plastik pakaian kotor', 'https://s.shopee.co.id/gMJ7Ml0Ha');return false;" class="keperluan-item">Kantung plastik pakaian kotor <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Selimut ringan', 'https://s.shopee.co.id/4qBs53UoZV');return false;" class="keperluan-item">Selimut ringan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Perlengkapan mandi travel', 'https://s.shopee.co.id/qfjJizrWr');return false;" class="keperluan-item">Perlengkapan mandi travel <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1618,13 +1850,13 @@ body {
         <span class="cs-arrow" id="arrow_kep_3">▼</span>
       </button>
       <div class="cs-items" id="items_kep_3">
-        <a href="https://s.shopee.co.id/2VnwCGOFTC" target="_blank" class="keperluan-item">Paket baju bayi newborn <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3qJJmkrYvs" target="_blank" class="keperluan-item">Popok bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4LFaNhomZP" target="_blank" class="keperluan-item">Bedong instan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/AADNKS5uFl" target="_blank" class="keperluan-item">Selimut bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/8Klj98ks6F" target="_blank" class="keperluan-item">Kain flannel <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/7AZll1qIDA" target="_blank" class="keperluan-item">Perlak bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/20rfbZMQDA" target="_blank" class="keperluan-item">Gendongan bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Paket baju bayi newborn', 'https://s.shopee.co.id/2VnwCGOFTC');return false;" class="keperluan-item">Paket baju bayi newborn <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Popok bayi', 'https://s.shopee.co.id/3qJJmkrYvs');return false;" class="keperluan-item">Popok bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bedong instan', 'https://s.shopee.co.id/4LFaNhomZP');return false;" class="keperluan-item">Bedong instan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Selimut bayi', 'https://s.shopee.co.id/AADNKS5uFl');return false;" class="keperluan-item">Selimut bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kain flannel', 'https://s.shopee.co.id/8Klj98ks6F');return false;" class="keperluan-item">Kain flannel <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Perlak bayi', 'https://s.shopee.co.id/7AZll1qIDA');return false;" class="keperluan-item">Perlak bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Gendongan bayi', 'https://s.shopee.co.id/20rfbZMQDA');return false;" class="keperluan-item">Gendongan bayi <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1635,14 +1867,14 @@ body {
         <span class="cs-arrow" id="arrow_kep_4">▼</span>
       </button>
       <div class="cs-items" id="items_kep_4">
-        <a href="https://s.shopee.co.id/W2ros8uvs" target="_blank" class="keperluan-item">Sabun bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/W2ros8uvs" target="_blank" class="keperluan-item">Shampoo bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4VZ0aGInaY" target="_blank" class="keperluan-item">Minyak telon <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3qJJn5N9LO" target="_blank" class="keperluan-item">Lotion bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/1BIYcD1UPj" target="_blank" class="keperluan-item">Tisu basah bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3fztaqWpA2" target="_blank" class="keperluan-item">Handuk bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/2BB6sXNtEl" target="_blank" class="keperluan-item">Waslap bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/6VK62WacQ1" target="_blank" class="keperluan-item">Baby oil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sabun bayi', 'https://s.shopee.co.id/W2ros8uvs');return false;" class="keperluan-item">Sabun bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Shampoo bayi', 'https://s.shopee.co.id/W2ros8uvs');return false;" class="keperluan-item">Shampoo bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Minyak telon', 'https://s.shopee.co.id/4VZ0aGInaY');return false;" class="keperluan-item">Minyak telon <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Lotion bayi', 'https://s.shopee.co.id/3qJJn5N9LO');return false;" class="keperluan-item">Lotion bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Tisu basah bayi', 'https://s.shopee.co.id/1BIYcD1UPj');return false;" class="keperluan-item">Tisu basah bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Handuk bayi', 'https://s.shopee.co.id/3fztaqWpA2');return false;" class="keperluan-item">Handuk bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Waslap bayi', 'https://s.shopee.co.id/2BB6sXNtEl');return false;" class="keperluan-item">Waslap bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Baby oil', 'https://s.shopee.co.id/6VK62WacQ1');return false;" class="keperluan-item">Baby oil <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1653,14 +1885,14 @@ body {
         <span class="cs-arrow" id="arrow_kep_5">▼</span>
       </button>
       <div class="cs-items" id="items_kep_5">
-        <a href="https://s.shopee.co.id/7fW33HO0YP" target="_blank" class="keperluan-item">Box bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/808tRxcNW7" target="_blank" class="keperluan-item">Kasur bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3B3e4SYYuz" target="_blank" class="keperluan-item">Bantal pegang <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/20rggL8Uui" target="_blank" class="keperluan-item">Kelambu bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/7fW3QnSwhJ" target="_blank" class="keperluan-item">Sleep sack bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/808tpS4Sz6" target="_blank" class="keperluan-item">Selimut hangat <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3LN4GuinVT" target="_blank" class="keperluan-item">Lampu tidur <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3qJKrvYlSY" target="_blank" class="keperluan-item">Perlak kasur <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Box bayi', 'https://s.shopee.co.id/7fW33HO0YP');return false;" class="keperluan-item">Box bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kasur bayi', 'https://s.shopee.co.id/808tRxcNW7');return false;" class="keperluan-item">Kasur bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bantal pegang', 'https://s.shopee.co.id/3B3e4SYYuz');return false;" class="keperluan-item">Bantal pegang <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kelambu bayi', 'https://s.shopee.co.id/20rggL8Uui');return false;" class="keperluan-item">Kelambu bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sleep sack bayi', 'https://s.shopee.co.id/7fW3QnSwhJ');return false;" class="keperluan-item">Sleep sack bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Selimut hangat', 'https://s.shopee.co.id/808tpS4Sz6');return false;" class="keperluan-item">Selimut hangat <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Lampu tidur', 'https://s.shopee.co.id/3LN4GuinVT');return false;" class="keperluan-item">Lampu tidur <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Perlak kasur', 'https://s.shopee.co.id/3qJKrvYlSY');return false;" class="keperluan-item">Perlak kasur <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1671,16 +1903,16 @@ body {
         <span class="cs-arrow" id="arrow_kep_6">▼</span>
       </button>
       <div class="cs-items" id="items_kep_6">
-        <a href="https://s.shopee.co.id/7AZmq5vMH3" target="_blank" class="keperluan-item">Pompa ASI manual <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/6L0fqcDXiY" target="_blank" class="keperluan-item">Pompa ASI elektrik <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/7ppTdPTA1O" target="_blank" class="keperluan-item">Botol ASI <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3LN4HA1lHq" target="_blank" class="keperluan-item">Kantong ASI <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/6L0fqhG3nx" target="_blank" class="keperluan-item">Cooler bag ASI <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/AADOPlbynF" target="_blank" class="keperluan-item">Nursing cover <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/5AoiSeHs70" target="_blank" class="keperluan-item">Bra menyusui <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4LFbT61J16" target="_blank" class="keperluan-item">Bantal menyusui <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/AKWocB7qOm" target="_blank" class="keperluan-item">Sterilizer botol <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/5L88f0mgCP" target="_blank" class="keperluan-item">Penghangat susu <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Pompa ASI manual', 'https://s.shopee.co.id/7AZmq5vMH3');return false;" class="keperluan-item">Pompa ASI manual <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Pompa ASI elektrik', 'https://s.shopee.co.id/6L0fqcDXiY');return false;" class="keperluan-item">Pompa ASI elektrik <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Botol ASI', 'https://s.shopee.co.id/7ppTdPTA1O');return false;" class="keperluan-item">Botol ASI <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kantong ASI', 'https://s.shopee.co.id/3LN4HA1lHq');return false;" class="keperluan-item">Kantong ASI <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Cooler bag ASI', 'https://s.shopee.co.id/6L0fqhG3nx');return false;" class="keperluan-item">Cooler bag ASI <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Nursing cover', 'https://s.shopee.co.id/AADOPlbynF');return false;" class="keperluan-item">Nursing cover <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bra menyusui', 'https://s.shopee.co.id/5AoiSeHs70');return false;" class="keperluan-item">Bra menyusui <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bantal menyusui', 'https://s.shopee.co.id/4LFbT61J16');return false;" class="keperluan-item">Bantal menyusui <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sterilizer botol', 'https://s.shopee.co.id/AKWocB7qOm');return false;" class="keperluan-item">Sterilizer botol <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Penghangat susu', 'https://s.shopee.co.id/5L88f0mgCP');return false;" class="keperluan-item">Penghangat susu <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1691,12 +1923,12 @@ body {
         <span class="cs-arrow" id="arrow_kep_7">▼</span>
       </button>
       <div class="cs-items" id="items_kep_7">
-        <a href="https://s.shopee.co.id/qfjIpSBnc" target="_blank" class="keperluan-item">Vitamin prenatal <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/20rgh0DjCt" target="_blank" class="keperluan-item">Susu ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4AwBH0VgFH" target="_blank" class="keperluan-item">Snack sehat <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/6pwwRvokoO" target="_blank" class="keperluan-item">Buah kering <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/9fH7pB3YfN" target="_blank" class="keperluan-item">Madu <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/70GMeIagBr" target="_blank" class="keperluan-item">Kurma <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Vitamin prenatal', 'https://s.shopee.co.id/qfjIpSBnc');return false;" class="keperluan-item">Vitamin prenatal <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Susu ibu hamil', 'https://s.shopee.co.id/20rgh0DjCt');return false;" class="keperluan-item">Susu ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Snack sehat', 'https://s.shopee.co.id/4AwBH0VgFH');return false;" class="keperluan-item">Snack sehat <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Buah kering', 'https://s.shopee.co.id/6pwwRvokoO');return false;" class="keperluan-item">Buah kering <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Madu', 'https://s.shopee.co.id/9fH7pB3YfN');return false;" class="keperluan-item">Madu <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kurma', 'https://s.shopee.co.id/70GMeIagBr');return false;" class="keperluan-item">Kurma <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1707,13 +1939,13 @@ body {
         <span class="cs-arrow" id="arrow_kep_8">▼</span>
       </button>
       <div class="cs-items" id="items_kep_8">
-        <a href="https://s.shopee.co.id/1LbztxyhVZ" target="_blank" class="keperluan-item">Pembalut nifas <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/7VCdFKN9IU" target="_blank" class="keperluan-item">Korset pasca melahirkan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/60NpSbHbOS" target="_blank" class="keperluan-item">Minyak pijat <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4AwBHIVUS6" target="_blank" class="keperluan-item">Sabun antiseptik <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3qJKsiAZU6" target="_blank" class="keperluan-item">Breast pad <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/6L0frKjxAn" target="_blank" class="keperluan-item">Salep puting <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/2BB6tibIbl" target="_blank" class="keperluan-item">Cooling pad <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Pembalut nifas', 'https://s.shopee.co.id/1LbztxyhVZ');return false;" class="keperluan-item">Pembalut nifas <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Korset pasca melahirkan', 'https://s.shopee.co.id/7VCdFKN9IU');return false;" class="keperluan-item">Korset pasca melahirkan <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Minyak pijat', 'https://s.shopee.co.id/60NpSbHbOS');return false;" class="keperluan-item">Minyak pijat <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sabun antiseptik', 'https://s.shopee.co.id/4AwBHIVUS6');return false;" class="keperluan-item">Sabun antiseptik <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Breast pad', 'https://s.shopee.co.id/3qJKsiAZU6');return false;" class="keperluan-item">Breast pad <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Salep puting', 'https://s.shopee.co.id/6L0frKjxAn');return false;" class="keperluan-item">Salep puting <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Cooling pad', 'https://s.shopee.co.id/2BB6tibIbl');return false;" class="keperluan-item">Cooling pad <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1724,14 +1956,14 @@ body {
         <span class="cs-arrow" id="arrow_kep_9">▼</span>
       </button>
       <div class="cs-items" id="items_kep_9">
-        <a href="https://s.shopee.co.id/5fkz1tfp80" target="_blank" class="keperluan-item">Car seat bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/1qYGStJ2q9" target="_blank" class="keperluan-item">Stroller <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/gMJ4lxaPK" target="_blank" class="keperluan-item">Gendongan ergonomis <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3VgUS0FTXF" target="_blank" class="keperluan-item">Tas diaper bag <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/AUqEmtf59R" target="_blank" class="keperluan-item">Baby carrier wrap <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/70GMcUbvNI" target="_blank" class="keperluan-item">Kursi makan bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/901R0Bo7Mp" target="_blank" class="keperluan-item">Playpen <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/6L0fpL1wGT" target="_blank" class="keperluan-item">Safety belt bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Car seat bayi', 'https://s.shopee.co.id/5fkz1tfp80');return false;" class="keperluan-item">Car seat bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Stroller', 'https://s.shopee.co.id/1qYGStJ2q9');return false;" class="keperluan-item">Stroller <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Gendongan ergonomis', 'https://s.shopee.co.id/gMJ4lxaPK');return false;" class="keperluan-item">Gendongan ergonomis <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Tas diaper bag', 'https://s.shopee.co.id/3VgUS0FTXF');return false;" class="keperluan-item">Tas diaper bag <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Baby carrier wrap', 'https://s.shopee.co.id/AUqEmtf59R');return false;" class="keperluan-item">Baby carrier wrap <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kursi makan bayi', 'https://s.shopee.co.id/70GMcUbvNI');return false;" class="keperluan-item">Kursi makan bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Playpen', 'https://s.shopee.co.id/901R0Bo7Mp');return false;" class="keperluan-item">Playpen <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Safety belt bayi', 'https://s.shopee.co.id/6L0fpL1wGT');return false;" class="keperluan-item">Safety belt bayi <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1742,15 +1974,15 @@ body {
         <span class="cs-arrow" id="arrow_kep_10">▼</span>
       </button>
       <div class="cs-items" id="items_kep_10">
-        <a href="https://s.shopee.co.id/W2srt423N" target="_blank" class="keperluan-item">Buku bayi kontras tinggi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4AwBEf9xS4" target="_blank" class="keperluan-item">Mainan gantung <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/AKWoa2Y0CA" target="_blank" class="keperluan-item">Teether bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4AwBElqpzb" target="_blank" class="keperluan-item">Playmat <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/7VCdCvQD3R" target="_blank" class="keperluan-item">Musik bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/4fsRpklfVP" target="_blank" class="keperluan-item">Cermin bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/3fzue7xHmG" target="_blank" class="keperluan-item">Boneka lembut <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/50VIEOfXGg" target="_blank" class="keperluan-item">Rattle bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="https://s.shopee.co.id/5L88dDrqrV" target="_blank" class="keperluan-item">Busy board sederhana <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Buku bayi kontras tinggi', 'https://s.shopee.co.id/W2srt423N');return false;" class="keperluan-item">Buku bayi kontras tinggi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Mainan gantung', 'https://s.shopee.co.id/4AwBEf9xS4');return false;" class="keperluan-item">Mainan gantung <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Teether bayi', 'https://s.shopee.co.id/AKWoa2Y0CA');return false;" class="keperluan-item">Teether bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Playmat', 'https://s.shopee.co.id/4AwBElqpzb');return false;" class="keperluan-item">Playmat <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Musik bayi', 'https://s.shopee.co.id/7VCdCvQD3R');return false;" class="keperluan-item">Musik bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Cermin bayi', 'https://s.shopee.co.id/4fsRpklfVP');return false;" class="keperluan-item">Cermin bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Boneka lembut', 'https://s.shopee.co.id/3fzue7xHmG');return false;" class="keperluan-item">Boneka lembut <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Rattle bayi', 'https://s.shopee.co.id/50VIEOfXGg');return false;" class="keperluan-item">Rattle bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Busy board sederhana', 'https://s.shopee.co.id/5L88dDrqrV');return false;" class="keperluan-item">Busy board sederhana <span class="kep-shop">🛒 Shopee</span></a>
       </div>
     </div>
 
@@ -1759,10 +1991,24 @@ body {
   <!-- ══ TAB: BACAAN KIA ══ -->
   <div class="tab-panel" id="tab-edukasi" style="padding-bottom:20px;">
 
-    <!-- Header -->
-    <div class="card" style="background:linear-gradient(135deg,#1565C0,#42A5F5);color:white;padding:18px;">
-      <div style="font-size:16px;font-weight:800;margin-bottom:4px;">📖 Bacaan KIA</div>
-      <div style="font-size:12px;opacity:0.85;">Panduan lengkap · 1000 HPK · Tanda Bahaya · Masa Nifas</div>
+    <!-- Header KIIA -->
+    <div style="background:linear-gradient(135deg,#1565C0,#42A5F5);padding:18px;margin-bottom:12px;border-radius:0 0 20px 20px;">
+      <div style="text-align:center;margin-bottom:10px;">
+        <div style="font-size:22px;font-weight:900;color:white;letter-spacing:1px;">KIIA</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.9);font-weight:600;margin-top:2px;">Kajian Islami, Ibu dan Anak</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px;">1000 HPK · Tanda Bahaya · Nifas · Kajian Riba</div>
+      </div>
+      <!-- Progress bar -->
+      <div style="background:rgba(255,255,255,0.15);border-radius:14px;padding:10px 14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.85);font-weight:700;">📚 Progress Bacaan</div>
+          <div style="font-size:16px;font-weight:900;color:white;" id="kiiaProgressPct">0%</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.25);border-radius:99px;height:8px;overflow:hidden;">
+          <div id="kiiaProgressBar" style="height:100%;border-radius:99px;background:linear-gradient(90deg,#A5D6A7,#4CAF50);width:0%;transition:width 0.5s;"></div>
+        </div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:5px;text-align:center;" id="kiiaProgressLabel">0 dari 39 topik selesai dibaca</div>
+      </div>
     </div>
 
     <!-- ── BAGIAN 1: FONDASI ── -->
@@ -1783,6 +2029,188 @@ body {
           • Usia 3 tahun: mencapai 85%<br><br>
           Jaringan sinapsis antar sel saraf terbentuk paling cepat di masa ini.
         </div>
+
+        <div class="kiia-done-wrap" id="done_wrap_kia_1000hpk">
+          <button class="kiia-done-btn" id="done_btn_kia_1000hpk" onclick="toggleKIIARead('kia_1000hpk')">
+            <span id="done_icon_kia_1000hpk">📖</span> <span id="done_text_kia_1000hpk">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
+
+        <!-- Sub-topik tambahan -->
+        <div style="margin-top:14px;border-top:2px solid var(--primary-light);padding-top:12px;">
+          <div style="font-size:10px;font-weight:800;color:var(--primary);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">📹 Bacaan Tambahan</div>
+
+          <div class="checklist-section" style="margin-bottom:4px;">
+            <button class="cs-header" onclick="toggleSection('hpk_apin_1')" style="background:var(--gray-100);border-radius:12px;">
+              <div class="cs-header-left"><span>👨‍⚕️</span><span class="cs-title" style="font-size:12px;">Rangkuman: Tumbuh Kembang Anak di 1000 Hari Pertama (dr. Arifianto, Sp.A)</span></div>
+              <span class="cs-arrow" id="arrow_hpk_apin_1">▼</span>
+            </button>
+            <div class="cs-items" id="items_hpk_apin_1">
+              <div class="kia-info-wrap">
+
+                <strong style="color:var(--primary);">1) Konsep 1000 Hari Pertama Kehidupan</strong><br><br>
+                Masa ini dihitung sejak pembuahan di dalam kandungan hingga anak berusia 2 tahun (24 bulan). Fase ini adalah fondasi paling krusial yang menentukan masa depan anak hingga puluhan tahun ke depan, sehingga orang tua harus memperhatikannya dengan sangat serius.<br><br>
+
+                <strong style="color:var(--primary);">2) Membedakan Pertumbuhan dan Perkembangan</strong><br><br>
+                Keduanya adalah hal yang berbeda namun tidak bisa dipisahkan:<br><br>
+                <strong>Pertumbuhan (Kuantitatif):</strong> Segala sesuatu yang bisa diukur dengan angka, seperti berat badan, panjang/tinggi badan, lingkar kepala, dan indeks massa tubuh.<br><br>
+                <strong>Perkembangan (Kualitatif):</strong> Kemampuan fungsi tubuh yang dibagi menjadi 4 ranah utama: motorik kasar, motorik halus, bahasa, dan personal-sosial.<br><br>
+
+                <strong style="color:var(--primary);">3) Tiga Tugas Utama Orang Tua</strong><br><br>
+                <strong>Deteksi Dini:</strong> Memantau seawal mungkin apabila ada tanda-tanda keterlambatan atau masalah.<br><br>
+                <strong>Stimulasi:</strong> Memberikan rangsangan yang sesuai agar pertumbuhan dan perkembangan anak bisa optimal.<br><br>
+                <strong>Intervensi:</strong> Segera bertindak (membawa ke dokter/terapis) jika pada proses deteksi dini ditemukan masalah agar tidak terlanjur parah.<br><br>
+
+                <strong style="color:var(--primary);">4) Pentingnya Pemantauan yang Objektif</strong><br><br>
+                Jangan mudah stres atau baper dengan komentar orang lain mengenai fisik anak. Orang tua harus mengevaluasi secara objektif menggunakan kurva pertumbuhan.<br><br>
+                Anak disebut tumbuh dengan baik jika grafiknya konsisten pada jalurnya, tidak mendatar, atau tidak memotong garis di bawahnya secara drastis.<br><br>
+                Gunakan <strong>Buku KIA</strong> (Kesehatan Ibu dan Anak) atau aplikasi digital seperti <strong>PrimaKu</strong> (dari Ikatan Dokter Anak Indonesia/IDAI) untuk memplot tinggi, berat badan, dan memantau ceklis perkembangan anak.<br><br>
+
+                <strong style="color:var(--primary);">5) Kewaspadaan pada Defisiensi Zat Besi</strong><br><br>
+                Mikronutrien seperti zat besi sangat penting untuk pembentukan sel darah merah (hemoglobin). Kekurangan zat besi bisa menyebabkan anemia yang menurunkan suplai oksigen ke organ tubuh.<br><br>
+                Dampak jangka panjangnya bisa mengganggu kecerdasan kognitif, daya ingat, hingga memicu gangguan perilaku (hiperaktivitas).<br><br>
+                IDAI menyarankan suplementasi zat besi rutin bagi bayi cukup bulan mulai usia 4 bulan.<br><br>
+                Meski zat besi penting, orang tua tetap wajib memastikan kebutuhan makronutrien (karbohidrat, protein, lemak) terpenuhi dengan baik.<br><br>
+
+                <strong style="color:var(--primary);">6) Deteksi Keterlambatan Bicara (Speech Delay)</strong><br><br>
+                Bedakan antara kemampuan bicara (artikulasi/konsonan) dengan kemampuan komunikasi secara keseluruhan (bahasa reseptif dan ekspresif).<br><br>
+                Anak usia 15 bulan umumnya sudah bisa diajak interaksi dasar dan memahami maksud. Anak usia 18 bulan idealnya sudah mulai bisa mengucapkan kata dengan lebih jelas.<br><br>
+                Jika di usia 18 bulan anak dipanggil namanya tidak merespons, atau tidak memahami instruksi sederhana, itu adalah <strong>tanda bahaya (red flag)</strong> yang harus segera diperiksakan ke dokter.<br><br>
+
+                <strong style="color:var(--primary);">7) Parameter Motorik Kasar</strong><br><br>
+                Pada usia 4 bulan, leher bayi sudah harus kuat menopang kepalanya ketika ditengkurapkan atau didudukkan (tidak ada lagi kondisi kepala terpelanting ke belakang / <em>head lag</em>).<br><br>
+                Anak idealnya harus sudah bisa berdiri sambil berpegangan pada usia maksimal 12 bulan.<br><br>
+                Batas maksimal anak bisa berjalan mandiri adalah usia <strong>18 bulan</strong>. Lewat dari itu masuk ke kategori <strong>red flag</strong> dan harus segera diperiksakan ke dokter spesialis anak.
+
+              </div>
+              <div class="kiia-done-wrap" id="done_wrap_hpk_apin_1">
+                <button class="kiia-done-btn" id="done_btn_hpk_apin_1" onclick="toggleKIIARead('hpk_apin_1')">
+                  <span id="done_icon_hpk_apin_1">📖</span> <span id="done_text_hpk_apin_1">Tandai Selesai Dibaca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-topik 2: Cegah Stunting -->
+          <div class="checklist-section" style="margin-bottom:4px;">
+            <button class="cs-header" onclick="toggleSection('hpk_stunting_1')" style="background:var(--gray-100);border-radius:12px;">
+              <div class="cs-header-left"><span>📏</span><span class="cs-title" style="font-size:12px;">Nota Lengkap: 1000 Hari Pertama & Cegah Stunting (Prof. Tono &amp; Dr. Mesti)</span></div>
+              <span class="cs-arrow" id="arrow_hpk_stunting_1">▼</span>
+            </button>
+            <div class="cs-items" id="items_hpk_stunting_1">
+              <div class="kia-info-wrap">
+
+                <strong style="color:var(--primary);">1) Kepentingan 1000 Hari Pertama Kehidupan</strong><br><br>
+                Masa ini bermula sejak fase kehamilan (270 hari) hingga anak-anak berusia 2 tahun. Pencegahan stunting (gagal tumbuh) bermula sejak <strong>sebelum dan semasa kehamilan</strong>, bukan hanya setelah bayi dilahirkan.<br><br>
+                Ibu hamil perlu memastikan asupan makronutrien dan mikronutrien yang mencukupi, terutama <strong>zat besi</strong> dan <strong>Vitamin D</strong>. Kekurangan Vitamin D dapat meningkatkan risiko masalah kesehatan seperti alergi dan penyakit autoimun pada anak kelak.<br><br>
+
+                <strong style="color:var(--primary);">2) Persiapan Perawatan Bayi &amp; Menyusui</strong><br><br>
+                <strong>Konseling Laktasi:</strong> Persiapan menyusui sebaiknya dimulai sejak trimester ketiga kehamilan agar ibu dan bayi tidak panik setelah lahir.<br><br>
+                <strong>Inisiasi Menyusu Dini (IMD):</strong> Sangat penting karena kolostrum kaya lemak dan imunitas yang sangat dibutuhkan bayi.<br><br>
+                <strong>Skrining Kesehatan Awal Bayi:</strong><br>
+                • Vaksin Hepatitis B dan suntikan Vitamin K segera setelah lahir.<br>
+                • Skrining hipotiroid kongenital pada usia 48–72 jam — sangat penting untuk mencegah dampak pada kecerdasan (IQ) anak jika diobati terlambat.<br><br>
+
+                <strong style="color:var(--primary);">3) Tumbuh Kembang Anak</strong><br><br>
+                Perkembangan anak tidak boleh dibandingkan dengan anak orang lain. Orang tua perlu tenang dan memantau menggunakan <strong>Buku KIA</strong>.<br><br>
+                <strong>Tummy Time (Tengkurap):</strong> Bisa dilatih segera setelah bayi lahir, dilakukan bertahap hingga minimal 30 menit per hari untuk melatih otot kasar, keseimbangan, dan koordinasi.<br><br>
+                Banyak orang tua terlalu fokus melihat kecepatan anak berjalan, padahal perkembangan kecerdasan otak lebih berkaitan erat dengan kemampuan <strong>berbicara dan berkomunikasi</strong>.<br><br>
+
+                <strong style="color:var(--primary);">4) Nutrisi &amp; MPASI</strong><br><br>
+                Berikan ASI eksklusif selama 6 bulan, dan sangat dianjurkan untuk dilanjutkan hingga usia 2 tahun sambil memberikan MPASI.<br><br>
+                <strong>Utamakan protein hewani</strong> untuk merangsang pertumbuhan tinggi badan anak. Makanan seperti telur dan berbagai jenis ikan lokal (terutama ikan kembung, lele, atau gabus) sangat bergizi. Ikan kembung memiliki nutrisi yang sangat tinggi dan tidak kalah dibandingkan salmon.<br><br>
+                <strong>Hindari gula tambahan</strong> untuk anak di bawah usia 2 tahun. Asupan gula tinggi dapat menyebabkan peradangan (inflammation), kesulitan tidur malam, dan membuat anak lebih mudah rewel atau tantrum.<br><br>
+
+                <strong style="color:var(--primary);">5) Mainan &amp; Penggunaan Gadget</strong><br><br>
+                <strong>Mainan Terbaik:</strong> Buku bacaan dan mainan tradisional (seperti balok susun dan puzzle) terbukti lebih baik dibandingkan mainan elektronik bercahaya dan berbunyi, karena merangsang interaksi, komunikasi, dan imajinasi. Tidak terlalu banyak mainan justru melatih anak lebih kreatif.<br><br>
+                <strong>Gadget:</strong> Panduan pediatri menyarankan anak di bawah 2 tahun <strong>tidak terpapar layar gadget sama sekali</strong> (kecuali video call). Paparan gadget berlebihan dikaitkan dengan peningkatan risiko perilaku sulit diprediksi, ADHD, bahkan autisme.<br><br>
+
+                <strong style="color:var(--primary);">6) Waktu Tidur &amp; Manajemen Tantrum</strong><br><br>
+                <strong>Tidur:</strong> Anak sebaiknya ditidurkan lebih awal (sekitar pukul 20.00) dibanding dipaksa begadang. Keteraturan pola tidur adalah kunci untuk mengoptimalkan produksi <strong>hormon pertumbuhan (growth hormone)</strong>.<br><br>
+                <strong>Tantrum:</strong> Merupakan pelepasan emosi yang normal, terutama pada usia 1–3 tahun. Saat anak tantrum, tugas orang tua adalah <strong>menenangkan</strong> dan membantu anak mengenali perasaan marah/sedihnya — bukan menyuruh anak diam dan memendam emosi.<br><br>
+
+                <strong style="color:var(--primary);">7) Pengasuhan &amp; Perencanaan Bersama</strong><br><br>
+                Memiliki buah hati bukan sekadar persiapan fisik — ini mencakup keseluruhan sistem kesejahteraan emosi, kesehatan lingkungan (termasuk kesehatan pengasuh), dan juga keberlanjutan keuangan orang tua.<br><br>
+                <strong>Quality time</strong> sangat bermakna bagi orang tua yang bekerja. Penelitian menunjukkan bahwa meluangkan waktu berkualitas secara eksklusif (tanpa gangguan luar) minimal <strong>30 menit bersama anak setiap hari</strong> memberikan dampak yang sangat positif bagi hubungan orang tua dan anak.
+
+              </div>
+              <div class="kiia-done-wrap" id="done_wrap_hpk_stunting_1">
+                <button class="kiia-done-btn" id="done_btn_hpk_stunting_1" onclick="toggleKIIARead('hpk_stunting_1')">
+                  <span id="done_icon_hpk_stunting_1">📖</span> <span id="done_text_hpk_stunting_1">Tandai Selesai Dibaca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-topik 3: dr. Lucy -->
+          <div class="checklist-section" style="margin-bottom:4px;">
+            <button class="cs-header" onclick="toggleSection('hpk_lucy_1')" style="background:var(--gray-100);border-radius:12px;">
+              <div class="cs-header-left"><span>👶</span><span class="cs-title" style="font-size:12px;">MOMSPIRATION: 1000 HPK bagi Tumbuh Kembang Anak (dr. Lucy Endang Safitri, Sp.A – RS JIH Solo)</span></div>
+              <span class="cs-arrow" id="arrow_hpk_lucy_1">▼</span>
+            </button>
+            <div class="cs-items" id="items_hpk_lucy_1">
+              <div class="kia-info-wrap">
+
+                <strong style="color:var(--primary);">1) Definisi 1000 Hari Pertama Kehidupan</strong><br><br>
+                1000 hari pertama dihitung mulai dari masa konsepsi (janin di dalam kandungan selama sekitar 9 bulan atau 270 hari) hingga anak lahir dan berusia 2 tahun (730 hari).<br><br>
+
+                <strong style="color:var(--primary);">2) Alasan Pentingnya Periode 1000 Hari Pertama</strong><br><br>
+                Periode ini merupakan masa di mana pertumbuhan fisik dan perkembangan anak terjadi dengan sangat cepat. Masa ini menjadi <strong>"modal dasar"</strong> atau fondasi pembentukan kesehatan, kognitif (kecerdasan), dan mental anak di masa depan. Jika fondasinya bagus, maka kelak anak akan tumbuh kokoh dan optimal.<br><br>
+
+                <strong style="color:var(--primary);">3) Persiapan Dimulai Bahkan Sebelum Kehamilan</strong><br><br>
+                Kesehatan ibu sangat menentukan kesehatan bayi. Persiapan sebenarnya sudah dimulai sejak masa remaja (misalnya pemberian zat besi pada remaja putri untuk mencegah anemia).<br><br>
+                Calon ibu harus memenuhi asupan mikronutrien (seperti asam folat, zat besi) maupun makronutrien (karbohidrat, protein, lemak). Tidak disarankan melakukan <strong>diet ekstrem</strong> sebelum/saat hamil.<br><br>
+                Kesehatan mental ibu sangat krusial. <strong>Ibu yang bahagia</strong> akan menciptakan lingkungan rahim yang baik untuk pertumbuhan janin.<br><br>
+
+                <strong style="color:var(--primary);">4) Peran Orang Tua dan Lingkungan (Support System)</strong><br><br>
+                <strong>Asuh, Asih, Asah:</strong><br>
+                • <strong>Asuh:</strong> Menyediakan sarana dan nutrisi yang baik.<br>
+                • <strong>Asih:</strong> Memberikan kasih sayang dan kehangatan.<br>
+                • <strong>Asah:</strong> Mendidik dan memberikan stimulasi (baik formal maupun informal).<br><br>
+                <strong>Keluarga yang Harmonis:</strong> Janin di dalam kandungan sudah bisa merasakan emosi ibu. Jika ibu stres atau sedih, pembuluh darah bisa menyempit dan mengurangi suplai oksigen serta makanan ke janin. Oleh karena itu, <strong>dukungan suami dan keluarga sangat penting</strong>.<br><br>
+
+                <strong style="color:var(--primary);">5) Pentingnya Asupan Gizi yang Tepat</strong><br><br>
+                <strong>Saat kehamilan:</strong> Kekurangan gizi bisa menyebabkan bayi lahir prematur atau dengan Berat Badan Lahir Rendah (BBLR).<br><br>
+                <strong>Usia 0–6 bulan:</strong> ASI eksklusif saja sudah cukup karena ASI sudah diformulasikan sempurna dengan nutrisi lengkap (lemak, protein, karbohidrat, vitamin, mineral, antibodi) sesuai kebutuhan bayi.<br><br>
+                <strong>Usia 6–24 bulan:</strong> ASI sudah tidak cukup secara kalori, sehingga harus ditambah Makanan Pendamping ASI (MPASI) yang ditakar sesuai panduan di <strong>Buku KIA</strong>.<br><br>
+
+                <strong style="color:var(--primary);">6) Seputar ASI (Air Susu Ibu)</strong><br><br>
+                <strong>Fore milk (ASI depan):</strong> Cenderung bening, kaya protein, sangat bagus untuk perkembangan otak bayi.<br><br>
+                <strong>Hind milk (ASI belakang):</strong> Lebih kental, kaya lemak, sangat bagus untuk pertumbuhan berat badan bayi.<br><br>
+                Menyusui disarankan sampai payudara terasa kosong agar bayi mendapatkan fore milk maupun hind milk secara seimbang.<br><br>
+
+                <strong style="color:var(--primary);">7) Pola Tidur Anak</strong><br><br>
+                Tidur terbagi dua fungsi: <strong>restorasi fisik</strong> dan <strong>restorasi kognitif/emosional</strong>.<br><br>
+                Pola tidur bayi berbeda dengan anak yang lebih besar. Pada bulan-bulan awal (1–3 bulan), jam tidur bayi belum teratur (sering begadang). Orang tua disarankan ikut tidur/istirahat saat bayi tidur agar tidak kelelahan.<br><br>
+
+                <strong style="color:var(--primary);">8) Vaksinasi / Imunisasi</strong><br><br>
+                Vaksinasi adalah bentuk ikhtiar orang tua untuk mencegah penyakit mematikan, cacat, atau penyakit berat yang dapat mengganggu tumbuh kembang anak. Maksimalkan seluruh imunisasi yang dicover pemerintah maupun imunisasi tambahan jika memiliki kemampuan finansial.<br><br>
+
+                <strong style="color:var(--primary);">9) Stimulasi Tumbuh Kembang</strong><br><br>
+                <strong>Sejak di kandungan:</strong> Janin mulai bisa mendengar dengan baik di usia 4–5 bulan. Stimulasi bisa dilakukan dengan mengajak bicara, membacakan hal-hal baik (misal ayat suci), dan mendengarkan hal positif.<br><br>
+                Ibu hamil disarankan <strong>tidak mencari informasi negatif</strong> di internet yang memicu overthinking atau ketakutan (self-diagnose).<br><br>
+                <strong>Setelah lahir:</strong> Gunakan acuan stimulasi yang ada di halaman-halaman Buku KIA.<br><br>
+
+                <strong style="color:var(--primary);">10) Dampak Jangka Panjang Kurang Gizi (Stunting/BBLR)</strong><br><br>
+                Pertumbuhan dan perkembangan tidak bisa dipisahkan. Anak yang kurang gizi (berat badan rendah/otot kecil) akan kesulitan melakukan perkembangan motorik seperti duduk, berdiri, dan berjalan karena rangkanya tidak kuat menyangga tubuh.<br><br>
+                Anak yang lahir kecil (BBLR) bisa dikejar pertumbuhannya (<em>catch-up growth</em>), namun harus bertahap dan dikonsultasikan dengan dokter spesialis anak. Pengejaran bobot yang terlalu drastis bisa memicu masalah metabolisme saat ia dewasa.<br><br>
+
+                <strong style="color:var(--primary);">11) Deteksi Dini &amp; Pemantauan</strong><br><br>
+                • Rutin periksa USG saat kehamilan.<br>
+                • Setelah lahir, wajib memantau <strong>Berat Badan, Panjang Badan, dan Lingkar Kepala</strong>.<br>
+                • Rutin datang ke Posyandu setiap bulan (0–12 bulan), dan boleh per 3 bulan untuk usia 12–24 bulan.<br>
+                • Gunakan <strong>Buku KIA</strong> (sudah ada versi PDF/bisa diunduh) sebagai "rapor" untuk mendeteksi apakah anak tumbuh <em>on-track</em> (sesuai jalur normal) atau tidak. Jika ada yang meleset, segera konsultasikan ke ahlinya.
+
+              </div>
+              <div class="kiia-done-wrap" id="done_wrap_hpk_lucy_1">
+                <button class="kiia-done-btn" id="done_btn_hpk_lucy_1" onclick="toggleKIIARead('hpk_lucy_1')">
+                  <span id="done_icon_hpk_lucy_1">📖</span> <span id="done_text_hpk_lucy_1">Tandai Selesai Dibaca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end sub-topik -->
       </div>
     </div>
 
@@ -1796,6 +2224,12 @@ body {
           <strong>Apa itu Stunting?</strong> Bukan sekadar tubuh pendek, melainkan indikator utama hambatan perkembangan kognitif dan kecerdasan akibat kurang gizi kronis atau infeksi berulang.<br><br>
           <strong>Pencegahan Utama:</strong> Asupan gizi makro (protein hewani) dan mikro (zat besi, asam folat) sejak masa <em>prakonsepsi</em> adalah kunci utama.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_stunting">
+          <button class="kiia-done-btn" id="done_btn_kia_stunting" onclick="toggleKIIARead('kia_stunting')">
+            <span id="done_icon_kia_stunting">📖</span> <span id="done_text_kia_stunting">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1804,7 +2238,7 @@ body {
 
     <div class="checklist-section">
       <button class="cs-header" onclick="toggleSection('kia_nutrisi')">
-        <div class="cs-header-left"><span>🥗</span><span class="cs-title">Panduan Nutrisi Lengkap</span></div>
+        <div class="cs-header-left"><span>🥗</span><span class="cs-title">Panduan Nutrisi Ibu Hamil (5 Topik)</span></div>
         <span class="cs-arrow" id="arrow_kia_nutrisi">▼</span>
       </button>
       <div class="cs-items" id="items_kia_nutrisi">
@@ -1817,6 +2251,240 @@ body {
           <strong>Protein Hewani:</strong> Ikan, daging, telur, susu — prioritas utama mencegah stunting.<br><br>
           <strong>Hindari:</strong> Makanan mentah, kafein berlebih, alkohol, makanan tinggi merkuri.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_nutrisi">
+          <button class="kiia-done-btn" id="done_btn_kia_nutrisi" onclick="toggleKIIARead('kia_nutrisi')">
+            <span id="done_icon_kia_nutrisi">📖</span> <span id="done_text_kia_nutrisi">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
+
+        <!-- ─── 5 SUB-TOPIK NUTRISI ─── -->
+        <div style="margin-top:14px;border-top:2px solid var(--primary-light);padding-top:12px;">
+          <div style="font-size:10px;font-weight:800;color:var(--primary);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">📹 5 Bacaan & Video Nutrisi</div>
+
+          <!-- ── NUTRISI 1 ── -->
+          <div class="checklist-section" style="margin-bottom:8px;">
+            <button class="cs-header" onclick="toggleSection('nutrisi_1')" style="background:var(--gray-100);border-radius:12px;">
+              <div class="cs-header-left"><span>1️⃣</span><span class="cs-title" style="font-size:12px;">Pengaruh Nutrisi Ibu Hamil Terhadap Perkembangan &amp; Kecerdasan Janin</span></div>
+              <span class="cs-arrow" id="arrow_nutrisi_1">▼</span>
+            </button>
+            <div class="cs-items" id="items_nutrisi_1">
+              <div class="kia-info-wrap">
+                <strong style="color:var(--primary);">1) Pentingnya 1000 Hari Pertama Kehidupan (HPK)</strong><br><br>
+                <strong>Periode Emas:</strong> 1000 HPK terdiri dari 270 hari selama kehamilan hingga anak berusia 2 tahun (730 hari).<br><br>
+                <strong>Perkembangan Otak:</strong> 80% perkembangan otak manusia terjadi pada periode ini. Kekurangan gizi pada masa ini sangat fatal dan dampaknya sulit diperbaiki di kemudian hari.<br><br>
+                <strong>Pembentukan Organ Vital:</strong> Di fase ini juga organ-organ penting seperti jantung, saraf, ginjal, tulang, lambung, dan sistem pencernaan terbentuk secara sempurna.<br><br>
+                <strong>Stimulasi Dini:</strong> Selain gizi, kecerdasan bayi juga dibentuk melalui stimulasi. Ibu sangat disarankan untuk sering mengajak janin berkomunikasi, mengobrol, dan merangsang ikatan (bonding) bahkan sejak masih di dalam kandungan.<br><br>
+
+                <strong style="color:var(--primary);">2) Panduan Pola Makan (Gizi Seimbang)</strong><br><br>
+                Tinggalkan konsep kuno "4 Sehat 5 Sempurna" dan beralihlah ke pedoman <strong>Gizi Seimbang (Isi Piringku)</strong>.<br><br>
+                <strong>Proporsi Piring Ideal Ibu Hamil:</strong><br>
+                • <strong>1/4 Porsi:</strong> Karbohidrat (nasi, kentang, roti).<br>
+                • <strong>1/4 Porsi:</strong> Protein (sangat penting untuk pembentukan sel dan kecerdasan janin). Sumber protein meliputi telur, tahu, tempe, daging merah, ayam, dan ikan laut.<br>
+                • <strong>1/3 Porsi:</strong> Sayur-sayuran.<br>
+                • <strong>1/6 Porsi:</strong> Buah-buahan potong (lebih disarankan buah potong utuh dibandingkan jus karena jus dapat mengurangi serat dan meningkatkan kadar gula).<br><br>
+
+                <strong style="color:var(--primary);">3) Mikronutrien Esensial &amp; Penting Selama Kehamilan</strong><br><br>
+                <strong>Vitamin D3:</strong> Sekitar 90% ibu hamil di Indonesia kekurangan Vitamin D3. Hal ini membuat imunitas turun. Sangat penting untuk mencegah kejang pada bayi baru lahir, kelainan tulang, dan menurunkan risiko komplikasi diabetes gestasional.<br>
+                <em>Tips berjemur:</em> Berjemur yang efektif adalah di sekitar jam 10 pagi, membiarkan kulit terpapar langsung oleh sinar matahari tanpa terhalang pakaian panjang atau tabir surya secara berlebihan (sekitar 10–15 menit).<br><br>
+                <strong>Kalsium:</strong> Kebutuhan kalsium ibu hamil adalah 1.500–2.000 mg per hari. Jika tidak terpenuhi, bayi akan menyerap cadangan kalsium dari tulang ibu, yang memicu pengeroposan tulang (osteoporosis) pada ibu di kemudian hari. Kekurangan kalsium juga merupakan salah satu pemicu tekanan darah tinggi atau preeklamsia.<br>
+                <em>Pantangan:</em> Hindari minuman bersoda karena dapat merusak kalsium dan membuangnya melalui sistem pencernaan.<br><br>
+                <strong>Zat Besi:</strong> Dibutuhkan untuk mencegah anemia. Kadar hemoglobin (Hb) yang rendah menghambat transportasi oksigen ke janin dan dapat mengakibatkan kelahiran prematur, berat bayi lahir rendah, serta komplikasi perdarahan pasca persalinan.<br>
+                <em>Catatan Penyerapan:</em> Zat besi (terutama dari suplemen atau sayuran hijau) membutuhkan Vitamin C agar dapat diserap maksimal oleh tubuh.<br><br>
+                <strong>DHA / Omega-3:</strong> Komponen krusial untuk kecerdasan otak janin dan sistem saraf. Tubuh tidak bisa memproduksi DHA sendiri, jadi harus dari asupan luar seperti ikan salmon, tuna, atau suplemen.<br><br>
+                <strong>Asam Folat:</strong> Wajib dikonsumsi terutama di trimester pertama untuk mencegah cacat tabung saraf janin.<br><br>
+
+                <strong style="color:var(--primary);">4) Cara Menyiasati Mual &amp; Muntah (Emesis Gravidarum)</strong><br><br>
+                Mual sering terjadi di trimester awal karena pembentukan organ dan perubahan hormon.<br><br>
+                <strong>Tips:</strong> Makan dalam porsi sedikit namun sering. Ibu hamil dituntut untuk memiliki mindset yang kuat demi nutrisi janin dan sebisa mungkin melawan rasa mual tersebut.<br><br>
+                <strong>Kondisi Kritis (Hiperemesis):</strong> Jika mual/muntah terjadi sangat ekstrim (tidak ada cairan dan makanan yang bisa masuk sama sekali), ibu hamil wajib dirawat di rumah sakit untuk mendapat asupan infus (elektrolit dan cairan) agar janin tidak dehidrasi dan malnutrisi.<br><br>
+
+                <strong style="color:var(--primary);">5) Catatan Seputar Puasa dan Vaksinasi</strong><br><br>
+                <strong>Puasa Saat Hamil:</strong> Diperbolehkan asalkan ibu dan janin dalam keadaan sehat. Namun, ibu harus jujur pada kondisi tubuhnya. Jika berat badan terus menurun drastis, sering pusing berkunang-kunang, atau volume air ketuban menyusut drastis saat di-USG, puasa sebaiknya dihentikan dan diganti dengan fidyah.<br><br>
+                <strong>Vaksinasi:</strong> Ibu hamil wajib memperhatikan status vaksinasi Tetanus Toxoid (TT) untuk mencegah infeksi tetanus saat persalinan. Vaksin COVID-19 juga aman diberikan untuk usia kehamilan di atas 13 minggu.
+              </div>
+              <div class="kiia-done-wrap" id="done_wrap_nutrisi_1">
+                <button class="kiia-done-btn" id="done_btn_nutrisi_1" onclick="toggleKIIARead('nutrisi_1')">
+                  <span id="done_icon_nutrisi_1">📖</span> <span id="done_text_nutrisi_1">Tandai Selesai Dibaca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── NUTRISI 2 ── -->
+          <div class="checklist-section" style="margin-bottom:8px;">
+            <button class="cs-header" onclick="toggleSection('nutrisi_2')" style="background:var(--gray-100);border-radius:12px;">
+              <div class="cs-header-left"><span>2️⃣</span><span class="cs-title" style="font-size:12px;">Pentingnya Pemenuhan Gizi untuk Kesehatan Ibu Hamil</span></div>
+              <span class="cs-arrow" id="arrow_nutrisi_2">▼</span>
+            </button>
+            <div class="cs-items" id="items_nutrisi_2">
+              <div class="kia-info-wrap">
+                <strong style="color:var(--primary);">1) Persiapan Gizi Sejak Sebelum Hamil</strong><br><br>
+                Gizi yang baik sangat dibutuhkan untuk pertumbuhan janin sekaligus menjaga kesehatan sang ibu. Nutrisi tidak hanya dipikirkan saat sudah hamil. Sangat penting untuk mempersiapkan gizi 2 hingga 3 bulan sebelum merencanakan kehamilan. Fase ini merupakan bagian penting dari persiapan 1000 Hari Pertama Kehidupan (HPK) untuk memastikan tubuh ibu dalam kondisi sehat.<br><br>
+
+                <strong style="color:var(--primary);">2) Cara Menyiasati Mual dan Muntah di Awal Kehamilan</strong><br><br>
+                <strong>Pilih Jenis Makanan:</strong> Hindari makanan-makanan yang memiliki aroma atau rasa yang memicu mual.<br><br>
+                <strong>Porsi Sedikit Tapi Sering:</strong> Untuk mencegah perut terasa penuh (bloating) yang memicu muntah, bagilah porsi makan menjadi lebih kecil namun dengan frekuensi yang lebih sering.<br><br>
+                <strong>Makronutrien Terpenuhi:</strong> Pastikan setiap asupan makanan tetap lengkap komposisinya, yaitu mengandung karbohidrat, protein, dan lemak.<br><br>
+
+                <strong style="color:var(--primary);">3) Bahaya Mitos "Makan Porsi Dobel"</strong><br><br>
+                Mitos bahwa ibu hamil harus makan dua kali lipat lebih banyak (karena makan untuk "dua orang") adalah hal yang keliru dan berbahaya. Meskipun kebutuhan nutrisi dan kalori meningkat, asupan kalori yang berlebihan akan sangat membahayakan. Hal ini bisa memicu masalah gula darah (diabetes) pada ibu, komplikasi persalinan, serta berdampak buruk pada janin.<br><br>
+
+                <strong style="color:var(--primary);">4) Pentingnya Dukungan Suami dan Keluarga</strong><br><br>
+                Kehamilan dan pemenuhan nutrisinya adalah tanggung jawab bersama antara suami dan istri. Mengingat ibu hamil sering mengalami ketidaknyamanan (seperti mual dan muntah) sehingga tidak bisa mandiri 100%, dukungan dari suami sangatlah esensial. Kondisi pikiran dan stres yang dialami ibu juga sangat berpengaruh terhadap kemampuannya dalam menerima asupan gizi.<br><br>
+
+                <strong style="color:var(--primary);">5) Dampak Jika Gizi Ibu Hamil Tidak Terpenuhi</strong><br><br>
+                <strong>Jika Kekurangan Nutrisi:</strong> Anak dapat mengalami kekurangan zat besi (anemia), kekurangan vitamin D, dan berisiko lahir dengan Berat Badan Lahir Rendah (BBLR).<br><br>
+                <strong>Jika Kelebihan Kalori (Ibu Obesitas):</strong> Berisiko tinggi meningkatkan kemungkinan anak terkena obesitas dan diabetes melitus di masa depan. Bagi sang ibu, risiko terkena diabetes kehamilan juga akan melonjak tinggi dan memicu risiko komplikasi pada saat persalinan.
+              </div>
+              <div class="kiia-done-wrap" id="done_wrap_nutrisi_2">
+                <button class="kiia-done-btn" id="done_btn_nutrisi_2" onclick="toggleKIIARead('nutrisi_2')">
+                  <span id="done_icon_nutrisi_2">📖</span> <span id="done_text_nutrisi_2">Tandai Selesai Dibaca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── NUTRISI 3 ── -->
+          <div class="checklist-section" style="margin-bottom:8px;">
+            <button class="cs-header" onclick="toggleSection('nutrisi_3')" style="background:var(--gray-100);border-radius:12px;">
+              <div class="cs-header-left"><span>3️⃣</span><span class="cs-title" style="font-size:12px;">Panduan Nutrisi Ibu Hamil di Trimester Pertama</span></div>
+              <span class="cs-arrow" id="arrow_nutrisi_3">▼</span>
+            </button>
+            <div class="cs-items" id="items_nutrisi_3">
+              <div class="kia-info-wrap">
+                <strong style="color:var(--primary);">1) Kebutuhan Kalori dan Porsi Makan</strong><br><br>
+                <strong>Penambahan Kalori:</strong> Pada trimester pertama, ibu hamil dengan berat badan normal hanya membutuhkan tambahan sekitar 180 kalori per hari. Pada trimester kedua dan ketiga, kebutuhannya meningkat menjadi sekitar 300 kalori per hari.<br><br>
+                <strong>Mitos "Makan untuk Dua Orang":</strong> Anggapan ini keliru dan berisiko menyebabkan kenaikan berat badan berlebih, yang bisa memicu komplikasi kehamilan seperti preeklamsia dan bengkak (edema).<br><br>
+                <strong>Panduan Piring Makan:</strong> Terapkan konsep gizi seimbang dengan pembagian porsi: 1/4 piring karbohidrat, 1/4 piring protein, dan 1/2 piring sayur dan buah.<br><br>
+
+                <strong style="color:var(--primary);">2) Kebutuhan Zat Besi dan Mikronutrien</strong><br><br>
+                <strong>Zat Besi:</strong> Secara teori, trimester pertama belum mutlak memerlukan tambahan zat besi. Namun, karena banyak wanita Indonesia sudah mengalami anemia sebelum hamil, suplementasi zat besi sering diberikan sejak awal untuk mendukung pertumbuhan organ mayor janin.<br><br>
+                <strong>Sumber Zat Besi:</strong> Lebih disarankan dari sumber hewani (seperti daging merah dan ayam) karena lebih mudah diserap tubuh dibandingkan sumber nabati (seperti bayam dan kacang-kacangan).<br><br>
+                <strong>Mikronutrien Wajib:</strong> Asam folat (sangat penting untuk pembentukan organ), yodium, kalsium, dan mikronutrien lainnya wajib terpenuhi. Jika asupan dari makanan kurang atau ibu memiliki alergi, suplementasi sangat disarankan.<br><br>
+
+                <strong style="color:var(--primary);">3) Tips Mengatasi Mual dan Muntah (Morning Sickness)</strong><br><br>
+                • Makan dengan porsi kecil namun lebih sering.<br>
+                • Konsumsi jahe atau tambahan Vitamin B6 dapat membantu meredakan mual.<br>
+                • Jika sulit makan makanan padat, asupan nutrisi bisa dibantu melalui makanan cair seperti susu khusus ibu hamil yang komposisinya sudah disesuaikan.<br><br>
+                <strong>Catatan medis:</strong> Jika mual dan muntah terjadi sangat parah hingga tidak ada cairan yang bisa masuk (hiperemesis gravidarum), ibu hamil harus segera dirawat inap untuk mendapat asupan nutrisi melalui infus.<br><br>
+
+                <strong style="color:var(--primary);">4) Makanan yang Dihindari dan Diperbolehkan</strong><br><br>
+                <strong>Pantangan Utama:</strong> Hindari makanan mentah atau setengah matang (seperti sushi mentah, salad sayur mentah, daging/sate yang dibakar kurang matang). Hal ini untuk mencegah infeksi bakteri atau parasit (seperti Toxoplasma) yang sangat berbahaya bagi janin.<br><br>
+                <strong>Konsumsi Sayur &amp; Buah:</strong> Sangat disarankan untuk mengonsumsi buah dan sayur yang beragam warna karena kaya antioksidan. Pastikan dicuci dengan sangat bersih sebelum dikonsumsi.<br><br>
+                <strong>Konsumsi Kopi (Kafein):</strong> Ibu hamil boleh minum kopi, namun dibatasi maksimal 200 mg kafein per hari (setara dengan maksimal 350 ml atau sekitar 2 cangkir kecil sehari).<br><br>
+
+                <strong style="color:var(--primary);">5) Pentingnya Skrining Pra-Kehamilan</strong><br><br>
+                Skrining kesehatan sebelum hamil sangat krusial, meliputi pemeriksaan anemia, infeksi TORCH, status nutrisi, dan kepadatan tulang, agar ibu berada dalam kondisi paling optimal saat mengandung.
+              </div>
+              <div class="kiia-done-wrap" id="done_wrap_nutrisi_3">
+                <button class="kiia-done-btn" id="done_btn_nutrisi_3" onclick="toggleKIIARead('nutrisi_3')">
+                  <span id="done_icon_nutrisi_3">📖</span> <span id="done_text_nutrisi_3">Tandai Selesai Dibaca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── NUTRISI 4 ── -->
+          <div class="checklist-section" style="margin-bottom:8px;">
+            <button class="cs-header" onclick="toggleSection('nutrisi_4')" style="background:var(--gray-100);border-radius:12px;">
+              <div class="cs-header-left"><span>4️⃣</span><span class="cs-title" style="font-size:12px;">Panduan Kehamilan Sehat, Nutrisi &amp; Pencegahan Komplikasi</span></div>
+              <span class="cs-arrow" id="arrow_nutrisi_4">▼</span>
+            </button>
+            <div class="cs-items" id="items_nutrisi_4">
+              <div class="kia-info-wrap">
+                <strong style="color:var(--primary);">1) Persiapan Prakonsepsi (Sebelum Hamil)</strong><br><br>
+                Kehamilan sebaiknya dipersiapkan dengan matang, baik dari segi fisik maupun mental. Calon ibu disarankan memiliki Indeks Massa Tubuh (BMI) yang normal. Lakukan skrining organ reproduksi (rahim, indung telur) dan tes laboratorium (seperti cek anemia dan infeksi). Sangat dianjurkan untuk mulai mengonsumsi Asam Folat dan Vitamin D3 sejak 3 bulan sebelum merencanakan kehamilan untuk mengoptimalkan kesuburan dan mencegah kelainan tabung saraf janin.<br><br>
+
+                <strong style="color:var(--primary);">2) Aturan Kenaikan Berat Badan</strong><br><br>
+                <strong>BMI Normal:</strong> Kenaikan berat badan total yang dianjurkan selama kehamilan adalah 10–15 kg.<br>
+                <strong>Overweight/Obesitas:</strong> Kenaikan maksimal hanya 5 kg.<br><br>
+                Kenaikan berat badan berlebih berisiko tinggi memicu diabetes gestasional, hipertensi, dan menyulitkan proses persalinan normal. Oleh karena itu, ibu hamil wajib membatasi asupan gula berlebih.<br><br>
+
+                <strong style="color:var(--primary);">3) Perkembangan Tiap Trimester &amp; Pemeriksaan USG Wajib</strong><br><br>
+                <strong>Trimester 1 (Di bawah 14 minggu):</strong> Ini adalah masa organogenesis (pembentukan organ). Janin sangat rentan terhadap paparan racun, logam berat (seperti merkuri pada seafood tertentu), dan kosmetik berbahaya. Wajib melakukan NT Scan (sebelum minggu ke-14) untuk melihat ketebalan tengkuk janin sebagai skrining kelainan genetik seperti Down Syndrome.<br><br>
+                <strong>Trimester 2 (14–28 minggu):</strong> Fase pertumbuhan. Pada usia 20–22 minggu, dokter wajib melakukan Anatomic Scan mendetail untuk mengecek struktur anatomi janin (otak, ruang jantung, ginjal, bibir, dll). Olahraga ringan secara rutin (jalan sehat, berenang, peregangan) sangat dianjurkan.<br><br>
+                <strong>Trimester 3 (Di atas 28 minggu):</strong> Fase pematangan organ, terutama paru-paru. Pemeriksaan lanjutan (termasuk USG 4D) sering dilakukan oleh spesialis fetomaternal di usia 26–32 minggu.<br><br>
+
+                <strong style="color:var(--primary);">4) Suplementasi Utama untuk Ibu Hamil</strong><br><br>
+                <strong>Vitamin D3 &amp; Asam Folat:</strong> Bersifat wajib karena mayoritas ibu hamil mengalami defisiensi Vitamin D. Asam folat dibutuhkan hingga sekitar 600 mcg per hari.<br>
+                <strong>Kalsium:</strong> Penting agar janin tidak mengambil cadangan kalsium dari tulang dan gigi sang ibu.<br>
+                <strong>Zat Besi:</strong> Diberikan jika dari hasil pemeriksaan laboratorium ibu terindikasi kurang darah (anemia).<br><br>
+
+                <strong style="color:var(--primary);">5) Penggunaan Obat-obatan Saat Hamil</strong><br><br>
+                Semua obat yang dikonsumsi harus disetujui dokter. Untuk demam atau pusing ringan, Paracetamol merupakan pilihan yang paling aman. Hindari meminum obat pereda nyeri (painkillers) sembarangan, karena dapat berdampak fatal pada katup jantung janin.<br><br>
+
+                <strong style="color:var(--primary);">6) Peringatan &amp; Tanda Bahaya Kehamilan</strong><br><br>
+                <strong>Sakit Gigi:</strong> Segera ke dokter gigi jika ada masalah/infeksi, karena kuman dari infeksi gusi sangat berkaitan dengan risiko kontraksi dan kelahiran prematur.<br><br>
+                <strong>Menahan Buang Air Kecil:</strong> Sering menahan pipis memicu Infeksi Saluran Kemih (ISK). Kuman bisa naik ke atas, memicu kontraksi, dan menyebabkan Ketuban Pecah Dini (KPD).<br><br>
+                <strong>Keputihan Patologis:</strong> Jika keputihan berbau dan gatal (akibat infeksi), segera obati karena dapat menyebabkan mulut rahim menipis dan membuka sebelum waktunya.<br><br>
+                <strong>Flek/Perdarahan:</strong> Pendarahan bisa disebabkan oleh luka di vagina, polip serviks, atau kondisi serius seperti Plasenta Previa (plasenta di bawah menutupi jalan lahir). Harus segera diperiksakan.<br><br>
+
+                <strong style="color:var(--primary);">7) Pentingnya Dukungan Suami (Support System)</strong><br><br>
+                Suami harus menjadi "Suami Siaga" yang selalu mendampingi, mudah dihubungi, dan memberikan energi positif. Kondisi mental ibu hamil sangat memengaruhi bayi. Ibu yang stres atau unhappy selama masa kehamilan terbukti secara medis dapat membuat bayi yang dilahirkan cenderung lebih mudah rewel (cranky).
+              </div>
+              <div class="kiia-done-wrap" id="done_wrap_nutrisi_4">
+                <button class="kiia-done-btn" id="done_btn_nutrisi_4" onclick="toggleKIIARead('nutrisi_4')">
+                  <span id="done_icon_nutrisi_4">📖</span> <span id="done_text_nutrisi_4">Tandai Selesai Dibaca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── NUTRISI 5 ── -->
+          <div class="checklist-section" style="margin-bottom:4px;">
+            <button class="cs-header" onclick="toggleSection('nutrisi_5')" style="background:var(--gray-100);border-radius:12px;">
+              <div class="cs-header-left"><span>5️⃣</span><span class="cs-title" style="font-size:12px;">Panduan Nutrisi dari Trimester 1 hingga 9 Bulan</span></div>
+              <span class="cs-arrow" id="arrow_nutrisi_5">▼</span>
+            </button>
+            <div class="cs-items" id="items_nutrisi_5">
+              <div class="kia-info-wrap">
+                <strong style="color:var(--primary);">1) Pentingnya Nutrisi Selama Kehamilan</strong><br><br>
+                Nutrisi ibu hamil sangat krusial karena mendukung pembentukan otak, organ tubuh, dan sistem pendukung janin. Jika nutrisi tidak terpenuhi, dapat terjadi:<br><br>
+                <strong>Risiko jangka pendek:</strong> Hambatan pertumbuhan janin, bayi mudah sakit, kejang, kesulitan bernapas, atau risiko kematian.<br>
+                <strong>Risiko jangka panjang:</strong> Anak bertubuh kecil, kesulitan belajar, serta peningkatan risiko penyakit di masa dewasa seperti obesitas, jantung, atau diabetes.<br><br>
+
+                <strong style="color:var(--primary);">2) Model Nutrisi "5J"</strong><br><br>
+                Untuk memudahkan pemenuhan nutrisi, digunakan konsep "5J", yaitu:<br><br>
+                • <strong>Jumlah:</strong> Pemenuhan kalori harian yang cukup.<br>
+                • <strong>Jadwal:</strong> Waktu makan yang teratur.<br>
+                • <strong>Jenis:</strong> Kombinasi bahan makanan yang lengkap dan seimbang (karbohidrat, protein, lemak, vitamin, mineral).<br>
+                • <strong>Jalur:</strong> Penggunaan nutrisi tambahan/suplemen jika diperlukan (terutama saat mengalami mual muntah).<br>
+                • <strong>Jaga:</strong> Menjaga pelaksanaan pola makan ini secara konsisten.<br><br>
+                <em>(Catatan: Topik ini berfokus pada pembahasan elemen pertama, yaitu Jumlah).</em><br><br>
+
+                <strong style="color:var(--primary);">3) Pemenuhan Jumlah Kalori</strong><br><br>
+                <strong>Prioritas Utama:</strong> Energi (kalori) adalah pondasi dasar sebelum tubuh bisa memproses nutrisi lain seperti protein, lemak, atau vitamin. Jika kalori kurang, tubuh akan mengambil cadangan lemak bahkan protein tubuh ibu, yang pada akhirnya mengganggu pertumbuhan janin.<br><br>
+                <strong>Kebutuhan Minimal:</strong> Ibu hamil disarankan memenuhi kalori sekitar 35 kkal per kg berat badan setiap harinya. (Contoh: Berat badan 60 kg = 60 x 35 = 2.100 kkal/hari).<br><br>
+
+                <strong style="color:var(--primary);">4) Menentukan Status Gizi Melalui IMT</strong><br><br>
+                Status gizi ibu hamil sebelum hamil menentukan berapa banyak kenaikan berat badan yang direkomendasikan. Rumusnya adalah IMT = Berat Badan (kg) / [Tinggi Badan (m)]².<br><br>
+                • <strong>IMT Kurang (&lt;18,5):</strong> Perlu menambah berat badan 12,5–18 kg selama hamil.<br>
+                • <strong>IMT Normal (18,5–24,9):</strong> Perlu menambah berat badan 11,5–16 kg.<br>
+                • <strong>IMT Berlebih (25–29,9):</strong> Perlu menambah berat badan 7–11,5 kg.<br>
+                • <strong>IMT Obesitas (≥30):</strong> Hanya perlu menambah 5–9 kg untuk menghindari komplikasi.<br><br>
+
+                <strong style="color:var(--primary);">5) Komposisi Makronutrien Harian</strong><br><br>
+                Porsi kalori tersebut harus dibagi ke dalam komponen gizi yang seimbang:<br><br>
+                • <strong>Karbohidrat:</strong> 50–60% (Sumber energi utama).<br>
+                • <strong>Protein:</strong> 10–20% (Pembangun jaringan tubuh janin).<br>
+                • <strong>Lemak:</strong> 20–30% (Cadangan energi dan pembentuk organ).<br>
+                • <strong>Sayur &amp; Buah:</strong> 5–10% (Sumber vitamin dan mineral).<br><br>
+
+                <strong style="color:var(--primary);">6) Rekomendasi Jadwal/Pola Makan (Contoh Kasus 2.400 kkal/hari)</strong><br><br>
+                Ada dua pola makan yang bisa diterapkan oleh ibu hamil agar kebutuhan kalori terpenuhi tanpa memicu mual:<br><br>
+                <strong>Pola 1 (3 Makan Utama + 3 Camilan):</strong> 3x makan besar (masing-masing 500 kkal) + 3x makan kecil/camilan ringan (masing-masing 100 kkal) ditambah 2 gelas susu kehamilan.<br><br>
+                <strong>Pola 2 (Sedikit Tapi Sering):</strong> Membagi makanan menjadi porsi-porsi kecil (masing-masing 300 kkal) yang dimakan 6–8 kali sehari. Pola ini sangat disarankan bagi ibu hamil di Trimester 1 untuk meminimalisir rasa mual dan muntah.
+              </div>
+              <div class="kiia-done-wrap" id="done_wrap_nutrisi_5">
+                <button class="kiia-done-btn" id="done_btn_nutrisi_5" onclick="toggleKIIARead('nutrisi_5')">
+                  <span id="done_icon_nutrisi_5">📖</span> <span id="done_text_nutrisi_5">Tandai Selesai Dibaca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end 5 sub-topik -->
       </div>
     </div>
 
@@ -1835,6 +2503,12 @@ body {
           <strong>Aktivitas:</strong> Ikuti kelas ibu hamil, jalan kaki ringan 30 menit/hari.<br><br>
           <strong>Istirahat:</strong> Tidur 8 jam/malam. Hindari posisi terlentang lama di trimester akhir.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_anc">
+          <button class="kiia-done-btn" id="done_btn_kia_anc" onclick="toggleKIIARead('kia_anc')">
+            <span id="done_icon_kia_anc">📖</span> <span id="done_text_kia_anc">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1852,6 +2526,12 @@ body {
           <strong>Risiko:</strong> Dehidrasi parah & kekurangan nutrisi yang membahayakan ibu dan janin.<br><br>
           🚨 <strong>Segera ke IGD atau fasilitas kesehatan!</strong>
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_heg">
+          <button class="kiia-done-btn" id="done_btn_kia_heg" onclick="toggleKIIARead('kia_heg')">
+            <span id="done_icon_kia_heg">📖</span> <span id="done_text_kia_heg">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1866,6 +2546,12 @@ body {
           <strong>Risiko:</strong> Hamil di luar kandungan — berisiko pecah & perdarahan dalam.<br><br>
           🚨 <strong>Kegawatdaruratan medis. Segera ke IGD!</strong>
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_ektopik">
+          <button class="kiia-done-btn" id="done_btn_kia_ektopik" onclick="toggleKIIARead('kia_ektopik')">
+            <span id="done_icon_kia_ektopik">📖</span> <span id="done_text_kia_ektopik">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1879,6 +2565,12 @@ body {
           <strong>Gejala:</strong> Perdarahan dari jalan lahir — dari flek ringan yang memburuk hingga darah segar disertai gumpalan jaringan.<br><br>
           <strong>Tindakan:</strong> Evaluasi medis dan USG segera untuk menilai kondisi janin.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_abortus">
+          <button class="kiia-done-btn" id="done_btn_kia_abortus" onclick="toggleKIIARead('kia_abortus')">
+            <span id="done_icon_kia_abortus">📖</span> <span id="done_text_kia_abortus">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1891,6 +2583,12 @@ body {
         <div class="kia-danger-wrap">
           <strong>Gejala:</strong> Keputihan tidak normal — gatal hebat, berubah warna (kehijauan/kekuningan), berbau tidak sedap.<br><br>
           <strong>Risiko:</strong> Infeksi dapat menjalar dan membahayakan pertahanan rahim serta janin.
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_infeksi">
+          <button class="kiia-done-btn" id="done_btn_kia_infeksi" onclick="toggleKIIARead('kia_infeksi')">
+            <span id="done_icon_kia_infeksi">📖</span> <span id="done_text_kia_infeksi">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -1909,6 +2607,12 @@ body {
           <strong>Risiko:</strong> Bisa menjadi indikasi infeksi sistemik yang berbahaya bagi ibu dan perkembangan janin.<br><br>
           ⚠️ Segera periksa ke bidan/dokter.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_demam_t2">
+          <button class="kiia-done-btn" id="done_btn_kia_demam_t2" onclick="toggleKIIARead('kia_demam_t2')">
+            <span id="done_icon_kia_demam_t2">📖</span> <span id="done_text_kia_demam_t2">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1923,6 +2627,12 @@ body {
           <strong>Risiko:</strong> Infeksi Saluran Kemih (ISK) yang tidak diobati dapat memicu kontraksi prematur dan persalinan dini.<br><br>
           ⚠️ Segera ke bidan/dokter untuk mendapat antibiotik yang aman.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_isk">
+          <button class="kiia-done-btn" id="done_btn_kia_isk" onclick="toggleKIIARead('kia_isk')">
+            <span id="done_icon_kia_isk">📖</span> <span id="done_text_kia_isk">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1936,6 +2646,12 @@ body {
           <strong>Gejala:</strong> Merembesnya cairan bening dari jalan lahir yang tidak bisa ditahan, tanpa disertai kontraksi.<br><br>
           <strong>Risiko:</strong> Ketuban Pecah Dini (KPD) — janin kehilangan perlindungan dan berisiko infeksi.<br><br>
           🚨 <strong>Segera ke rumah sakit!</strong>
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_kpd_t2">
+          <button class="kiia-done-btn" id="done_btn_kia_kpd_t2" onclick="toggleKIIARead('kia_kpd_t2')">
+            <span id="done_icon_kia_kpd_t2">📖</span> <span id="done_text_kia_kpd_t2">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -1954,6 +2670,12 @@ body {
           <strong>Risiko:</strong> Dapat menjadi tanda awal preeklampsia, terutama jika disertai sakit kepala hebat.<br><br>
           🚨 Segera periksa tekanan darah ke bidan/dokter.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_bengkak_t3">
+          <button class="kiia-done-btn" id="done_btn_kia_bengkak_t3" onclick="toggleKIIARead('kia_bengkak_t3')">
+            <span id="done_icon_kia_bengkak_t3">📖</span> <span id="done_text_kia_bengkak_t3">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1971,6 +2693,12 @@ body {
           <strong>Risiko:</strong> Tekanan darah tinggi dalam kehamilan (≥140/90 mmHg) yang bisa berujung kejang (eklampsia) — mengancam jiwa ibu & bayi.<br><br>
           🚨 <strong>Kegawatdaruratan. Segera ke RS!</strong>
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_preeklampsia">
+          <button class="kiia-done-btn" id="done_btn_kia_preeklampsia" onclick="toggleKIIARead('kia_preeklampsia')">
+            <span id="done_icon_kia_preeklampsia">📖</span> <span id="done_text_kia_preeklampsia">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1985,6 +2713,12 @@ body {
           <strong>Risiko:</strong> Menandakan suplai oksigen/nutrisi ke janin melalui plasenta mungkin terganggu.<br><br>
           🚨 Stimulasi dulu (minum air dingin, berbaring miring kiri). Jika tidak ada respons, <strong>segera ke faskes!</strong>
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_gawat_janin">
+          <button class="kiia-done-btn" id="done_btn_kia_gawat_janin" onclick="toggleKIIARead('kia_gawat_janin')">
+            <span id="done_icon_kia_gawat_janin">📖</span> <span id="done_text_kia_gawat_janin">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -1998,6 +2732,12 @@ body {
           <strong>Gejala:</strong> Keluar cairan bening tiba-tiba atau merembes terus dari jalan lahir, <em>tanpa</em> mulas/kontraksi.<br><br>
           <strong>Risiko:</strong> Janin kehilangan perlindungan & sangat berisiko infeksi menaik.<br><br>
           🚨 <strong>Harus segera ke rumah sakit!</strong>
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_kpd">
+          <button class="kiia-done-btn" id="done_btn_kia_kpd" onclick="toggleKIIARead('kia_kpd')">
+            <span id="done_icon_kia_kpd">📖</span> <span id="done_text_kia_kpd">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2014,6 +2754,12 @@ body {
           • <em>Plasenta previa</em> — plasenta menutupi jalan lahir<br>
           • <em>Solusio plasenta</em> — plasenta lepas sebelum waktunya<br><br>
           🚨 <strong>Segera ke RS tanpa menunda!</strong>
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_perdarahan">
+          <button class="kiia-done-btn" id="done_btn_kia_perdarahan" onclick="toggleKIIARead('kia_perdarahan')">
+            <span id="done_icon_kia_perdarahan">📖</span> <span id="done_text_kia_perdarahan">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2032,6 +2778,12 @@ body {
           <strong>Wajar Dirasakan:</strong> Mood swing, cemas tentang persalinan, atau khawatir tentang peran sebagai ibu.<br><br>
           <strong>Peran Keluarga:</strong> Suami dan keluarga wajib menemani kontrol, mendengarkan, dan memastikan ibu cukup tidur.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_jiwa">
+          <button class="kiia-done-btn" id="done_btn_kia_jiwa" onclick="toggleKIIARead('kia_jiwa')">
+            <span id="done_icon_kia_jiwa">📖</span> <span id="done_text_kia_jiwa">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -2044,6 +2796,12 @@ body {
         <div class="kia-info-wrap" style="background:#F3E5F5;border-radius:8px;color:#4A148C;">
           <strong>Gejala:</strong> Kecemasan melumpuhkan, jantung berdebar, insomnia parah, putus asa, ketegangan otot intens.<br><br>
           <strong>Tindakan:</strong> Segera konsultasikan ke dokter kandungan atau psikolog. Ibu tidak boleh dibiarkan sendirian.
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_depresi_ante">
+          <button class="kiia-done-btn" id="done_btn_kia_depresi_ante" onclick="toggleKIIARead('kia_depresi_ante')">
+            <span id="done_icon_kia_depresi_ante">📖</span> <span id="done_text_kia_depresi_ante">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2067,6 +2825,12 @@ body {
           <strong>Tanda Pasti Persalinan:</strong> Kontraksi teratur makin kuat, menjalar punggung → perut bawah, disertai lendir darah (<em>bloody show</em>).<br><br>
           <strong>Teknik Relaksasi:</strong> Tarik napas dari hidung, buang perlahan dari mulut.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_persalinan">
+          <button class="kiia-done-btn" id="done_btn_kia_persalinan" onclick="toggleKIIARead('kia_persalinan')">
+            <span id="done_icon_kia_persalinan">📖</span> <span id="done_text_kia_persalinan">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -2080,6 +2844,12 @@ body {
           Segera setelah lahir, bayi diletakkan telungkup di dada ibu (<em>skin-to-skin</em>) minimal 1 jam.<br><br>
           <strong>Manfaat:</strong> Menstabilkan tanda vital bayi, transfer bakteri baik, merangsang kontraksi rahim, meningkatkan keberhasilan ASI eksklusif.<br><br>
           <strong>Kolostrum:</strong> ASI hari pertama (5–10 ml) sangat kaya antibodi — imunisasi alami pertama bayi.
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_imd">
+          <button class="kiia-done-btn" id="done_btn_kia_imd" onclick="toggleKIIARead('kia_imd')">
+            <span id="done_icon_kia_imd">📖</span> <span id="done_text_kia_imd">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2101,6 +2871,12 @@ body {
           • KF 4: hari ke-29 hingga ke-42<br><br>
           <strong>Perawatan Mandiri:</strong> Lanjut minum TTD minimal 40 hari + makan tinggi protein hewani. Suami wajib membantu mengurus bayi dan memberikan pijat oksitosin agar ASI lancar.
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_nifas">
+          <button class="kiia-done-btn" id="done_btn_kia_nifas" onclick="toggleKIIARead('kia_nifas')">
+            <span id="done_icon_kia_nifas">📖</span> <span id="done_text_kia_nifas">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -2113,6 +2889,12 @@ body {
         <div class="kia-info-wrap" style="background:#F3E5F5;border-radius:8px;color:#4A148C;">
           <strong>Gejala:</strong> Ibu merasa sangat sedih, mudah menangis, cemas, kewalahan.<br><br>
           <strong>Karakteristik:</strong> Wajar terjadi akibat penurunan hormon. Memuncak hari ke-4/5, dan <strong>membaik sendiri dalam 14 hari</strong> dengan dukungan keluarga.
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_babyblues">
+          <button class="kiia-done-btn" id="done_btn_kia_babyblues" onclick="toggleKIIARead('kia_babyblues')">
+            <span id="done_icon_kia_babyblues">📖</span> <span id="done_text_kia_babyblues">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2130,6 +2912,12 @@ body {
           • Pikiran negatif menyakiti diri sendiri atau bayi<br><br>
           <strong>Karakteristik:</strong> Berlangsung <strong>lebih dari 2 minggu</strong>. Kondisi medis serius.<br><br>
           🚨 <strong>Intervensi tenaga kesehatan profesional segera!</strong>
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_kia_depresi_post">
+          <button class="kiia-done-btn" id="done_btn_kia_depresi_post" onclick="toggleKIIARead('kia_depresi_post')">
+            <span id="done_icon_kia_depresi_post">📖</span> <span id="done_text_kia_depresi_post">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2151,6 +2939,12 @@ body {
           • Menimbulkan pemerasan kreditur terhadap debitur<br>
           • Memicu permusuhan, kemalasan, dan pengangguran<br><br>
           Berdasarkan hukumnya, riba telah ditegaskan <strong>keharamannya secara mutlak</strong> di dalam Al-Qur'an maupun As-Sunnah.
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_riba_pengertian">
+          <button class="kiia-done-btn" id="done_btn_riba_pengertian" onclick="toggleKIIARead('riba_pengertian')">
+            <span id="done_icon_riba_pengertian">📖</span> <span id="done_text_riba_pengertian">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2200,6 +2994,12 @@ body {
           </div>
 
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_riba_quran">
+          <button class="kiia-done-btn" id="done_btn_riba_quran" onclick="toggleKIIARead('riba_quran')">
+            <span id="done_icon_riba_quran">📖</span> <span id="done_text_riba_quran">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -2224,6 +3024,12 @@ body {
             <div style="font-size:12px;font-style:italic;color:#37474F;line-height:1.6;">"Jual beli emas dengan emas harus dengan berat yang sama, demikian pula perak dengan perak juga harus dengan berat yang sama. <strong>Barang siapa yang menambah atau meminta tambah, berarti itu riba.</strong>"</div>
           </div>
 
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_riba_hadis">
+          <button class="kiia-done-btn" id="done_btn_riba_hadis" onclick="toggleKIIARead('riba_hadis')">
+            <span id="done_icon_riba_hadis">📖</span> <span id="done_text_riba_hadis">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2252,6 +3058,12 @@ body {
             <div style="font-size:12px;color:#37474F;line-height:1.6;">Seluruh tambahan dan bunga atas pinjaman yang jatuh tempo, serta bunga yang disyaratkan dari permulaan perjanjian, adalah dua gambaran dari riba yang diharamkan secara syariat.<br><span style="font-size:10px;color:#666;">(Keputusan No. 10, Konferensi OKI ke-II, 22–28 Desember 1985)</span></div>
           </div>
 
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_riba_ulama">
+          <button class="kiia-done-btn" id="done_btn_riba_ulama" onclick="toggleKIIARead('riba_ulama')">
+            <span id="done_icon_riba_ulama">📖</span> <span id="done_text_riba_ulama">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2311,6 +3123,12 @@ body {
           </div>
 
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_riba_bantahan">
+          <button class="kiia-done-btn" id="done_btn_riba_bantahan" onclick="toggleKIIARead('riba_bantahan')">
+            <span id="done_icon_riba_bantahan">📖</span> <span id="done_text_riba_bantahan">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -2352,6 +3170,12 @@ body {
             <div style="font-size:12px;color:#37474F;line-height:1.6;">Tukar-menukar barang atau pinjaman dengan <strong>tambahan karena jatuh tempo</strong> pembayaran. Tambahan ini disyaratkan secara khusus karena waktu pembayaran ditangguhkan.</div>
           </div>
 
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_riba_macam">
+          <button class="kiia-done-btn" id="done_btn_riba_macam" onclick="toggleKIIARead('riba_macam')">
+            <span id="done_icon_riba_macam">📖</span> <span id="done_text_riba_macam">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2442,6 +3266,12 @@ body {
           </div>
 
         </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_riba_ancaman">
+          <button class="kiia-done-btn" id="done_btn_riba_ancaman" onclick="toggleKIIARead('riba_ancaman')">
+            <span id="done_icon_riba_ancaman">📖</span> <span id="done_text_riba_ancaman">Tandai Selesai Dibaca</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -2498,6 +3328,12 @@ body {
           <div style="background:var(--success-light);border-radius:10px;padding:10px 12px;font-size:12px;color:#1B5E20;line-height:1.6;">
             💡 <strong>Pengingat:</strong> Nafkah yang pas-pasan namun 100% halal jauh lebih mulia dan menenangkan hati daripada fasilitas mewah dari riba, tipu daya, atau korupsi.
           </div>
+        </div>
+      
+        <div class="kiia-done-wrap" id="done_wrap_riba_dampak_anak">
+          <button class="kiia-done-btn" id="done_btn_riba_dampak_anak" onclick="toggleKIIARead('riba_dampak_anak')">
+            <span id="done_icon_riba_dampak_anak">📖</span> <span id="done_text_riba_dampak_anak">Tandai Selesai Dibaca</span>
+          </button>
         </div>
       </div>
     </div>
@@ -3037,7 +3873,7 @@ body {
     <div class="nav-icon">🏠</div><div class="nav-label">Beranda</div>
   </button>
   <button class="nav-item" data-tab="edukasi" onclick="switchTab('edukasi', this)">
-    <div class="nav-icon">📖</div><div class="nav-label">KIA</div>
+    <div class="nav-icon">📖</div><div class="nav-label">KIIA</div>
   </button>
   <button class="nav-item" data-tab="tasrs" onclick="switchTab('tasrs', this)">
     <div class="nav-icon">🎒</div><div class="nav-label">Persiapan</div>
@@ -3234,10 +4070,48 @@ body {
   </div>
   </div>
 
-  <div class="feature-modal" id="panel-notifikasi"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">🔔 Riwayat Notifikasi</div></div><div class="modal-body">
+  <div class="feature-modal" id="panel-notifikasi"><div class="modal-topbar"><button class="modal-back" onclick="closeFeature()">←</button><div class="modal-title">🔔 Notifikasi</div></div><div class="modal-body">
+
+    <!-- Web Push Permission Card -->
+    <div class="card" id="pushPermCard" style="background:linear-gradient(135deg,#1565C0,#42A5F5);color:white;">
+      <div style="font-size:14px;font-weight:800;margin-bottom:4px;">🔔 Aktifkan Pengingat Pintar</div>
+      <div style="font-size:11px;opacity:0.85;line-height:1.6;margin-bottom:12px;">Dapatkan pengingat suplemen harian, jadwal ANC, dan peringatan USG langsung di HP — bahkan saat app tertutup.</div>
+      <div id="pushStatusLabel" style="font-size:12px;font-weight:700;padding:6px 12px;background:rgba(255,255,255,0.2);border-radius:20px;display:inline-block;margin-bottom:10px;">⏳ Memeriksa status...</div>
+      <br>
+      <button id="pushEnableBtn" onclick="requestPushPermission()" style="background:white;color:#1565C0;border:none;border-radius:12px;padding:10px 20px;font-size:13px;font-weight:800;cursor:pointer;">🔔 Aktifkan Sekarang</button>
+    </div>
+
+    <!-- Atur Waktu Reminder -->
+    <div class="card" id="reminderSettingsCard">
+      <div class="card-title">⏰ Atur Waktu Pengingat</div>
+      <div class="card-subtitle">Notifikasi harian otomatis akan dikirim sesuai jadwal ini</div>
+
+      <div class="lab-row">
+        <div class="lab-label">💊 Pengingat Suplemen Pagi</div>
+        <input type="time" id="remSuplemen" value="08:00" class="lab-input" onchange="saveReminderSettings()">
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">💧 Pengingat Minum Air</div>
+        <input type="time" id="remAir" value="10:00" class="lab-input" onchange="saveReminderSettings()">
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">👶 Cek Gerakan Janin</div>
+        <input type="time" id="remGerakan" value="20:00" class="lab-input" onchange="saveReminderSettings()">
+      </div>
+      <div class="lab-row">
+        <div class="lab-label">🌙 Pengingat Istirahat</div>
+        <input type="time" id="remIstirahat" value="21:30" class="lab-input" onchange="saveReminderSettings()">
+      </div>
+
+      <button class="btn-primary" style="width:100%;margin-top:10px;" onclick="testPushNotification()">
+        🧪 Tes Notifikasi Sekarang
+      </button>
+    </div>
+
+    <!-- Riwayat Alert -->
     <div class="card">
-      <div class="card-title">🔔 Riwayat Notifikasi</div>
-      <div class="card-subtitle">Alert otomatis dari Smart Engine</div>
+      <div class="card-title">📋 Riwayat Alert Smart Engine</div>
+      <div class="card-subtitle">Alert otomatis dari pemantauan kehamilan</div>
       <div id="notifHistoryList">
         <div class="empty-state">
           <div class="empty-icon">🔔</div>
@@ -3792,6 +4666,7 @@ function defaultState() {
     nutrisi: [],
     water: {},
     usg: [],
+    kiia: [],
     tabungan: { target: 15000000, saldo: 0, riwayat: [] },
     settings: { hpl: '', name: '' }
   };
@@ -3826,6 +4701,7 @@ function switchTab(tabId, btn) {
   window.scrollTo(0, 0);
   // Re-render konten dinamis saat tab dibuka
   if (tabId === 'tasrs') renderChecklist();
+  if (tabId === 'edukasi') renderKIIAButtons();
 }
 
 // ══════════════════════════════════════
@@ -3844,6 +4720,7 @@ function openPanel(featureId) {
   window.scrollTo(0, 0);
   // Render konten dinamis
   if (featureId === 'dokumen')  { renderFotoGaleri(); loadLab(); }
+  if (featureId === 'notifikasi') { initPushStatus(); loadReminderSettings(); }
   if (featureId === 'nutrisi')  setTimeout(openNutrisiPanel, 50);
   if (featureId === 'tabungan') setTimeout(renderTabungan, 50);
 }
@@ -4867,6 +5744,7 @@ function updateProgress() {
 
   if (document.getElementById('headerWeek')) document.getElementById('headerWeek').textContent = weeks;
   document.getElementById('trimesterBadge').textContent = trimester;
+  updateTrimesterBadgeColor(weeks);
   document.getElementById('progressBar').style.width = pct + '%';
   document.getElementById('progressPct').textContent = pct + '%';
   document.getElementById('progressWeekLabel').textContent = `Minggu ${weeks} dari 40`;
@@ -6566,6 +7444,537 @@ function updateQuranPintasan() {
   if (a && pos.ayat)  a.value = pos.ayat;
 }
 
+// ══════════════════════════════════════
+// KIIA — PROGRESS BACAAN
+// ══════════════════════════════════════
+const KIIA_ALL_IDS = [
+  'kia_1000hpk','kia_stunting','kia_nutrisi','kia_anc',
+  'kia_heg','kia_ektopik','kia_abortus','kia_infeksi',
+  'kia_demam_t2','kia_isk','kia_kpd_t2',
+  'kia_bengkak_t3','kia_preeklampsia','kia_gawat_janin','kia_kpd','kia_perdarahan',
+  'kia_jiwa','kia_depresi_ante','kia_persalinan','kia_imd','kia_nifas','kia_babyblues','kia_depresi_post',
+  'riba_pengertian','riba_quran','riba_hadis','riba_ulama','riba_bantahan','riba_macam','riba_ancaman','riba_dampak_anak',
+  'nutrisi_1','nutrisi_2','nutrisi_3','nutrisi_4','nutrisi_5',
+  'hpk_apin_1','hpk_stunting_1','hpk_lucy_1'
+];
+const KIIA_TOTAL = KIIA_ALL_IDS.length; // 39
+
+function toggleKIIARead(id) {
+  if (!state.kiia) state.kiia = [];
+  const idx = state.kiia.indexOf(id);
+  if (idx === -1) {
+    state.kiia.push(id);
+  } else {
+    state.kiia.splice(idx, 1);
+  }
+  saveState();
+  updateKIIAButton(id);
+  updateKIIAProgress();
+}
+
+function updateKIIAButton(id) {
+  const done  = state.kiia && state.kiia.includes(id);
+  const btn   = document.getElementById('done_btn_' + id);
+  const icon  = document.getElementById('done_icon_' + id);
+  const text  = document.getElementById('done_text_' + id);
+  if (!btn) return;
+  if (done) {
+    btn.classList.add('done');
+    if (icon) icon.textContent = '✅';
+    if (text) text.textContent = 'Sudah Dibaca';
+  } else {
+    btn.classList.remove('done');
+    if (icon) icon.textContent = '📖';
+    if (text) text.textContent = 'Tandai Selesai Dibaca';
+  }
+}
+
+function updateKIIAProgress() {
+  const done  = (state.kiia || []).length;
+  const pct   = Math.round(done / KIIA_TOTAL * 100);
+  const bar   = document.getElementById('kiiaProgressBar');
+  const pctEl = document.getElementById('kiiaProgressPct');
+  const lbl   = document.getElementById('kiiaProgressLabel');
+  if (bar)   bar.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (lbl)   lbl.textContent  = `${done} dari ${KIIA_TOTAL} topik selesai dibaca`;
+  // Warna progress: hijau jika 100%
+  if (bar) {
+    if (pct === 100) {
+      bar.style.background = 'linear-gradient(90deg,#FFD700,#FFA000)';
+      if (pctEl) pctEl.textContent = '100% 🎉';
+      if (lbl)   lbl.textContent   = 'Semua topik sudah dibaca! MasyaAllah 🌟';
+    } else if (pct >= 50) {
+      bar.style.background = 'linear-gradient(90deg,#81C784,#4CAF50)';
+    } else {
+      bar.style.background = 'linear-gradient(90deg,#A5D6A7,#66BB6A)';
+    }
+  }
+}
+
+function renderKIIAButtons() {
+  KIIA_ALL_IDS.forEach(id => updateKIIAButton(id));
+  updateKIIAProgress();
+}
+
+// Polyfill roundRect untuk browser lama
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+    if (typeof r === 'number') r = [r, r, r, r];
+    this.beginPath();
+    this.moveTo(x + r[0], y);
+    this.arcTo(x + w, y, x + w, y + h, r[1]);
+    this.arcTo(x + w, y + h, x, y + h, r[2]);
+    this.arcTo(x, y + h, x, y, r[3]);
+    this.arcTo(x, y, x + w, y, r[0]);
+    this.closePath();
+    return this;
+  };
+}
+
+// ══════════════════════════════════════
+// OFFLINE INDICATOR
+// ══════════════════════════════════════
+function initOfflineDetection() {
+  const banner = document.getElementById('offlineBanner');
+  if (!banner) return;
+  const update = () => {
+    banner.style.display = navigator.onLine ? 'none' : 'block';
+  };
+  window.addEventListener('online',  update);
+  window.addEventListener('offline', update);
+  update();
+}
+
+// ══════════════════════════════════════
+// TRIMESTER BADGE COLOR
+// ══════════════════════════════════════
+function updateTrimesterBadgeColor(weeks) {
+  const badge = document.getElementById('trimesterBadge');
+  if (!badge) return;
+  badge.classList.remove('trim-badge-t1','trim-badge-t2','trim-badge-t3');
+  if (weeks < 13)      badge.classList.add('trim-badge-t1');
+  else if (weeks < 28) badge.classList.add('trim-badge-t2');
+  else                 badge.classList.add('trim-badge-t3');
+}
+
+// ══════════════════════════════════════
+// AFFILIATE CLICK TRACKING
+// ══════════════════════════════════════
+const affiliateClicks = JSON.parse(localStorage.getItem('bumilAffiliateClicks') || '{}');
+
+function trackAffiliateClick(itemName, url) {
+  const today = new Date().toISOString().split('T')[0];
+  if (!affiliateClicks[today]) affiliateClicks[today] = {};
+  affiliateClicks[today][itemName] = (affiliateClicks[today][itemName] || 0) + 1;
+  localStorage.setItem('bumilAffiliateClicks', JSON.stringify(affiliateClicks));
+  // Buka link setelah tracking
+  window.open(url, '_blank');
+}
+
+// ══════════════════════════════════════
+// WEB PUSH NOTIFICATIONS
+// ══════════════════════════════════════
+function initPushStatus() {
+  const lbl = document.getElementById('pushStatusLabel');
+  const btn = document.getElementById('pushEnableBtn');
+  if (!lbl) return;
+  if (!('Notification' in window)) {
+    lbl.textContent = '❌ Browser tidak mendukung notifikasi';
+    if (btn) btn.style.display = 'none';
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    lbl.textContent = '✅ Notifikasi sudah aktif';
+    lbl.style.background = 'rgba(76,175,80,0.3)';
+    if (btn) btn.style.display = 'none';
+    loadReminderSettings();
+  } else if (Notification.permission === 'denied') {
+    lbl.textContent = '🚫 Notifikasi diblokir — ubah di pengaturan browser';
+    if (btn) btn.style.display = 'none';
+  } else {
+    lbl.textContent = '⏳ Belum diaktifkan';
+    if (btn) btn.style.display = 'block';
+  }
+}
+
+async function requestPushPermission() {
+  if (!('Notification' in window)) return;
+  const result = await Notification.requestPermission();
+  initPushStatus();
+  if (result === 'granted') {
+    showToast('success', 'Notifikasi Aktif! 🔔', 'Pengingat harian akan dikirim sesuai jadwal.');
+    scheduleAllReminders();
+  } else {
+    showToast('warning', 'Notifikasi Diblokir', 'Aktifkan di pengaturan browser untuk mendapatkan pengingat.');
+  }
+}
+
+function testPushNotification() {
+  if (Notification.permission !== 'granted') {
+    showToast('warning', 'Aktifkan dulu', 'Tekan tombol "Aktifkan Sekarang" terlebih dahulu.');
+    return;
+  }
+  new Notification('💙 Bumil Pintar', {
+    body: 'Halo Bunda! Ini notifikasi percobaan dari Bumil Pintar ✨',
+    icon: '/icon-192.png',
+    badge: '/icon-192.png',
+    tag: 'test-bumil'
+  });
+  showToast('success', 'Notifikasi Dikirim! ✅', 'Cek area notifikasi HP kamu.');
+}
+
+function saveReminderSettings() {
+  const settings = {
+    suplemen: document.getElementById('remSuplemen')?.value || '08:00',
+    air:      document.getElementById('remAir')?.value      || '10:00',
+    gerakan:  document.getElementById('remGerakan')?.value  || '20:00',
+    istirahat:document.getElementById('remIstirahat')?.value|| '21:30',
+  };
+  localStorage.setItem('bumilReminders', JSON.stringify(settings));
+  scheduleAllReminders();
+  showToast('success', 'Jadwal Disimpan ✅', 'Pengingat akan aktif sesuai jadwal baru.');
+}
+
+function loadReminderSettings() {
+  const saved = JSON.parse(localStorage.getItem('bumilReminders') || '{}');
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+  set('remSuplemen',  saved.suplemen  || '08:00');
+  set('remAir',       saved.air       || '10:00');
+  set('remGerakan',   saved.gerakan   || '20:00');
+  set('remIstirahat', saved.istirahat || '21:30');
+}
+
+function scheduleAllReminders() {
+  if (Notification.permission !== 'granted') return;
+  // Clear existing timers
+  if (window._reminderTimers) window._reminderTimers.forEach(t => clearTimeout(t));
+  window._reminderTimers = [];
+
+  const saved = JSON.parse(localStorage.getItem('bumilReminders') || '{}');
+  const reminders = [
+    { time: saved.suplemen  || '08:00', title: '💊 Waktunya Minum Suplemen!', body: 'Jangan lupa Tablet Tambah Darah dan Asam Folat ya, Bunda.' },
+    { time: saved.air       || '10:00', title: '💧 Minum Air Putih Yuk!',     body: 'Kebutuhan cairan ibu hamil 8-10 gelas per hari.' },
+    { time: saved.gerakan   || '20:00', title: '👶 Pantau Gerakan Bayi',       body: 'Catat 10 gerakan janin dalam 2 jam ya Bunda.' },
+    { time: saved.istirahat || '21:30', title: '🌙 Saatnya Istirahat Bunda',   body: 'Tidur cukup sangat penting untuk pertumbuhan janin.' },
+  ];
+
+  reminders.forEach(r => {
+    const now = new Date();
+    const [h, m] = r.time.split(':').map(Number);
+    const target = new Date(now);
+    target.setHours(h, m, 0, 0);
+    if (target <= now) target.setDate(target.getDate() + 1);
+    const delay = target - now;
+    const timer = setTimeout(() => {
+      if (Notification.permission === 'granted') {
+        new Notification(r.title, { body: r.body, icon: '/icon-192.png', badge: '/icon-192.png' });
+      }
+      scheduleAllReminders(); // reschedule untuk esok
+    }, delay);
+    window._reminderTimers.push(timer);
+  });
+}
+
+// ══════════════════════════════════════
+// ONBOARDING
+// ══════════════════════════════════════
+let onbCurrentSlide = 0;
+const ONB_KEY = 'bumilPintarOnboarded';
+
+function showOnboardingIfNeeded() {
+  if (localStorage.getItem(ONB_KEY)) return;
+  const onb = document.getElementById('onboarding');
+  if (!onb) return;
+  onb.style.display = 'block';
+  // Inject icon image into slide 1
+  const iconBox = document.getElementById('onboardingIcon1');
+  if (iconBox) {
+    const headerImg = document.querySelector('.app-brand img');
+    if (headerImg) {
+      iconBox.innerHTML = `<img src="${headerImg.src}" style="width:100%;height:100%;object-fit:cover;">`;
+    } else {
+      iconBox.innerHTML = '<span style="font-size:80px;">💙</span>';
+    }
+  }
+}
+
+function nextOnboarding() {
+  if (onbCurrentSlide < 2) {
+    onbCurrentSlide++;
+    document.getElementById('onboardingSlides').style.transform = `translateX(-${onbCurrentSlide * 100}vw)`;
+    [1,2,3].forEach(n => {
+      const dot = document.getElementById('onbDot' + n);
+      if (dot) dot.classList.toggle('active', n - 1 === onbCurrentSlide);
+    });
+    if (onbCurrentSlide === 2) {
+      document.getElementById('onbNext').textContent = 'Mulai Sekarang ✨';
+      document.getElementById('onbSkip').style.display = 'none';
+    }
+  } else {
+    finishOnboarding();
+  }
+}
+
+function skipOnboarding() {
+  finishOnboarding();
+}
+
+function finishOnboarding() {
+  // Simpan input jika ada
+  const name = document.getElementById('onbName')?.value?.trim();
+  const hpht = document.getElementById('onbHPHT')?.value;
+  if (name) {
+    if (!state.settings) state.settings = {};
+    state.settings.name = name;
+  }
+  if (hpht) {
+    state.settings.hpht = hpht;
+    state.settings.hpl  = calcHPLFromHPHT(hpht);
+  }
+  if (name || hpht) {
+    saveState();
+    loadSettings && loadSettings();
+    updateProgress && updateProgress();
+    updateEmergencyBtn && updateEmergencyBtn();
+  }
+  localStorage.setItem(ONB_KEY, '1');
+  const onb = document.getElementById('onboarding');
+  if (onb) onb.style.display = 'none';
+  showToast('success', `Selamat Datang${name ? ' Bunda ' + name : ''}! 💙`, 'Mari mulai perjalanan kehamilan yang sehat.');
+}
+
+// ══════════════════════════════════════
+// SPLASH SCREEN
+// ══════════════════════════════════════
+function initSplash() {
+  const splash = document.getElementById('splashScreen');
+  const splashIcon = document.getElementById('splashIcon');
+  if (splashIcon) {
+    const headerImg = document.querySelector('.app-brand img');
+    if (headerImg) {
+      splashIcon.innerHTML = `<img src="${headerImg.src}" style="width:100%;height:100%;object-fit:cover;border-radius:24px;">`;
+    } else {
+      splashIcon.innerHTML = '<span style="font-size:60px;">💙</span>';
+    }
+  }
+  // Auto remove after animation
+  setTimeout(() => splash && splash.remove(), 1900);
+}
+
+// ══════════════════════════════════════
+// SHARE CARD GENERATOR
+// ══════════════════════════════════════
+function generateShareCard() {
+  if (!state.settings.hpl) {
+    showToast('warning', 'HPL Belum Diisi', 'Lengkapi profil dulu untuk membuat kartu kehamilan.');
+    return;
+  }
+
+  const canvas = document.getElementById('shareCardCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  // Hitung minggu
+  const hpl = new Date(state.settings.hpl);
+  const conc = new Date(hpl); conc.setDate(conc.getDate() - 280);
+  const weeks = Math.max(0, Math.floor((Date.now() - conc) / 604800000));
+  const days  = Math.max(0, Math.floor((hpl - new Date()) / 86400000));
+  const trimester = weeks < 13 ? 'Trimester 1' : weeks < 28 ? 'Trimester 2' : 'Trimester 3';
+  const trimColor = weeks < 13 ? '#43A047' : weeks < 28 ? '#1976D2' : '#7B1FA2';
+
+  // Background gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+  bgGrad.addColorStop(0, '#0D47A1');
+  bgGrad.addColorStop(0.5, '#1565C0');
+  bgGrad.addColorStop(1, '#42A5F5');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Decorative circles
+  ctx.fillStyle = 'rgba(255,255,255,0.07)';
+  ctx.beginPath(); ctx.arc(W - 60, 60, 120, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(40, H - 80, 100, 0, Math.PI*2); ctx.fill();
+
+  // Title
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 22px -apple-system, system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('💙 Bumil Pintar', W/2, 60);
+
+  ctx.font = '14px -apple-system, system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  ctx.fillText('Kartu Kehamilan Digital', W/2, 86);
+
+  // Card putih
+  const cardX = 40, cardY = 130, cardW = W - 80, cardH = H - 220;
+  ctx.fillStyle = 'white';
+  ctx.beginPath();
+  ctx.roundRect(cardX, cardY, cardW, cardH, 24);
+  ctx.fill();
+
+  // Trimester badge
+  ctx.fillStyle = trimColor;
+  ctx.beginPath();
+  ctx.roundRect(W/2 - 80, cardY + 30, 160, 36, 18);
+  ctx.fill();
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 14px -apple-system, system-ui, sans-serif';
+  ctx.fillText(trimester.toUpperCase(), W/2, cardY + 53);
+
+  // Greeting
+  const name = state.settings.name || 'Bunda';
+  ctx.fillStyle = '#666';
+  ctx.font = '14px -apple-system, system-ui, sans-serif';
+  ctx.fillText('Halo, semua! 👋', W/2, cardY + 100);
+
+  ctx.fillStyle = '#0D47A1';
+  ctx.font = 'bold 28px -apple-system, system-ui, sans-serif';
+  ctx.fillText(`Bunda ${name}`, W/2, cardY + 138);
+
+  ctx.fillStyle = '#666';
+  ctx.font = '13px -apple-system, system-ui, sans-serif';
+  ctx.fillText('sedang dalam perjalanan kehamilan', W/2, cardY + 162);
+
+  // Big week number
+  ctx.fillStyle = '#1565C0';
+  ctx.font = 'bold 100px -apple-system, system-ui, sans-serif';
+  ctx.fillText(weeks.toString(), W/2, cardY + 280);
+
+  ctx.fillStyle = '#666';
+  ctx.font = 'bold 16px -apple-system, system-ui, sans-serif';
+  ctx.fillText('MINGGU KEHAMILAN', W/2, cardY + 310);
+
+  // Stats row
+  const statY = cardY + 370;
+  const statW = (cardW - 40) / 2;
+
+  // HPL countdown
+  ctx.fillStyle = '#F5F9FF';
+  ctx.beginPath();
+  ctx.roundRect(cardX + 20, statY, statW - 5, 90, 14);
+  ctx.fill();
+  ctx.fillStyle = '#1565C0';
+  ctx.font = 'bold 28px -apple-system, system-ui, sans-serif';
+  ctx.fillText(days.toString(), cardX + 20 + statW/2 - 2, statY + 45);
+  ctx.fillStyle = '#666';
+  ctx.font = 'bold 11px -apple-system, system-ui, sans-serif';
+  ctx.fillText('HARI MENUJU HPL', cardX + 20 + statW/2 - 2, statY + 70);
+
+  // Trimester progress
+  const progressPct = Math.min(100, Math.round(weeks / 40 * 100));
+  ctx.fillStyle = '#FFF8E1';
+  ctx.beginPath();
+  ctx.roundRect(cardX + 25 + statW, statY, statW - 5, 90, 14);
+  ctx.fill();
+  ctx.fillStyle = '#E65100';
+  ctx.font = 'bold 28px -apple-system, system-ui, sans-serif';
+  ctx.fillText(progressPct + '%', cardX + 25 + statW + statW/2 - 2, statY + 45);
+  ctx.fillStyle = '#666';
+  ctx.font = 'bold 11px -apple-system, system-ui, sans-serif';
+  ctx.fillText('PROGRESS KEHAMILAN', cardX + 25 + statW + statW/2 - 2, statY + 70);
+
+  // HPL date
+  const hplStr = new Date(state.settings.hpl).toLocaleDateString('id-ID', { day:'2-digit', month:'long', year:'numeric' });
+  ctx.fillStyle = '#444';
+  ctx.font = '13px -apple-system, system-ui, sans-serif';
+  ctx.fillText('Perkiraan Lahir', W/2, cardY + cardH - 65);
+  ctx.fillStyle = '#0D47A1';
+  ctx.font = 'bold 18px -apple-system, system-ui, sans-serif';
+  ctx.fillText(`📅 ${hplStr}`, W/2, cardY + cardH - 38);
+
+  // Footer
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  ctx.font = '12px -apple-system, system-ui, sans-serif';
+  ctx.fillText('Mohon doanya agar lancar sampai persalinan 🤲', W/2, H - 50);
+  ctx.font = 'bold 11px -apple-system, system-ui, sans-serif';
+  ctx.fillText('bumil-pintar.vercel.app', W/2, H - 25);
+
+  // Show modal
+  document.getElementById('shareCardModal').classList.add('active');
+}
+
+function closeShareCard() {
+  document.getElementById('shareCardModal').classList.remove('active');
+}
+
+function downloadShareCard() {
+  const canvas = document.getElementById('shareCardCanvas');
+  const link = document.createElement('a');
+  link.download = `Kartu-Kehamilan-${state.settings.name || 'Bunda'}.png`;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+  showToast('success', 'Tersimpan!', 'Kartu kehamilan berhasil di-download.');
+}
+
+function shareCardWA() {
+  const canvas = document.getElementById('shareCardCanvas');
+  const name = state.settings.name || 'Bunda';
+  const weeks = (() => {
+    const hpl = new Date(state.settings.hpl);
+    const conc = new Date(hpl); conc.setDate(conc.getDate() - 280);
+    return Math.max(0, Math.floor((Date.now() - conc) / 604800000));
+  })();
+  const text = `Halo! 💙\n\nBunda ${name} sedang menjalani kehamilan minggu ke-${weeks}.\n\nMohon doanya agar lancar sampai persalinan 🤲\n\n— dipantau lewat Bumil Pintar\nbumil-pintar.vercel.app`;
+  // Coba Web Share API dulu
+  if (navigator.share && navigator.canShare) {
+    canvas.toBlob(blob => {
+      const file = new File([blob], 'kartu-kehamilan.png', { type: 'image/png' });
+      if (navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], text }).catch(() => {
+          window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        });
+      } else {
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+      }
+    });
+  } else {
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  }
+}
+
+// ══════════════════════════════════════
+// HOMESCREEN INSTALL BANNER
+// ══════════════════════════════════════
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  showHomescreenBanner();
+});
+
+function showHomescreenBanner() {
+  if (!deferredInstallPrompt) return;
+  if (localStorage.getItem('bumilInstallDismissed')) return;
+  const banner = document.createElement('div');
+  banner.id = 'installBanner';
+  banner.style.cssText = 'position:fixed;bottom:80px;left:12px;right:12px;background:white;border-radius:14px;padding:12px 14px;box-shadow:0 8px 30px rgba(0,0,0,0.2);display:flex;align-items:center;gap:10px;z-index:9000;border:2px solid var(--primary);';
+  banner.innerHTML = `
+    <div style="font-size:24px;">📲</div>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:800;color:var(--gray-800);">Pasang ke Layar Utama</div>
+      <div style="font-size:10px;color:var(--gray-600);">Akses lebih cepat tanpa buka browser</div>
+    </div>
+    <button onclick="installApp()" style="background:var(--primary);color:white;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;">Pasang</button>
+    <button onclick="dismissInstall()" style="background:transparent;border:none;color:var(--gray-600);font-size:18px;cursor:pointer;padding:4px 8px;">✕</button>
+  `;
+  document.body.appendChild(banner);
+}
+
+function installApp() {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  deferredInstallPrompt.userChoice.then(() => {
+    deferredInstallPrompt = null;
+    document.getElementById('installBanner')?.remove();
+  });
+}
+
+function dismissInstall() {
+  localStorage.setItem('bumilInstallDismissed', '1');
+  document.getElementById('installBanner')?.remove();
+}
+
 function init() {
   renderContractionList();
   renderKickCounter();
@@ -6602,6 +8011,18 @@ function init() {
   setInterval(updateANCCountdown, 60000);
   updateQuranPintasan();
   renderUSGChecklist();
+  renderKIIAButtons();
+
+  // Premium features
+  initSplash();
+  initOfflineDetection();
+  setTimeout(showOnboardingIfNeeded, 2000);
+  showHomescreenBanner();
+
+  // Schedule reminders jika sudah ada izin
+  if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+    scheduleAllReminders();
+  }
 }
 
 function updateWeightCurrentWeek() {

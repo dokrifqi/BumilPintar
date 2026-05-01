@@ -1722,6 +1722,50 @@ body {
   <div class="splash-sub">Asisten Kehamilan Cerdas</div>
 </div>
 
+<!-- ════════ SHOPEE BANNER ════════ -->
+<div id="shopeeBanner" style="display:none;position:fixed;inset:0;z-index:99998;background:linear-gradient(160deg,#0D47A1 0%,#1565C0 40%,#E53935 100%);flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;cursor:pointer;" onclick="handleShopeeClick()">
+  <!-- Dekorasi bulat -->
+  <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.05);top:-80px;right:-80px;"></div>
+  <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.05);bottom:-50px;left:-50px;"></div>
+
+  <!-- Badge klik counter -->
+  <div id="shopeeClickBadge" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);border-radius:20px;padding:6px 14px;font-size:12px;color:white;font-weight:600;letter-spacing:0.5px;">
+    TAP 1×  &nbsp;→&nbsp; Shopee
+  </div>
+
+  <!-- Ikon / logo -->
+  <div style="width:100px;height:100px;border-radius:28px;background:white;display:flex;align-items:center;justify-content:center;font-size:52px;margin-bottom:20px;box-shadow:0 16px 48px rgba(0,0,0,0.25);">
+    🤰
+  </div>
+
+  <!-- Judul -->
+  <div style="font-size:28px;font-weight:900;color:white;letter-spacing:-0.5px;margin-bottom:8px;">Bumil Pintar 💙</div>
+  <div style="font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:28px;line-height:1.5;">Asisten Kehamilan Cerdas untuk Bunda Indonesia</div>
+
+  <!-- Promo card Shopee -->
+  <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:18px;padding:20px 24px;max-width:320px;width:100%;margin-bottom:28px;">
+    <div style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.7);font-weight:600;text-transform:uppercase;margin-bottom:8px;">🛍️ Rekomendasi untuk Bunda</div>
+    <div style="font-size:17px;font-weight:800;color:white;margin-bottom:6px;">Lengkapi Perlengkapan<br>Kehamilan di Shopee!</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.5;">Produk pilihan terbaik untuk ibu hamil & bayi — harga terjangkau, pengiriman cepat ke seluruh Indonesia.</div>
+    <div style="margin-top:14px;background:linear-gradient(90deg,#FF5722,#FF9800);border-radius:30px;padding:10px 24px;display:inline-block;font-size:13px;font-weight:800;color:white;letter-spacing:0.3px;">
+      🛒 Belanja Sekarang di Shopee
+    </div>
+  </div>
+
+  <!-- Petunjuk klik -->
+  <div id="shopeeHint" style="font-size:13px;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:8px;">
+    <span style="animation:pulse 1.5s infinite;">👆</span>
+    <span>Ketuk untuk ke Shopee &nbsp;·&nbsp; Ketuk lagi untuk masuk app</span>
+  </div>
+</div>
+
+<style>
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.5; transform:scale(1.2); }
+}
+</style>
+
 <!-- ════════ ONBOARDING SCREEN ════════ -->
 <div id="onboarding" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#0D47A1,#1565C0,#42A5F5);z-index:99999;color:white;overflow:hidden;">
   <div id="onboardingSlides" style="height:100vh;display:flex;transition:transform 0.4s ease;width:300vw;">
@@ -2068,15 +2112,15 @@ body {
         <span class="cs-arrow" id="arrow_kep_1">▼</span>
       </button>
       <div class="cs-items" id="items_kep_1">
-        <a href="#" onclick="trackAffiliateClick('Baju hamil longgar', 'https://s.shopee.co.id/5AohMYvlnE');return false;" class="keperluan-item">Baju hamil longgar <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Dress maternity', 'https://s.shopee.co.id/40cjyUakWI');return false;" class="keperluan-item">Dress maternity <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Legging maternity', 'https://s.shopee.co.id/7AZlkKyelf');return false;" class="keperluan-item">Legging maternity <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Bra menyusui', 'https://s.shopee.co.id/1BIZi32MHg');return false;" class="keperluan-item">Bra menyusui <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Tank top ibu hamil', 'https://s.shopee.co.id/1BIZhz6nDh');return false;" class="keperluan-item">Tank top ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Piyama ibu hamil', 'https://s.shopee.co.id/4LFaNDjRJ0');return false;" class="keperluan-item">Piyama ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Cardigan ringan', 'https://s.shopee.co.id/5L87Z6RMJh');return false;" class="keperluan-item">Cardigan ringan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Underwear ibu hamil', 'https://s.shopee.co.id/8pi0q6hKsP');return false;" class="keperluan-item">Underwear ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Kaos kaki anti slip', 'https://s.shopee.co.id/40cjyhwrIt');return false;" class="keperluan-item">Kaos kaki anti slip <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Baju hamil longgar', 'https://s.shopee.co.id/5AohMYvlnE');return false;" class="keperluan-item">Baju hamil longgar <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Dress maternity', 'https://s.shopee.co.id/40cjyUakWI');return false;" class="keperluan-item">Dress maternity <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Legging maternity', 'https://s.shopee.co.id/7AZlkKyelf');return false;" class="keperluan-item">Legging maternity <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bra menyusui', 'https://s.shopee.co.id/1BIZi32MHg');return false;" class="keperluan-item">Bra menyusui <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Tank top ibu hamil', 'https://s.shopee.co.id/1BIZhz6nDh');return false;" class="keperluan-item">Tank top ibu hamil <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Piyama ibu hamil', 'https://s.shopee.co.id/4LFaNDjRJ0');return false;" class="keperluan-item">Piyama ibu hamil <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Cardigan ringan', 'https://s.shopee.co.id/5L87Z6RMJh');return false;" class="keperluan-item">Cardigan ringan <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Underwear ibu hamil', 'https://s.shopee.co.id/8pi0q6hKsP');return false;" class="keperluan-item">Underwear ibu hamil <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kaos kaki anti slip', 'https://s.shopee.co.id/40cjyhwrIt');return false;" class="keperluan-item">Kaos kaki anti slip <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2087,16 +2131,16 @@ body {
         <span class="cs-arrow" id="arrow_kep_2">▼</span>
       </button>
       <div class="cs-items" id="items_kep_2">
-        <a href="#" onclick="trackAffiliateClick('Tas khusus melahirkan', 'https://s.shopee.co.id/AUqDii8zFg');return false;" class="keperluan-item">Tas khusus melahirkan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Pembalut nifas', 'https://s.shopee.co.id/2g7MOLhubs');return false;" class="keperluan-item">Pembalut nifas <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Baju ganti ibu', 'https://s.shopee.co.id/9KeGKe8WNy');return false;" class="keperluan-item">Baju ganti ibu <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Handuk lembut', 'https://s.shopee.co.id/AUqEpIvPLJ');return false;" class="keperluan-item">Handuk lembut <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Sendal anti slip', 'https://s.shopee.co.id/40cjytW0qz');return false;" class="keperluan-item">Sendal anti slip <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Botol minum', 'https://s.shopee.co.id/qfjJbZGbv');return false;" class="keperluan-item">Botol minum <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Charger & power bank', 'https://s.shopee.co.id/gMJ7KzQIG');return false;" class="keperluan-item">Charger & power bank <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Kantung plastik pakaian kotor', 'https://s.shopee.co.id/gMJ7Ml0Ha');return false;" class="keperluan-item">Kantung plastik pakaian kotor <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Selimut ringan', 'https://s.shopee.co.id/4qBs53UoZV');return false;" class="keperluan-item">Selimut ringan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Perlengkapan mandi travel', 'https://s.shopee.co.id/qfjJizrWr');return false;" class="keperluan-item">Perlengkapan mandi travel <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Tas khusus melahirkan', 'https://s.shopee.co.id/AUqDii8zFg');return false;" class="keperluan-item">Tas khusus melahirkan <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Pembalut nifas', 'https://s.shopee.co.id/2g7MOLhubs');return false;" class="keperluan-item">Pembalut nifas <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Baju ganti ibu', 'https://s.shopee.co.id/9KeGKe8WNy');return false;" class="keperluan-item">Baju ganti ibu <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Handuk lembut', 'https://s.shopee.co.id/AUqEpIvPLJ');return false;" class="keperluan-item">Handuk lembut <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sendal anti slip', 'https://s.shopee.co.id/40cjytW0qz');return false;" class="keperluan-item">Sendal anti slip <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Botol minum', 'https://s.shopee.co.id/qfjJbZGbv');return false;" class="keperluan-item">Botol minum <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Charger & power bank', 'https://s.shopee.co.id/gMJ7KzQIG');return false;" class="keperluan-item">Charger & power bank <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kantung plastik pakaian kotor', 'https://s.shopee.co.id/gMJ7Ml0Ha');return false;" class="keperluan-item">Kantung plastik pakaian kotor <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Selimut ringan', 'https://s.shopee.co.id/4qBs53UoZV');return false;" class="keperluan-item">Selimut ringan <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Perlengkapan mandi travel', 'https://s.shopee.co.id/qfjJizrWr');return false;" class="keperluan-item">Perlengkapan mandi travel <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2107,13 +2151,13 @@ body {
         <span class="cs-arrow" id="arrow_kep_3">▼</span>
       </button>
       <div class="cs-items" id="items_kep_3">
-        <a href="#" onclick="trackAffiliateClick('Paket baju bayi newborn', 'https://s.shopee.co.id/2VnwCGOFTC');return false;" class="keperluan-item">Paket baju bayi newborn <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Popok bayi', 'https://s.shopee.co.id/3qJJmkrYvs');return false;" class="keperluan-item">Popok bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Bedong instan', 'https://s.shopee.co.id/4LFaNhomZP');return false;" class="keperluan-item">Bedong instan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Selimut bayi', 'https://s.shopee.co.id/AADNKS5uFl');return false;" class="keperluan-item">Selimut bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Kain flannel', 'https://s.shopee.co.id/8Klj98ks6F');return false;" class="keperluan-item">Kain flannel <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Perlak bayi', 'https://s.shopee.co.id/7AZll1qIDA');return false;" class="keperluan-item">Perlak bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Gendongan bayi', 'https://s.shopee.co.id/20rfbZMQDA');return false;" class="keperluan-item">Gendongan bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Paket baju bayi newborn', 'https://s.shopee.co.id/2VnwCGOFTC');return false;" class="keperluan-item">Paket baju bayi newborn <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Popok bayi', 'https://s.shopee.co.id/3qJJmkrYvs');return false;" class="keperluan-item">Popok bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bedong instan', 'https://s.shopee.co.id/4LFaNhomZP');return false;" class="keperluan-item">Bedong instan <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Selimut bayi', 'https://s.shopee.co.id/AADNKS5uFl');return false;" class="keperluan-item">Selimut bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kain flannel', 'https://s.shopee.co.id/8Klj98ks6F');return false;" class="keperluan-item">Kain flannel <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Perlak bayi', 'https://s.shopee.co.id/7AZll1qIDA');return false;" class="keperluan-item">Perlak bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Gendongan bayi', 'https://s.shopee.co.id/20rfbZMQDA');return false;" class="keperluan-item">Gendongan bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2124,14 +2168,14 @@ body {
         <span class="cs-arrow" id="arrow_kep_4">▼</span>
       </button>
       <div class="cs-items" id="items_kep_4">
-        <a href="#" onclick="trackAffiliateClick('Sabun bayi', 'https://s.shopee.co.id/W2ros8uvs');return false;" class="keperluan-item">Sabun bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Shampoo bayi', 'https://s.shopee.co.id/W2ros8uvs');return false;" class="keperluan-item">Shampoo bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Minyak telon', 'https://s.shopee.co.id/4VZ0aGInaY');return false;" class="keperluan-item">Minyak telon <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Lotion bayi', 'https://s.shopee.co.id/3qJJn5N9LO');return false;" class="keperluan-item">Lotion bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Tisu basah bayi', 'https://s.shopee.co.id/1BIYcD1UPj');return false;" class="keperluan-item">Tisu basah bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Handuk bayi', 'https://s.shopee.co.id/3fztaqWpA2');return false;" class="keperluan-item">Handuk bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Waslap bayi', 'https://s.shopee.co.id/2BB6sXNtEl');return false;" class="keperluan-item">Waslap bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Baby oil', 'https://s.shopee.co.id/6VK62WacQ1');return false;" class="keperluan-item">Baby oil <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sabun bayi', 'https://s.shopee.co.id/W2ros8uvs');return false;" class="keperluan-item">Sabun bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Shampoo bayi', 'https://s.shopee.co.id/W2ros8uvs');return false;" class="keperluan-item">Shampoo bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Minyak telon', 'https://s.shopee.co.id/4VZ0aGInaY');return false;" class="keperluan-item">Minyak telon <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Lotion bayi', 'https://s.shopee.co.id/3qJJn5N9LO');return false;" class="keperluan-item">Lotion bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Tisu basah bayi', 'https://s.shopee.co.id/1BIYcD1UPj');return false;" class="keperluan-item">Tisu basah bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Handuk bayi', 'https://s.shopee.co.id/3fztaqWpA2');return false;" class="keperluan-item">Handuk bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Waslap bayi', 'https://s.shopee.co.id/2BB6sXNtEl');return false;" class="keperluan-item">Waslap bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Baby oil', 'https://s.shopee.co.id/6VK62WacQ1');return false;" class="keperluan-item">Baby oil <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2142,14 +2186,14 @@ body {
         <span class="cs-arrow" id="arrow_kep_5">▼</span>
       </button>
       <div class="cs-items" id="items_kep_5">
-        <a href="#" onclick="trackAffiliateClick('Box bayi', 'https://s.shopee.co.id/7fW33HO0YP');return false;" class="keperluan-item">Box bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Kasur bayi', 'https://s.shopee.co.id/808tRxcNW7');return false;" class="keperluan-item">Kasur bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Bantal pegang', 'https://s.shopee.co.id/3B3e4SYYuz');return false;" class="keperluan-item">Bantal pegang <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Kelambu bayi', 'https://s.shopee.co.id/20rggL8Uui');return false;" class="keperluan-item">Kelambu bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Sleep sack bayi', 'https://s.shopee.co.id/7fW3QnSwhJ');return false;" class="keperluan-item">Sleep sack bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Selimut hangat', 'https://s.shopee.co.id/808tpS4Sz6');return false;" class="keperluan-item">Selimut hangat <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Lampu tidur', 'https://s.shopee.co.id/3LN4GuinVT');return false;" class="keperluan-item">Lampu tidur <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Perlak kasur', 'https://s.shopee.co.id/3qJKrvYlSY');return false;" class="keperluan-item">Perlak kasur <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Box bayi', 'https://s.shopee.co.id/7fW33HO0YP');return false;" class="keperluan-item">Box bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kasur bayi', 'https://s.shopee.co.id/808tRxcNW7');return false;" class="keperluan-item">Kasur bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bantal pegang', 'https://s.shopee.co.id/3B3e4SYYuz');return false;" class="keperluan-item">Bantal pegang <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kelambu bayi', 'https://s.shopee.co.id/20rggL8Uui');return false;" class="keperluan-item">Kelambu bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sleep sack bayi', 'https://s.shopee.co.id/7fW3QnSwhJ');return false;" class="keperluan-item">Sleep sack bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Selimut hangat', 'https://s.shopee.co.id/808tpS4Sz6');return false;" class="keperluan-item">Selimut hangat <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Lampu tidur', 'https://s.shopee.co.id/3LN4GuinVT');return false;" class="keperluan-item">Lampu tidur <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Perlak kasur', 'https://s.shopee.co.id/3qJKrvYlSY');return false;" class="keperluan-item">Perlak kasur <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2160,16 +2204,16 @@ body {
         <span class="cs-arrow" id="arrow_kep_6">▼</span>
       </button>
       <div class="cs-items" id="items_kep_6">
-        <a href="#" onclick="trackAffiliateClick('Pompa ASI manual', 'https://s.shopee.co.id/7AZmq5vMH3');return false;" class="keperluan-item">Pompa ASI manual <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Pompa ASI elektrik', 'https://s.shopee.co.id/6L0fqcDXiY');return false;" class="keperluan-item">Pompa ASI elektrik <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Botol ASI', 'https://s.shopee.co.id/7ppTdPTA1O');return false;" class="keperluan-item">Botol ASI <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Kantong ASI', 'https://s.shopee.co.id/3LN4HA1lHq');return false;" class="keperluan-item">Kantong ASI <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Cooler bag ASI', 'https://s.shopee.co.id/6L0fqhG3nx');return false;" class="keperluan-item">Cooler bag ASI <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Nursing cover', 'https://s.shopee.co.id/AADOPlbynF');return false;" class="keperluan-item">Nursing cover <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Bra menyusui', 'https://s.shopee.co.id/5AoiSeHs70');return false;" class="keperluan-item">Bra menyusui <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Bantal menyusui', 'https://s.shopee.co.id/4LFbT61J16');return false;" class="keperluan-item">Bantal menyusui <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Sterilizer botol', 'https://s.shopee.co.id/AKWocB7qOm');return false;" class="keperluan-item">Sterilizer botol <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Penghangat susu', 'https://s.shopee.co.id/5L88f0mgCP');return false;" class="keperluan-item">Penghangat susu <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Pompa ASI manual', 'https://s.shopee.co.id/7AZmq5vMH3');return false;" class="keperluan-item">Pompa ASI manual <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Pompa ASI elektrik', 'https://s.shopee.co.id/6L0fqcDXiY');return false;" class="keperluan-item">Pompa ASI elektrik <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Botol ASI', 'https://s.shopee.co.id/7ppTdPTA1O');return false;" class="keperluan-item">Botol ASI <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kantong ASI', 'https://s.shopee.co.id/3LN4HA1lHq');return false;" class="keperluan-item">Kantong ASI <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Cooler bag ASI', 'https://s.shopee.co.id/6L0fqhG3nx');return false;" class="keperluan-item">Cooler bag ASI <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Nursing cover', 'https://s.shopee.co.id/AADOPlbynF');return false;" class="keperluan-item">Nursing cover <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bra menyusui', 'https://s.shopee.co.id/5AoiSeHs70');return false;" class="keperluan-item">Bra menyusui <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Bantal menyusui', 'https://s.shopee.co.id/4LFbT61J16');return false;" class="keperluan-item">Bantal menyusui <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sterilizer botol', 'https://s.shopee.co.id/AKWocB7qOm');return false;" class="keperluan-item">Sterilizer botol <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Penghangat susu', 'https://s.shopee.co.id/5L88f0mgCP');return false;" class="keperluan-item">Penghangat susu <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2180,12 +2224,12 @@ body {
         <span class="cs-arrow" id="arrow_kep_7">▼</span>
       </button>
       <div class="cs-items" id="items_kep_7">
-        <a href="#" onclick="trackAffiliateClick('Vitamin prenatal', 'https://s.shopee.co.id/qfjIpSBnc');return false;" class="keperluan-item">Vitamin prenatal <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Susu ibu hamil', 'https://s.shopee.co.id/20rgh0DjCt');return false;" class="keperluan-item">Susu ibu hamil <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Snack sehat', 'https://s.shopee.co.id/4AwBH0VgFH');return false;" class="keperluan-item">Snack sehat <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Buah kering', 'https://s.shopee.co.id/6pwwRvokoO');return false;" class="keperluan-item">Buah kering <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Madu', 'https://s.shopee.co.id/9fH7pB3YfN');return false;" class="keperluan-item">Madu <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Kurma', 'https://s.shopee.co.id/70GMeIagBr');return false;" class="keperluan-item">Kurma <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Vitamin prenatal', 'https://s.shopee.co.id/qfjIpSBnc');return false;" class="keperluan-item">Vitamin prenatal <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Susu ibu hamil', 'https://s.shopee.co.id/20rgh0DjCt');return false;" class="keperluan-item">Susu ibu hamil <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Snack sehat', 'https://s.shopee.co.id/4AwBH0VgFH');return false;" class="keperluan-item">Snack sehat <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Buah kering', 'https://s.shopee.co.id/6pwwRvokoO');return false;" class="keperluan-item">Buah kering <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Madu', 'https://s.shopee.co.id/9fH7pB3YfN');return false;" class="keperluan-item">Madu <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kurma', 'https://s.shopee.co.id/70GMeIagBr');return false;" class="keperluan-item">Kurma <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2196,13 +2240,13 @@ body {
         <span class="cs-arrow" id="arrow_kep_8">▼</span>
       </button>
       <div class="cs-items" id="items_kep_8">
-        <a href="#" onclick="trackAffiliateClick('Pembalut nifas', 'https://s.shopee.co.id/1LbztxyhVZ');return false;" class="keperluan-item">Pembalut nifas <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Korset pasca melahirkan', 'https://s.shopee.co.id/7VCdFKN9IU');return false;" class="keperluan-item">Korset pasca melahirkan <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Minyak pijat', 'https://s.shopee.co.id/60NpSbHbOS');return false;" class="keperluan-item">Minyak pijat <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Sabun antiseptik', 'https://s.shopee.co.id/4AwBHIVUS6');return false;" class="keperluan-item">Sabun antiseptik <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Breast pad', 'https://s.shopee.co.id/3qJKsiAZU6');return false;" class="keperluan-item">Breast pad <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Salep puting', 'https://s.shopee.co.id/6L0frKjxAn');return false;" class="keperluan-item">Salep puting <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Cooling pad', 'https://s.shopee.co.id/2BB6tibIbl');return false;" class="keperluan-item">Cooling pad <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Pembalut nifas', 'https://s.shopee.co.id/1LbztxyhVZ');return false;" class="keperluan-item">Pembalut nifas <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Korset pasca melahirkan', 'https://s.shopee.co.id/7VCdFKN9IU');return false;" class="keperluan-item">Korset pasca melahirkan <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Minyak pijat', 'https://s.shopee.co.id/60NpSbHbOS');return false;" class="keperluan-item">Minyak pijat <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Sabun antiseptik', 'https://s.shopee.co.id/4AwBHIVUS6');return false;" class="keperluan-item">Sabun antiseptik <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Breast pad', 'https://s.shopee.co.id/3qJKsiAZU6');return false;" class="keperluan-item">Breast pad <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Salep puting', 'https://s.shopee.co.id/6L0frKjxAn');return false;" class="keperluan-item">Salep puting <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Cooling pad', 'https://s.shopee.co.id/2BB6tibIbl');return false;" class="keperluan-item">Cooling pad <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2213,14 +2257,14 @@ body {
         <span class="cs-arrow" id="arrow_kep_9">▼</span>
       </button>
       <div class="cs-items" id="items_kep_9">
-        <a href="#" onclick="trackAffiliateClick('Car seat bayi', 'https://s.shopee.co.id/5fkz1tfp80');return false;" class="keperluan-item">Car seat bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Stroller', 'https://s.shopee.co.id/1qYGStJ2q9');return false;" class="keperluan-item">Stroller <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Gendongan ergonomis', 'https://s.shopee.co.id/gMJ4lxaPK');return false;" class="keperluan-item">Gendongan ergonomis <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Tas diaper bag', 'https://s.shopee.co.id/3VgUS0FTXF');return false;" class="keperluan-item">Tas diaper bag <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Baby carrier wrap', 'https://s.shopee.co.id/AUqEmtf59R');return false;" class="keperluan-item">Baby carrier wrap <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Kursi makan bayi', 'https://s.shopee.co.id/70GMcUbvNI');return false;" class="keperluan-item">Kursi makan bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Playpen', 'https://s.shopee.co.id/901R0Bo7Mp');return false;" class="keperluan-item">Playpen <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Safety belt bayi', 'https://s.shopee.co.id/6L0fpL1wGT');return false;" class="keperluan-item">Safety belt bayi <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Car seat bayi', 'https://s.shopee.co.id/5fkz1tfp80');return false;" class="keperluan-item">Car seat bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Stroller', 'https://s.shopee.co.id/1qYGStJ2q9');return false;" class="keperluan-item">Stroller <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Gendongan ergonomis', 'https://s.shopee.co.id/gMJ4lxaPK');return false;" class="keperluan-item">Gendongan ergonomis <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Tas diaper bag', 'https://s.shopee.co.id/3VgUS0FTXF');return false;" class="keperluan-item">Tas diaper bag <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Baby carrier wrap', 'https://s.shopee.co.id/AUqEmtf59R');return false;" class="keperluan-item">Baby carrier wrap <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Kursi makan bayi', 'https://s.shopee.co.id/70GMcUbvNI');return false;" class="keperluan-item">Kursi makan bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Playpen', 'https://s.shopee.co.id/901R0Bo7Mp');return false;" class="keperluan-item">Playpen <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Safety belt bayi', 'https://s.shopee.co.id/6L0fpL1wGT');return false;" class="keperluan-item">Safety belt bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -2231,15 +2275,15 @@ body {
         <span class="cs-arrow" id="arrow_kep_10">▼</span>
       </button>
       <div class="cs-items" id="items_kep_10">
-        <a href="#" onclick="trackAffiliateClick('Buku bayi kontras tinggi', 'https://s.shopee.co.id/W2srt423N');return false;" class="keperluan-item">Buku bayi kontras tinggi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Mainan gantung', 'https://s.shopee.co.id/4AwBEf9xS4');return false;" class="keperluan-item">Mainan gantung <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Teether bayi', 'https://s.shopee.co.id/AKWoa2Y0CA');return false;" class="keperluan-item">Teether bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Playmat', 'https://s.shopee.co.id/4AwBElqpzb');return false;" class="keperluan-item">Playmat <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Musik bayi', 'https://s.shopee.co.id/7VCdCvQD3R');return false;" class="keperluan-item">Musik bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Cermin bayi', 'https://s.shopee.co.id/4fsRpklfVP');return false;" class="keperluan-item">Cermin bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Boneka lembut', 'https://s.shopee.co.id/3fzue7xHmG');return false;" class="keperluan-item">Boneka lembut <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Rattle bayi', 'https://s.shopee.co.id/50VIEOfXGg');return false;" class="keperluan-item">Rattle bayi <span class="kep-shop">🛒 Shopee</span></a>
-        <a href="#" onclick="trackAffiliateClick('Busy board sederhana', 'https://s.shopee.co.id/5L88dDrqrV');return false;" class="keperluan-item">Busy board sederhana <span class="kep-shop">🛒 Shopee</span></a>
+        <a href="#" onclick="trackAffiliateClick('Buku bayi kontras tinggi', 'https://s.shopee.co.id/W2srt423N');return false;" class="keperluan-item">Buku bayi kontras tinggi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Mainan gantung', 'https://s.shopee.co.id/4AwBEf9xS4');return false;" class="keperluan-item">Mainan gantung <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Teether bayi', 'https://s.shopee.co.id/AKWoa2Y0CA');return false;" class="keperluan-item">Teether bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Playmat', 'https://s.shopee.co.id/4AwBElqpzb');return false;" class="keperluan-item">Playmat <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Musik bayi', 'https://s.shopee.co.id/7VCdCvQD3R');return false;" class="keperluan-item">Musik bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Cermin bayi', 'https://s.shopee.co.id/4fsRpklfVP');return false;" class="keperluan-item">Cermin bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Boneka lembut', 'https://s.shopee.co.id/3fzue7xHmG');return false;" class="keperluan-item">Boneka lembut <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Rattle bayi', 'https://s.shopee.co.id/50VIEOfXGg');return false;" class="keperluan-item">Rattle bayi <span class="kep-shop">🔍 Coba Lihat</span></a>
+        <a href="#" onclick="trackAffiliateClick('Busy board sederhana', 'https://s.shopee.co.id/5L88dDrqrV');return false;" class="keperluan-item">Busy board sederhana <span class="kep-shop">🔍 Coba Lihat</span></a>
       </div>
     </div>
 
@@ -6004,6 +6048,13 @@ body {
 
 <script>
 // ══════════════════════════════════════
+
+// ── SAFE DOM HELPER ──
+function _sel(id) { return document.getElementById(id); }
+function _setStyle(id, prop, val) { const e=_sel(id); if(e) e.style[prop]=val; }
+function _setHTML(id, html) { const e=_sel(id); if(e) e.innerHTML=html; }
+function _setText(id, txt) { const e=_sel(id); if(e) e.textContent=txt; }
+
 // STATE & STORAGE
 // ══════════════════════════════════════
 const STORAGE_KEY = 'bumilPintarData';
@@ -6109,6 +6160,7 @@ function defaultState() {
     lab: {},
     moods: [],
     tensi: [],
+    bp: [],
     ttd: {},
     quranPos: {},
     tabungan: { target: 15000000, saldo: 0, riwayat: [] },
@@ -6795,11 +6847,11 @@ function startContraction() {
   ctElapsed = 0;
   ctInterval = setInterval(() => {
     ctElapsed = Math.floor((Date.now() - ctStart) / 1000);
-    document.getElementById('ctDisplay').textContent = formatTime(ctElapsed);
-    document.getElementById('ctSub').textContent = 'Kontraksi berlangsung...';
+    _setText('ctDisplay', formatTime(ctElapsed));
+    _setText('ctSub', 'Kontraksi berlangsung...');
   }, 1000);
-  document.getElementById('ctStartBtn').style.display = 'none';
-  document.getElementById('ctStopBtn').style.display = '';
+  _setStyle('ctStartBtn', 'display', 'none');
+  _setStyle('ctStopBtn', 'display', '');
   // Fitur 5: mulai panduan pernapasan
   startBreathing();
 }
@@ -6823,10 +6875,10 @@ function stopContraction() {
   });
   saveState();
 
-  document.getElementById('ctDisplay').textContent = '00:00';
-  document.getElementById('ctSub').textContent = 'Tekan Mulai saat kontraksi terasa';
-  document.getElementById('ctStartBtn').style.display = '';
-  document.getElementById('ctStopBtn').style.display = 'none';
+  _setText('ctDisplay', '00:00');
+  _setText('ctSub', 'Tekan Mulai saat kontraksi terasa');
+  _setStyle('ctStartBtn', 'display', '');
+  _setStyle('ctStopBtn', 'display', 'none');
 
   renderContractionList();
   updateHeaderStats();
@@ -6917,12 +6969,12 @@ function renderKickCounter() {
   const todayKicks = state.kicks.filter(k => new Date(k.time).toDateString() === today);
   const count = todayKicks.length;
 
-  document.getElementById('kickCount').textContent = count;
+  _setText('kickCount', count);
   updateHeaderStats();
 
   const pct = Math.min(100, count * 10);
-  document.getElementById('kickProgressBar').style.width = pct + '%';
-  document.getElementById('kickPctLabel').textContent = pct + '%';
+  _setStyle('kickProgressBar', 'width', pct + '%');
+  _setText('kickPctLabel', pct + '%');
 
   // History by day
   const byDay = {};
@@ -6969,6 +7021,7 @@ function saveSymptoms() {
 
 function renderSymptomHistory() {
   const el = document.getElementById('symptomHistory');
+  if (!el) return;
   if (state.symptoms.length === 0) {
     el.innerHTML = `<div class="empty-state"><div class="empty-icon">📋</div>Belum ada catatan gejala</div>`;
     return;
@@ -7027,10 +7080,10 @@ function renderChecklist() {
 
   // Update overall progress
   const pct = total > 0 ? Math.round(checked / total * 100) : 0;
-  document.getElementById('checklistProgress').textContent = `${checked} / ${total} item siap`;
+  _setText('checklistProgress', `${checked} / ${total} item siap`);
   const pctEl = document.getElementById('checklistPct');
   if (pctEl) pctEl.textContent = pct + (pct === 100 ? '% 🎉' : '%');
-  document.getElementById('checklistBar').style.width = pct + '%';
+  _setStyle('checklistBar', 'width', pct + '%');
 
   // Category badges
   const badgesEl = document.getElementById('checklistCatBadges');
@@ -7076,10 +7129,10 @@ function toggleChecklistItem(key, itemEl) {
   });
 
   const pct = total > 0 ? Math.round(checked / total * 100) : 0;
-  document.getElementById('checklistProgress').textContent = `${checked} / ${total} item siap`;
+  _setText('checklistProgress', `${checked} / ${total} item siap`);
   const pctEl = document.getElementById('checklistPct');
   if (pctEl) pctEl.textContent = pct + (pct === 100 ? '% 🎉' : '%');
-  document.getElementById('checklistBar').style.width = pct + '%';
+  _setStyle('checklistBar', 'width', pct + '%');
 
   // Toast saat kategori 100%
   const [catId, idx] = key.split('_');
@@ -7270,14 +7323,13 @@ function updateProgress() {
   const remaining = Math.max(0, Math.floor((hpl - now) / 86400000));
   const trimester = weeks <= 12 ? 'Trimester 1' : weeks <= 27 ? 'Trimester 2' : 'Trimester 3';
 
-  if (document.getElementById('headerWeek')) document.getElementById('headerWeek').textContent = weeks;
-  document.getElementById('trimesterBadge').textContent = trimester;
+  if (document.getElementById('headerWeek')) _setText('headerWeek', weeks);
+  _setText('trimesterBadge', trimester);
   updateTrimesterBadgeColor(weeks);
-  document.getElementById('progressBar').style.width = pct + '%';
-  document.getElementById('progressPct').textContent = pct + '%';
-  document.getElementById('progressWeekLabel').textContent = `Minggu ${weeks} dari 40`;
-  document.getElementById('progressNote').textContent =
-    remaining > 0 ? `Tersisa sekitar ${remaining} hari lagi 🍼` : '🎉 Selamat! HPL sudah tiba!';
+  _setStyle('progressBar', 'width', pct + '%');
+  _setText('progressPct', pct + '%');
+  _setText('progressWeekLabel', `Minggu ${weeks} dari 40`);
+  _setText('progressNote', remaining > 0 ? `Tersisa sekitar ${remaining} hari lagi 🍼` : '🎉 Selamat! HPL sudah tiba!');
   updateHeaderStats();
 }
 
@@ -7416,13 +7468,14 @@ function renderTTD() {
     if (TTD_ITEMS.every(id => day[id])) streak++;
     else if (i > 0) break;
   }
-  document.getElementById('ttdStreakText').textContent = `🔥 Streak: ${streak} hari berturut-turut diminum semua!`;
+  _setText('ttdStreakText', `🔥 Streak: ${streak} hari berturut-turut diminum semua!`);
 
   renderTTDHistory();
 }
 
 function renderTTDHistory() {
   const el = document.getElementById('ttdHistory');
+  if (!el) return;
   if (!state.ttd || Object.keys(state.ttd).length === 0) {
     el.innerHTML = `<div class="empty-state"><div class="empty-icon">💊</div>Belum ada catatan suplemen</div>`;
     return;
@@ -7459,6 +7512,7 @@ function updateBPLive() {
   const s = parseInt(document.getElementById('bpSystolic').value);
   const d = parseInt(document.getElementById('bpDiastolic').value);
   const el = document.getElementById('bpLiveStatus');
+  if (!el) return;
   if (!s || !d) { el.innerHTML = ''; return; }
   const st = getBPStatus(s, d);
   el.innerHTML = `<div class="bp-status-badge ${st.type}"><span>${st.label}</span></div><div style="font-size:11px;color:var(--gray-600);margin-bottom:6px;">${st.note}</div>`;
@@ -7484,6 +7538,7 @@ function saveBP() {
 
 function renderBPHistory() {
   const el = document.getElementById('bpHistory');
+  if (!el) return;
   if (!state.bp || state.bp.length === 0) {
     el.innerHTML = `<div class="empty-state"><div class="empty-icon">🩺</div>Belum ada catatan tekanan darah</div>`;
     return;
@@ -7525,7 +7580,7 @@ function updateWeightCalc() {
   const bmi = pre / ((h/100)**2);
   const cat = getBMICategory(bmi);
   const range = WEIGHT_GAIN_RANGES[cat];
-  document.getElementById('weightBMIInfo').style.display = '';
+  _setStyle('weightBMIInfo', 'display', '');
   document.getElementById('weightBMIInfo').innerHTML = `
     <div style="font-size:12px;color:var(--gray-800);">
       <strong>BMI Sebelum Hamil:</strong> ${bmi.toFixed(1)} — ${range.label}<br>
@@ -7919,7 +7974,7 @@ function getFetalSVG(week) {
 
 
 function renderFetalMilestone() {
-  document.getElementById('fetalWeekDisplay').textContent = currentFetalWeek;
+  _setText('fetalWeekDisplay', currentFetalWeek);
   const data = getFetalData(currentFetalWeek);
   const tri  = TRIMESTER_INFO[data.trimester];
 
@@ -8029,7 +8084,7 @@ function selectMood(btn) {
   document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   const mood = btn.dataset.mood;
-  document.getElementById('moodWarning').style.display = MOOD_ALERT.includes(mood) ? '' : 'none';
+  _setStyle('moodWarning', 'display', MOOD_ALERT.includes(mood) ? '' : 'none');
 }
 
 function saveMood() {
@@ -8047,7 +8102,7 @@ function saveMood() {
   saveState();
   document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById('moodNote').value = '';
-  document.getElementById('moodWarning').style.display = 'none';
+  _setStyle('moodWarning', 'display', 'none');
   renderMoodHistory();
   // Smart check for concerning moods
   if (MOOD_ALERT.includes(selected.dataset.mood)) {
@@ -8059,6 +8114,7 @@ function saveMood() {
 
 function renderMoodHistory() {
   const el = document.getElementById('moodHistory');
+  if (!el) return;
   if (!state.mood || state.mood.length === 0) {
     el.innerHTML = `<div class="empty-state"><div class="empty-icon">😊</div>Belum ada catatan mood</div>`;
     return;
@@ -8193,7 +8249,7 @@ function initWaterTracker() {
         btns.forEach((b,i) => { b.classList.toggle('filled', i <= idx); });
       }
       const filled = [...btns].filter(b => b.classList.contains('filled')).length;
-      document.getElementById('waterText').textContent = filled + ' / 10';
+      _setText('waterText', filled + ' / 10');
       if (!state.water) state.water = {};
       state.water[getTodayKey()] = filled;
       saveState();
@@ -8929,8 +8985,8 @@ function quranSetActiveChoice(num) {
     const el = document.getElementById('qChoiceCard' + n);
     if (el) el.classList.toggle('quran-choice-active', n === num);
   });
-  document.getElementById('quranSectionAyat').style.display = num === 2 ? 'block' : 'none';
-  document.getElementById('quranSectionJuz').style.display  = num === 3 ? 'block' : 'none';
+  _setStyle('quranSectionAyat', 'display', num === 2 ? 'block' : 'none');
+  _setStyle('quranSectionJuz', 'display', num === 3 ? 'block' : 'none');
 }
 
 function quranLanjutkan() {
@@ -9228,11 +9284,11 @@ function hitungHPL() {
   const trimester = weeks < 13 ? 'Trimester 1' : weeks < 28 ? 'Trimester 2' : 'Trimester 3';
 
   const fmt = (d) => new Date(d).toLocaleDateString('id-ID', { day:'2-digit', month:'long', year:'numeric' });
-  document.getElementById('kalk_hpl_date').textContent    = fmt(hpl);
-  document.getElementById('kalk_usia_minggu').textContent = `${weeks} minggu`;
-  document.getElementById('kalk_sisa_hari').textContent   = days > 0 ? `${days} hari` : '🎉 Sudah HPL!';
-  document.getElementById('kalk_trimester_now').textContent = trimester;
-  document.getElementById('kalk_hpl_result').style.display = 'block';
+  _setText('kalk_hpl_date', fmt(hpl));
+  _setText('kalk_usia_minggu', `${weeks} minggu`);
+  _setText('kalk_sisa_hari', days > 0 ? `${days} hari` : '🎉 Sudah HPL!');
+  _setText('kalk_trimester_now', trimester);
+  _setStyle('kalk_hpl_result', 'display', 'block');
 }
 
 function simpanHPLdariKalkulator() {
@@ -9271,11 +9327,11 @@ function hitungIMT() {
     bbNaik = 'Tambah 5–9 kg selama hamil (konsul dokter)';
   }
 
-  document.getElementById('kalk_imt_val').textContent = imtStr;
-  document.getElementById('kalk_imt_kat').style.color = katColor;
-  document.getElementById('kalk_imt_kat').textContent = kat;
-  document.getElementById('kalk_bb_naik').textContent = bbNaik;
-  document.getElementById('kalk_imt_result').style.display = 'block';
+  _setText('kalk_imt_val', imtStr);
+  _setStyle('kalk_imt_kat', 'color', katColor);
+  _setText('kalk_imt_kat', kat);
+  _setText('kalk_bb_naik', bbNaik);
+  _setStyle('kalk_imt_result', 'display', 'block');
 }
 
 function hitungKalori() {
@@ -9294,7 +9350,7 @@ function hitungKalori() {
   const prot  = Math.round(total * 0.15 / 4);
   const lemak = Math.round(total * 0.30 / 9);
 
-  document.getElementById('kalk_kalori_total').textContent = total.toLocaleString('id');
+  _setText('kalk_kalori_total', total.toLocaleString('id'));
   document.getElementById('kalk_kalori_detail').innerHTML = `
     <div style="background:white;border-radius:8px;padding:8px;text-align:center;">
       <div style="font-size:14px;font-weight:800;color:#1565C0;">${karbo}g</div>
@@ -9315,7 +9371,7 @@ function hitungKalori() {
     `💡 <strong>Pola Makan Disarankan:</strong><br>
      Pola 1: 3× makan besar (~${pola1} kkal) + camilan sehat<br>
      Pola 2 (T1/mual): 6× porsi kecil (~${pola2} kkal setiap makan)`;
-  document.getElementById('kalk_kalori_result').style.display = 'block';
+  _setStyle('kalk_kalori_result', 'display', 'block');
 }
 
 function hitungTBJ() {
@@ -9330,9 +9386,9 @@ function hitungTBJ() {
   else if (tbj <= 4000) kat = '✅ Berat badan janin dalam kisaran normal';
   else                  kat = '⚠️ Janin besar — pantau lebih ketat';
 
-  document.getElementById('kalk_tbj_val').textContent = tbj.toLocaleString('id');
-  document.getElementById('kalk_tbj_kat').textContent = kat;
-  document.getElementById('kalk_tbj_result').style.display = 'block';
+  _setText('kalk_tbj_val', tbj.toLocaleString('id'));
+  _setText('kalk_tbj_kat', kat);
+  _setStyle('kalk_tbj_result', 'display', 'block');
 }
 
 function initKalkulator() {
@@ -9910,14 +9966,14 @@ function showOnboardingIfNeeded() {
 function nextOnboarding() {
   if (onbCurrentSlide < 2) {
     onbCurrentSlide++;
-    document.getElementById('onboardingSlides').style.transform = `translateX(-${onbCurrentSlide * 100}vw)`;
+    _setStyle('onboardingSlides', 'transform', `translateX(-${onbCurrentSlide * 100}vw)`);
     [1,2,3].forEach(n => {
       const dot = document.getElementById('onbDot' + n);
       if (dot) dot.classList.toggle('active', n - 1 === onbCurrentSlide);
     });
     if (onbCurrentSlide === 2) {
-      document.getElementById('onbNext').textContent = 'Mulai Sekarang ✨';
-      document.getElementById('onbSkip').style.display = 'none';
+      _setText('onbNext', 'Mulai Sekarang ✨');
+      _setStyle('onbSkip', 'display', 'none');
     }
   } else {
     finishOnboarding();
@@ -9955,6 +10011,43 @@ function finishOnboarding() {
 // ══════════════════════════════════════
 // SPLASH SCREEN
 // ══════════════════════════════════════
+// ══════════════════════════════════════
+// SHOPEE BANNER (setiap buka app)
+// ══════════════════════════════════════
+let _shopeeClickCount = 0;
+const SHOPEE_URL = 'https://s.shopee.co.id/AKX54LwKwX';
+
+function initShopeeBanner() {
+  const banner = document.getElementById('shopeeBanner');
+  if (!banner) return;
+  _shopeeClickCount = 0;
+  banner.style.display = 'flex';
+}
+
+function handleShopeeClick() {
+  _shopeeClickCount++;
+  const banner   = document.getElementById('shopeeBanner');
+  const badge    = document.getElementById('shopeeClickBadge');
+  const hint     = document.getElementById('shopeeHint');
+
+  if (_shopeeClickCount === 1) {
+    // Klik pertama → buka Shopee, banner tetap tampil tapi update UI
+    window.open(SHOPEE_URL, '_blank');
+    if (badge) badge.innerHTML = 'TAP 2×  &nbsp;→&nbsp; Masuk App';
+    if (badge) badge.style.background = 'rgba(2,195,154,0.3)';
+    if (badge) badge.style.borderColor = 'rgba(2,195,154,0.6)';
+    if (hint)  hint.innerHTML = '<span>✅</span><span>Shopee terbuka! &nbsp;·&nbsp; Ketuk sekali lagi untuk masuk Bumil Pintar</span>';
+  } else if (_shopeeClickCount >= 2) {
+    // Klik kedua → tutup banner, masuk beranda
+    if (banner) {
+      banner.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      banner.style.opacity = '0';
+      banner.style.transform = 'scale(0.95)';
+      setTimeout(() => { banner.style.display = 'none'; }, 400);
+    }
+  }
+}
+
 function initSplash() {
   const splash = document.getElementById('splashScreen');
   const splashIcon = document.getElementById('splashIcon');
@@ -10197,8 +10290,8 @@ function init() {
   renderFotoGaleri();
   loadSettings();
   // Load saved weight/height settings
-  if (state.settings.weightPre) document.getElementById('weightPre').value = state.settings.weightPre;
-  if (state.settings.weightHeight) document.getElementById('weightHeight').value = state.settings.weightHeight;
+  const wpEl = document.getElementById('weightPre'); if (wpEl && state.settings.weightPre) wpEl.value = state.settings.weightPre;
+  const whEl = document.getElementById('weightHeight'); if (whEl && state.settings.weightHeight) whEl.value = state.settings.weightHeight;
   if (state.settings.weightPre && state.settings.weightHeight) updateWeightCalc();
   loadDailyInsight();
   updateProgress();
@@ -10208,7 +10301,7 @@ function init() {
   // Auto-sync fetal milestone jika HPL sudah diatur
   if (state.settings.hpl) syncFetalToHPL();
   else renderFetalMilestone();
-  runSmartCheck();
+  try { runSmartCheck(); } catch(e) { console.warn('runSmartCheck:', e); }
   // Ensure beranda tab is active on load
   const homeBtn = document.querySelector('[data-tab="beranda"]');
   if (homeBtn) homeBtn.classList.add('active');
@@ -10225,6 +10318,7 @@ function init() {
   initSplash();
   initOfflineDetection();
   initDarkMode();
+  setTimeout(initShopeeBanner, 2000);
   setTimeout(showOnboardingIfNeeded, 2000);
   showHomescreenBanner();
 
@@ -10254,7 +10348,22 @@ function updateWeightCurrentWeek() {
   el.textContent = week;
 }
 
-init();
+// Global error handler - jangan biarkan 1 error hentikan semua
+window.addEventListener('error', function(e) {
+  console.warn('App error (non-fatal):', e.message, 'at line', e.lineno);
+  return true; // prevent default browser error handling
+});
+
+try {
+  init();
+} catch(e) {
+  console.error('Init error:', e);
+  // Coba lagi tanpa fungsi bermasalah
+  try {
+    loadState();
+    switchTab('beranda', document.querySelector('[data-tab="beranda"]'));
+  } catch(e2) {}
+}
 </script>
 
 <!-- PWA Service Worker Registration -->

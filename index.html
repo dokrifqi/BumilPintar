@@ -1723,48 +1723,57 @@ body {
 </div>
 
 <!-- ════════ SHOPEE BANNER ════════ -->
-<div id="shopeeBanner" style="display:none;position:fixed;inset:0;z-index:99998;background:linear-gradient(160deg,#0D47A1 0%,#1565C0 40%,#E53935 100%);flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;cursor:pointer;" onclick="handleShopeeClick()">
-  <!-- Dekorasi bulat -->
-  <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.05);top:-80px;right:-80px;"></div>
-  <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.05);bottom:-50px;left:-50px;"></div>
+<div id="shopeeBanner" style="
+  display:none;
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  z-index:99999;
+  background:linear-gradient(160deg,#0D47A1 0%,#1565C0 50%,#c62828 100%);
+  flex-direction:column;align-items:center;justify-content:center;
+  padding:28px 20px;text-align:center;cursor:pointer;
+  font-family:sans-serif;
+">
+  <div style="position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,0.05);top:-80px;right:-80px;pointer-events:none;"></div>
+  <div style="position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.05);bottom:-60px;left:-60px;pointer-events:none;"></div>
 
-  <!-- Badge klik counter -->
-  <div id="shopeeClickBadge" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);border-radius:20px;padding:6px 14px;font-size:12px;color:white;font-weight:600;letter-spacing:0.5px;">
-    TAP 1×  &nbsp;→&nbsp; Shopee
+  <!-- Step indicator -->
+  <div id="shopeeStep" style="
+    position:absolute;top:18px;right:18px;
+    background:rgba(255,255,255,0.18);
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:20px;padding:6px 14px;
+    font-size:12px;color:white;font-weight:700;letter-spacing:0.5px;
+  ">KETUK → SHOPEE</div>
+
+  <!-- Icon -->
+  <div style="width:90px;height:90px;border-radius:26px;background:white;display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:18px;box-shadow:0 12px 40px rgba(0,0,0,0.3);">🤰</div>
+
+  <!-- Title -->
+  <div style="font-size:26px;font-weight:900;color:white;margin-bottom:6px;">Bumil Pintar 💙</div>
+  <div style="font-size:13px;color:rgba(255,255,255,0.75);margin-bottom:24px;">Asisten Kehamilan Cerdas</div>
+
+  <!-- Promo card -->
+  <div onclick="handleShopeeClick()" style="
+    background:rgba(255,255,255,0.13);
+    border:1.5px solid rgba(255,255,255,0.3);
+    border-radius:18px;padding:18px 20px;
+    max-width:300px;width:100%;margin-bottom:22px;
+  ">
+    <div style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:8px;">🛍️ SPONSOR APLIKASI INI</div>
+    <div style="font-size:16px;font-weight:800;color:white;margin-bottom:6px;">Perlengkapan Kehamilan<br>& Bayi di Shopee!</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.5;margin-bottom:14px;">Produk pilihan terbaik untuk Bunda — harga terjangkau, pengiriman cepat.</div>
+    <div id="shopeeCTAbtn" style="
+      background:linear-gradient(90deg,#FF6D00,#FF9800);
+      border-radius:30px;padding:11px 0;
+      font-size:14px;font-weight:800;color:white;
+      letter-spacing:0.3px;
+    ">🛒 Lihat di Shopee</div>
   </div>
 
-  <!-- Ikon / logo -->
-  <div style="width:100px;height:100px;border-radius:28px;background:white;display:flex;align-items:center;justify-content:center;font-size:52px;margin-bottom:20px;box-shadow:0 16px 48px rgba(0,0,0,0.25);">
-    🤰
-  </div>
-
-  <!-- Judul -->
-  <div style="font-size:28px;font-weight:900;color:white;letter-spacing:-0.5px;margin-bottom:8px;">Bumil Pintar 💙</div>
-  <div style="font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:28px;line-height:1.5;">Asisten Kehamilan Cerdas untuk Bunda Indonesia</div>
-
-  <!-- Promo card Shopee -->
-  <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:18px;padding:20px 24px;max-width:320px;width:100%;margin-bottom:28px;">
-    <div style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.7);font-weight:600;text-transform:uppercase;margin-bottom:8px;">🛍️ Rekomendasi untuk Bunda</div>
-    <div style="font-size:17px;font-weight:800;color:white;margin-bottom:6px;">Lengkapi Perlengkapan<br>Kehamilan di Shopee!</div>
-    <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.5;">Produk pilihan terbaik untuk ibu hamil & bayi — harga terjangkau, pengiriman cepat ke seluruh Indonesia.</div>
-    <div style="margin-top:14px;background:linear-gradient(90deg,#FF5722,#FF9800);border-radius:30px;padding:10px 24px;display:inline-block;font-size:13px;font-weight:800;color:white;letter-spacing:0.3px;">
-      🛒 Belanja Sekarang di Shopee
-    </div>
-  </div>
-
-  <!-- Petunjuk klik -->
-  <div id="shopeeHint" style="font-size:13px;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:8px;">
-    <span style="animation:pulse 1.5s infinite;">👆</span>
-    <span>Ketuk untuk ke Shopee &nbsp;·&nbsp; Ketuk lagi untuk masuk app</span>
+  <!-- Hint -->
+  <div id="shopeeHint" style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:6px;">
+    <span>👆</span><span>Ketuk kartu di atas untuk ke Shopee</span>
   </div>
 </div>
-
-<style>
-@keyframes pulse {
-  0%,100% { opacity:1; transform:scale(1); }
-  50% { opacity:0.5; transform:scale(1.2); }
-}
-</style>
 
 <!-- ════════ ONBOARDING SCREEN ════════ -->
 <div id="onboarding" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#0D47A1,#1565C0,#42A5F5);z-index:99999;color:white;overflow:hidden;">
@@ -10021,29 +10030,38 @@ function initShopeeBanner() {
   const banner = document.getElementById('shopeeBanner');
   if (!banner) return;
   _shopeeClickCount = 0;
-  banner.style.display = 'flex';
+  // Reset tampilan
+  const step = document.getElementById('shopeeStep');
+  const hint = document.getElementById('shopeeHint');
+  const ctabtn = document.getElementById('shopeeCTAbtn');
+  if (step) step.textContent = 'KETUK → SHOPEE';
+  if (hint) hint.innerHTML = '<span>👆</span><span>Ketuk kartu di atas untuk ke Shopee</span>';
+  if (ctabtn) ctabtn.textContent = '🛒 Lihat di Shopee';
+  // Tampilkan banner - gunakan setAttribute untuk override inline style
+  banner.setAttribute('style', banner.getAttribute('style').replace('display:none','display:flex'));
 }
 
 function handleShopeeClick() {
   _shopeeClickCount++;
-  const banner   = document.getElementById('shopeeBanner');
-  const badge    = document.getElementById('shopeeClickBadge');
-  const hint     = document.getElementById('shopeeHint');
+  const banner = document.getElementById('shopeeBanner');
+  const step   = document.getElementById('shopeeStep');
+  const hint   = document.getElementById('shopeeHint');
+  const ctabtn = document.getElementById('shopeeCTAbtn');
 
   if (_shopeeClickCount === 1) {
-    // Klik pertama → buka Shopee, banner tetap tampil tapi update UI
+    // Buka Shopee affiliate
     window.open(SHOPEE_URL, '_blank');
-    if (badge) badge.innerHTML = 'TAP 2×  &nbsp;→&nbsp; Masuk App';
-    if (badge) badge.style.background = 'rgba(2,195,154,0.3)';
-    if (badge) badge.style.borderColor = 'rgba(2,195,154,0.6)';
-    if (hint)  hint.innerHTML = '<span>✅</span><span>Shopee terbuka! &nbsp;·&nbsp; Ketuk sekali lagi untuk masuk Bumil Pintar</span>';
-  } else if (_shopeeClickCount >= 2) {
-    // Klik kedua → tutup banner, masuk beranda
+    // Update UI banner
+    if (step)   { step.textContent = 'KETUK LAGI → MASUK APP'; step.style.background = 'rgba(2,195,154,0.35)'; }
+    if (hint)   hint.innerHTML = '<span>✅</span><span>Shopee terbuka! Ketuk sekali lagi untuk masuk app</span>';
+    if (ctabtn) { ctabtn.textContent = '▶ Lanjut ke Bumil Pintar'; ctabtn.style.background = 'linear-gradient(90deg,#00897B,#26C6DA)'; }
+  } else {
+    // Klik kedua → tutup banner
     if (banner) {
-      banner.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
       banner.style.opacity = '0';
-      banner.style.transform = 'scale(0.95)';
-      setTimeout(() => { banner.style.display = 'none'; }, 400);
+      banner.style.transform = 'scale(0.96)';
+      banner.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      setTimeout(() => { banner.style.display = 'none'; }, 380);
     }
   }
 }
@@ -10318,8 +10336,11 @@ function init() {
   initSplash();
   initOfflineDetection();
   initDarkMode();
-  setTimeout(initShopeeBanner, 2000);
-  setTimeout(showOnboardingIfNeeded, 2000);
+  // Banner Shopee muncul setelah splash selesai
+  setTimeout(initShopeeBanner, 2200);
+  // Onboarding hanya jika belum pernah (first open) - muncul setelah user tutup banner
+  // Delay lebih panjang agar tidak tabrakan
+  setTimeout(showOnboardingIfNeeded, 2500);
   showHomescreenBanner();
 
   // Schedule reminders jika sudah ada izin

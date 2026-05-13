@@ -7,56 +7,56 @@
   "scope": "/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
   "background_color": "#0D1B4E",
   "theme_color": "#1565C0",
   "lang": "id",
   "dir": "ltr",
-  "categories": ["health", "medical", "lifestyle"],
-  "iarc_rating_id": "",
-  "icons": [
-    { "src": "icon-72.png",  "sizes": "72x72",   "type": "image/png", "purpose": "any" },
-    { "src": "icon-96.png",  "sizes": "96x96",   "type": "image/png", "purpose": "any" },
-    { "src": "icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
-    { "src": "icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
-    { "src": "icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
-    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-256.png", "sizes": "256x256", "type": "image/png", "purpose": "any" },
-    { "src": "icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
-  ],
+  "categories": ["health", "medical", "lifestyle", "productivity"],
+  "iarc_rating_id": "e84b9519-12d3-4c46-aacf-838ccc27f03d",
   "screenshots": [
     {
-      "src": "screenshot.png",
+      "src": "/screenshot.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Beranda — Catatan Harian & Status Kehamilan"
     },
     {
-      "src": "screenshot2.png",
+      "src": "/screenshot2.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Edukasi KIIA — 42 Topik Kehamilan"
     },
     {
-      "src": "screenshot3.png",
+      "src": "/screenshot3.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Tab Persiapan — Checklist Persalinan"
     },
     {
-      "src": "screenshot-wide.png",
+      "src": "/screenshot-wide.png",
       "sizes": "1280x800",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Bumil Pintar — Tampilan Desktop"
     }
+  ],
+  "icons": [
+    { "src": "/icon-72.png", "sizes": "72x72", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-256.png", "sizes": "256x256", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
     {
@@ -64,32 +64,30 @@
       "short_name": "Catatan",
       "description": "Buka catatan harian kehamilan",
       "url": "/?tab=beranda",
-      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Edukasi KIIA",
       "short_name": "KIIA",
       "description": "Buka 42 modul edukasi kehamilan",
       "url": "/?tab=kiia",
-      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Persiapan Persalinan",
       "short_name": "Persiapan",
       "description": "Cek checklist persiapan melahirkan",
       "url": "/?tab=persiapan",
-      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Profil & HPL",
       "short_name": "Profil",
       "description": "Buka data dan pengaturan kehamilan",
       "url": "/?tab=pengaturan",
-      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ],
-  "protocol_handlers": [],
-  "file_handlers": [],
   "share_target": {
     "action": "/",
     "method": "GET",
@@ -99,13 +97,86 @@
       "url": "url"
     }
   },
+  "protocol_handlers": [
+    {
+      "protocol": "web+bumil",
+      "url": "/?protocol=%s"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "application/json": [".json"],
+        "text/plain": [".txt", ".csv"]
+      },
+      "launch_type": "single-client"
+    }
+  ],
+  "note_app_manifest": {
+    "new_note_url": "/?action=new-note"
+  },
+  "scope_extensions": [
+    {
+      "origin": "https://bumil-pintar.vercel.app"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
   "edge_side_panel": {
     "preferred_width": 400
   },
   "handle_links": "preferred",
-  "launch_handler": {
-    "client_mode": "focus-existing"
-  },
-  "prefer_related_applications": false,
-  "related_applications": []
+  "widgets": [
+    {
+      "name": "Status Kehamilan",
+      "short_name": "Status",
+      "description": "Tampilkan HPL dan usia kehamilan",
+      "tag": "status-widget",
+      "screenshots": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "form_factor": "all"
+        }
+      ],
+      "data": {
+        "color": "#1565C0"
+      }
+    },
+    {
+      "name": "Reminder Suplemen",
+      "short_name": "Suplemen",
+      "description": "Pengingat minum suplemen harian",
+      "tag": "suplemen-widget",
+      "screenshots": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "form_factor": "all"
+        }
+      ],
+      "data": {
+        "color": "#00ACC1"
+      }
+    }
+  ],
+  "manifest_version": "3.0",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.bumilpintar",
+      "id": "com.bumilpintar",
+      "min_version": "1"
+    },
+    {
+      "platform": "ios",
+      "url": "https://apps.apple.com/app/bumil-pintar/id0000000000",
+      "id": "0000000000"
+    }
+  ]
 }

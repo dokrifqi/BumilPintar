@@ -1,4 +1,5 @@
 {
+  "id": "/bumil-pintar-app",
   "name": "Bumil Pintar",
   "short_name": "Bumil Pintar",
   "description": "Asisten kehamilan digital — catatan harian, lab, USG, edukasi KIA, Al-Qur'an",
@@ -9,20 +10,13 @@
   "background_color": "#1565C0",
   "theme_color": "#1565C0",
   "lang": "id",
+  "dir": "ltr",
   "categories": ["health", "medical"],
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "screenshots": [
     {
@@ -30,7 +24,14 @@
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Bumil Pintar — Beranda"
+      "label": "Bumil Pintar — Beranda & Catatan Harian"
+    },
+    {
+      "src": "screenshot2.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Bumil Pintar — Edukasi KIIA 42 Topik"
     }
   ],
   "shortcuts": [
@@ -39,14 +40,23 @@
       "short_name": "Catatan",
       "description": "Buka catatan harian kehamilan",
       "url": "/?tab=beranda",
-      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Edukasi KIIA",
+      "short_name": "KIIA",
+      "description": "Buka modul edukasi kehamilan",
+      "url": "/?tab=kiia",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Profil & HPL",
       "short_name": "Profil",
       "description": "Buka data kehamilan",
       "url": "/?tab=pengaturan",
-      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
-  ]
+  ],
+  "prefer_related_applications": false,
+  "related_applications": []
 }

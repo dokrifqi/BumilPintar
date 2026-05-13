@@ -1,5 +1,5 @@
-const CACHE_NAME = 'bumil-pintar-v5';
-const RUNTIME_CACHE = 'bumil-pintar-runtime';
+const CACHE_NAME = 'bumil-pintar-v6';
+const RUNTIME_CACHE = 'bumil-pintar-runtime-v1';
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -24,89 +24,134 @@ const ASSETS_TO_CACHE = [
 // ══════════════════════════════════════
 // INSTALL - cache all assets
 // ══════════════════════════════════════
-self.addEventListener('install', e => {
-  e.waitUntil(
+self.addEventListener('install', event => {
+  console.log('[SW] Install event');
+  
+  event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Caching app shell');
-        return cache.addAll(ASSETS_TO_CACHE);
+        console.log('[SW] Caching app shell...');
+        return Promise.all(
+          ASSETS_TO_CACHE.map(url => {
+            return cache.add(url).catch(err => {
+              console.warn(`[SW] Failed to cache ${url}:`, err);
+            });
+          })
+        );
       })
       .then(() => {
-        console.log('App shell cached');
+        console.log('[SW] App shell cached, skipping waiting');
         return self.skipWaiting();
       })
-      .catch(err => console.error('Install error:', err))
+      .catch(err => {
+        console.error('[SW] Install error:', err);
+      })
   );
 });
 
 // ══════════════════════════════════════
-// ACTIVATE - clean old caches
+// ACTIVATE - claim clients & clean old caches
 // ══════════════════════════════════════
-self.addEventListener('activate', e => {
-  e.waitUntil(
+self.addEventListener('activate', event => {
+  console.log('[SW] Activate event');
+  
+  event.waitUntil(
     caches.keys()
       .then(cacheNames => {
+        console.log('[SW] Found caches:', cacheNames);
         return Promise.all(
           cacheNames
             .filter(name => name !== CACHE_NAME && name !== RUNTIME_CACHE)
             .map(name => {
-              console.log('Deleting old cache:', name);
+              console.log('[SW] Deleting old cache:', name);
               return caches.delete(name);
             })
         );
       })
-      .then(() => self.clients.claim())
+      .then(() => {
+        console.log('[SW] Claiming clients');
+        return self.clients.claim();
+      })
+      .catch(err => {
+        console.error('[SW] Activate error:', err);
+      })
   );
 });
 
 // ══════════════════════════════════════
-// FETCH - offline support
+// FETCH - offline support dengan strategy berbeda
 // ══════════════════════════════════════
-self.addEventListener('fetch', e => {
+self.addEventListener('fetch', event => {
+  const { request } = event;
+  const url = new URL(request.url);
+
   // Skip non-GET requests
-  if (e.request.method !== 'GET') return;
+  if (request.method !== 'GET') {
+    return;
+  }
 
   // Network first untuk API calls
-  if (e.request.url.includes('/api/')) {
-    e.respondWith(
-      fetch(e.request)
-        .then(res => {
-          if (res && res.status === 200) {
-            const clone = res.clone();
-            caches.open(RUNTIME_CACHE).then(c => c.put(e.request, clone));
+  if (url.pathname.includes('/api/')) {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(RUNTIME_CACHE)
+              .then(cache => cache.put(request, clone));
           }
-          return res;
+          return response;
         })
         .catch(() => {
-          return caches.match(e.request)
+          console.log('[SW] API call offline, returning cached');
+          return caches.match(request)
             .then(cached => cached || caches.match('/bumil_pintar.html'));
         })
     );
     return;
   }
 
-  // Cache first untuk app assets
-  e.respondWith(
-    caches.match(e.request)
+  // Cache first untuk static assets
+  event.respondWith(
+    caches.match(request)
       .then(cached => {
-        if (cached) return cached;
+        if (cached) {
+          console.log('[SW] Serving from cache:', url.pathname);
+          return cached;
+        }
 
-        return fetch(e.request)
-          .then(res => {
-            if (!res || res.status !== 200 || res.type !== 'basic') {
-              return res;
+        return fetch(request)
+          .then(response => {
+            if (!response || response.status !== 200 || response.type === 'error') {
+              console.log('[SW] Bad response, not caching:', url.pathname);
+              return response;
             }
-            const clone = res.clone();
+
+            const clone = response.clone();
             caches.open(RUNTIME_CACHE)
-              .then(cache => cache.put(e.request, clone));
-            return res;
+              .then(cache => {
+                cache.put(request, clone)
+                  .catch(err => console.warn('[SW] Cache put error:', err));
+              });
+            
+            return response;
           })
-          .catch(() => {
-            // Fallback untuk offline
-            if (e.request.mode === 'navigate') {
+          .catch(err => {
+            console.log('[SW] Fetch error, offline fallback:', url.pathname);
+            
+            // Fallback untuk navigate requests
+            if (request.mode === 'navigate') {
               return caches.match('/bumil_pintar.html');
             }
-            return new Response('Offline', { status: 503 });
+
+            // Fallback untuk other requests
+            return new Response('Offline - Resource not available', {
+              status: 503,
+              statusText: 'Service Unavailable',
+              headers: new Headers({
+                'Content-Type': 'text/plain'
+              })
+            });
           });
       })
   );
@@ -115,33 +160,35 @@ self.addEventListener('fetch', e => {
 // ══════════════════════════════════════
 // BACKGROUND SYNC
 // ══════════════════════════════════════
-self.addEventListener('sync', e => {
-  console.log('Background sync event:', e.tag);
+self.addEventListener('sync', event => {
+  console.log('[SW] Sync event:', event.tag);
 
-  if (e.tag === 'sync-app-data') {
-    e.waitUntil(
+  if (event.tag === 'sync-app-data') {
+    event.waitUntil(
       (async () => {
         try {
-          const res = await fetch('/api/sync', { method: 'POST' });
-          if (res.ok) {
-            console.log('Sync successful');
-            // Notify app
+          const response = await fetch('/api/sync', { method: 'POST' });
+          if (response.ok) {
+            const data = await response.json();
+            console.log('[SW] Sync successful');
+            
             const clients = await self.clients.matchAll();
             clients.forEach(client => {
               client.postMessage({
                 type: 'SYNC_COMPLETE',
-                data: await res.json()
+                data: data
               });
             });
           }
-        } catch (err) {
-          console.error('Sync failed:', err);
-          if (e.lastChance) {
-            // Show notification on final failure
-            await self.registration.showNotification('Sync Failed', {
-              body: 'Could not sync data. Will retry when online.',
-              icon: '/icon-192.png',
-              badge: '/icon-96.png'
+        } catch (error) {
+          console.error('[SW] Sync failed:', error);
+          if (event.lastChance) {
+            const clients = await self.clients.matchAll();
+            clients.forEach(client => {
+              client.postMessage({
+                type: 'SYNC_FAILED',
+                error: error.message
+              });
             });
           }
         }
@@ -153,34 +200,37 @@ self.addEventListener('sync', e => {
 // ══════════════════════════════════════
 // PERIODIC BACKGROUND SYNC
 // ══════════════════════════════════════
-self.addEventListener('periodicsync', e => {
-  console.log('Periodic sync:', e.tag);
+self.addEventListener('periodicsync', event => {
+  console.log('[SW] Periodic sync:', event.tag);
 
-  if (e.tag === 'update-reminders') {
-    e.waitUntil(
+  if (event.tag === 'update-reminders') {
+    event.waitUntil(
       (async () => {
         try {
-          const res = await fetch('/api/reminders');
-          const reminders = await res.json();
+          const response = await fetch('/api/reminders');
+          const reminders = await response.json();
 
-          // Show notifications for reminders
           const notifications = await self.registration.getNotifications();
-          reminders.forEach(reminder => {
-            // Jangan duplikat notification
-            const exists = notifications.some(n => n.tag === reminder.id);
-            if (!exists) {
-              self.registration.showNotification(reminder.title, {
-                body: reminder.body,
-                icon: '/icon-192.png',
-                badge: '/icon-96.png',
-                tag: reminder.id,
-                requireInteraction: false,
-                data: { url: reminder.url || '/' }
-              });
+          const notificationIds = notifications.map(n => n.tag);
+
+          for (const reminder of reminders) {
+            if (!notificationIds.includes(reminder.id)) {
+              await self.registration.showNotification(
+                reminder.title,
+                {
+                  body: reminder.body,
+                  icon: '/icon-192.png',
+                  badge: '/icon-96.png',
+                  tag: reminder.id,
+                  requireInteraction: false,
+                  data: { url: reminder.url || '/' }
+                }
+              );
             }
-          });
-        } catch (err) {
-          console.error('Reminder fetch failed:', err);
+          }
+          console.log('[SW] Reminders updated:', reminders.length);
+        } catch (error) {
+          console.error('[SW] Reminder fetch failed:', error);
         }
       })()
     );
@@ -190,50 +240,62 @@ self.addEventListener('periodicsync', e => {
 // ══════════════════════════════════════
 // PUSH NOTIFICATIONS
 // ══════════════════════════════════════
-self.addEventListener('push', e => {
-  console.log('Push event received');
+self.addEventListener('push', event => {
+  console.log('[SW] Push event received');
   
-  const data = e.data ? e.data.json() : {
-    title: 'Bumil Pintar',
-    body: 'Ada pengingat kehamilan untuk Anda!',
-    icon: '/icon-192.png'
-  };
+  const data = event.data 
+    ? event.data.json() 
+    : {
+        title: 'Bumil Pintar',
+        body: 'Ada pengingat kehamilan untuk Anda!',
+        icon: '/icon-192.png'
+      };
 
-  e.waitUntil(
-    self.registration.showNotification(data.title || 'Bumil Pintar', {
-      body: data.body || 'Ada pengingat kehamilan untuk Anda!',
-      icon: data.icon || '/icon-192.png',
-      badge: data.badge || '/icon-96.png',
-      vibrate: [200, 100, 200],
-      tag: data.tag || 'bumil-push',
-      requireInteraction: data.requireInteraction || false,
-      data: { url: data.url || '/' }
-    })
+  event.waitUntil(
+    self.registration.showNotification(
+      data.title || 'Bumil Pintar',
+      {
+        body: data.body || 'Ada pengingat kehamilan untuk Anda!',
+        icon: data.icon || '/icon-192.png',
+        badge: data.badge || '/icon-96.png',
+        vibrate: [200, 100, 200],
+        tag: data.tag || 'bumil-push',
+        requireInteraction: data.requireInteraction || false,
+        data: { url: data.url || '/' }
+      }
+    )
   );
 });
 
 // ══════════════════════════════════════
 // NOTIFICATION CLICK
 // ══════════════════════════════════════
-self.addEventListener('notificationclick', e => {
-  console.log('Notification click:', e.notification.tag);
-  e.notification.close();
+self.addEventListener('notificationclick', event => {
+  console.log('[SW] Notification click:', event.notification.tag);
+  event.notification.close();
 
-  e.waitUntil(
+  event.waitUntil(
     (async () => {
-      const clientList = await clients.matchAll({
+      const clientList = await self.clients.matchAll({
         type: 'window',
         includeUncontrolled: true
       });
 
-      // Focus existing window
-      if (clientList.length > 0) {
-        const client = clientList[0];
+      let client = null;
+
+      // Cari window yang sudah terbuka
+      for (let i = 0; i < clientList.length; i++) {
+        if (clientList[i].url === '/' && 'focus' in clientList[i]) {
+          client = clientList[i];
+          break;
+        }
+      }
+
+      if (client) {
         client.focus();
-        client.navigate(e.notification.data.url || '/');
-      } else {
-        // Open new window
-        clients.openWindow(e.notification.data.url || '/');
+        client.navigate(event.notification.data.url || '/');
+      } else if (self.clients.openWindow) {
+        client = await self.clients.openWindow(event.notification.data.url || '/');
       }
     })()
   );
@@ -242,36 +304,69 @@ self.addEventListener('notificationclick', e => {
 // ══════════════════════════════════════
 // NOTIFICATION CLOSE
 // ══════════════════════════════════════
-self.addEventListener('notificationclose', e => {
-  console.log('Notification closed:', e.notification.tag);
-  // Optional: track closed notifications
+self.addEventListener('notificationclose', event => {
+  console.log('[SW] Notification closed:', event.notification.tag);
 });
 
 // ══════════════════════════════════════
-// MESSAGE HANDLER - komunikasi dengan app
+// MESSAGE HANDLER
 // ══════════════════════════════════════
-self.addEventListener('message', e => {
-  console.log('Message received:', e.data.type);
+self.addEventListener('message', event => {
+  const { type } = event.data || {};
+  console.log('[SW] Message received:', type);
 
-  if (e.data && e.data.type === 'SKIP_WAITING') {
+  if (type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
 
-  if (e.data && e.data.type === 'CLEAR_CACHE') {
-    caches.delete(RUNTIME_CACHE).then(() => {
-      e.ports[0].postMessage({ cleared: true });
-    });
+  if (type === 'CLEAR_CACHE') {
+    caches.delete(RUNTIME_CACHE)
+      .then(() => {
+        console.log('[SW] Cache cleared');
+        if (event.ports[0]) {
+          event.ports[0].postMessage({ cleared: true });
+        }
+      });
   }
 
-  if (e.data && e.data.type === 'REGISTER_PERIODIC_SYNC') {
-    self.registration.periodicSync.register('update-reminders', {
-      minInterval: 60 * 60 * 1000 // 1 jam
-    }).then(() => {
-      console.log('Periodic sync registered');
-    }).catch(err => {
-      console.log('Periodic sync registration failed:', err);
-    });
+  if (type === 'REGISTER_PERIODIC_SYNC') {
+    if (self.registration.periodicSync) {
+      self.registration.periodicSync
+        .register('update-reminders', {
+          minInterval: 60 * 60 * 1000 // 1 jam
+        })
+        .then(() => {
+          console.log('[SW] Periodic sync registered');
+          if (event.ports[0]) {
+            event.ports[0].postMessage({ registered: true });
+          }
+        })
+        .catch(err => {
+          console.log('[SW] Periodic sync registration failed:', err);
+          if (event.ports[0]) {
+            event.ports[0].postMessage({ registered: false, error: err.message });
+          }
+        });
+    }
+  }
+
+  if (type === 'CACHE_URLS') {
+    const urls = event.data.urls || [];
+    caches.open(RUNTIME_CACHE)
+      .then(cache => {
+        return Promise.all(
+          urls.map(url => cache.add(url).catch(err => {
+            console.warn('[SW] Failed to cache:', url, err);
+          }))
+        );
+      })
+      .then(() => {
+        console.log('[SW] URLs cached:', urls.length);
+        if (event.ports[0]) {
+          event.ports[0].postMessage({ cached: true });
+        }
+      });
   }
 });
 
-console.log('Service Worker loaded');
+console.log('[SW] Service Worker initialized - ready for offline mode');

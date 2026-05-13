@@ -10585,10 +10585,49 @@ try {
 <!-- PWA Service Worker Registration -->
 <script>
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('✅ SW registered:', reg.scope))
-      .catch(err => console.warn('SW error:', err));
+  window.addEventListener('load', async () => {
+    try {
+      const reg = await navigator.serviceWorker.register('/sw.js', {
+        scope: '/',
+        updateViaCache: 'none'
+      });
+      
+      console.log('✅ Service Worker registered:', reg.scope);
+      
+      // Check for updates periodically
+      setInterval(() => {
+        reg.update().catch(err => console.warn('SW update check failed:', err));
+      }, 60000); // Check every minute
+      
+      // Handle controller change
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('✅ New Service Worker active');
+      });
+      
+    } catch (error) {
+      console.error('❌ Service Worker registration failed:', error);
+    }
+  });
+  
+  // Handle offline/online status
+  window.addEventListener('offline', () => {
+    console.log('⚠️  App is offline');
+    // Notify user
+    if (navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'APP_OFFLINE'
+      });
+    }
+  });
+  
+  window.addEventListener('online', () => {
+    console.log('✅ App is online');
+    // Try sync
+    if (navigator.serviceWorker.controller && 'sync' in registration) {
+      registration.sync.register('sync-app-data').catch(err => {
+        console.warn('Sync registration failed:', err);
+      });
+    }
   });
 }
 </script>

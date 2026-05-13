@@ -6,13 +6,24 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+  "display_override": [
+    "tabbed",
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
   "orientation": "portrait-primary",
   "background_color": "#0D1B4E",
   "theme_color": "#1565C0",
   "lang": "id",
   "dir": "ltr",
-  "categories": ["health", "medical", "lifestyle", "productivity"],
+  "categories": [
+    "health",
+    "medical",
+    "lifestyle",
+    "productivity"
+  ],
   "iarc_rating_id": "e84b9519-12d3-4c46-aacf-838ccc27f03d",
   "screenshots": [
     {
@@ -30,13 +41,6 @@
       "label": "Edukasi KIIA — 42 Topik Kehamilan"
     },
     {
-      "src": "/screenshot3.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Tab Persiapan — Checklist Persalinan"
-    },
-    {
       "src": "/screenshot-wide.png",
       "sizes": "1280x800",
       "type": "image/png",
@@ -45,18 +49,78 @@
     }
   ],
   "icons": [
-    { "src": "/icon-72.png", "sizes": "72x72", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-256.png", "sizes": "256x256", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "shortcuts": [
     {
@@ -64,28 +128,52 @@
       "short_name": "Catatan",
       "description": "Buka catatan harian kehamilan",
       "url": "/?tab=beranda",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Edukasi KIIA",
       "short_name": "KIIA",
       "description": "Buka 42 modul edukasi kehamilan",
       "url": "/?tab=kiia",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Persiapan Persalinan",
       "short_name": "Persiapan",
       "description": "Cek checklist persiapan melahirkan",
       "url": "/?tab=persiapan",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Profil & HPL",
       "short_name": "Profil",
       "description": "Buka data dan pengaturan kehamilan",
       "url": "/?tab=pengaturan",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ],
   "share_target": {
@@ -107,8 +195,13 @@
     {
       "action": "/",
       "accept": {
-        "application/json": [".json"],
-        "text/plain": [".txt", ".csv"]
+        "application/json": [
+          ".json"
+        ],
+        "text/plain": [
+          ".txt",
+          ".csv"
+        ]
       },
       "launch_type": "single-client"
     }
@@ -122,7 +215,10 @@
     }
   ],
   "launch_handler": {
-    "client_mode": ["focus-existing", "auto"]
+    "client_mode": [
+      "focus-existing",
+      "auto"
+    ]
   },
   "edge_side_panel": {
     "preferred_width": 400

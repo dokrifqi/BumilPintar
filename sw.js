@@ -1,73 +1,81 @@
-// ============================================
-// Bumil Pintar — Service Worker (PWA)
-// Cache Strategy: Cache First → fallback Network
-// ============================================
-
-const CACHE_NAME    = 'bumil-pintar-v1';
-const OFFLINE_URL   = '/';
-
-// File yang di-cache saat install
-const PRECACHE_URLS = [
+const CACHE_NAME = 'bumil-pintar-v3';
+const ASSETS = [
   '/',
   '/bumil_pintar.html',
   '/manifest.json',
+  '/icon-72.png',
+  '/icon-96.png',
+  '/icon-128.png',
+  '/icon-144.png',
+  '/icon-152.png',
+  '/icon-180.png',
   '/icon-192.png',
+  '/icon-256.png',
+  '/icon-384.png',
   '/icon-512.png',
+  '/icon-maskable-192.png',
+  '/icon-maskable-512.png',
+  '/screenshot.png',
+  '/screenshot2.png',
+  '/screenshot3.png',
+  '/screenshot-wide.png'
 ];
 
-// ── INSTALL: cache semua asset utama ──
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      console.log('[SW] Pre-caching assets...');
-      return cache.addAll(PRECACHE_URLS);
-    }).then(() => self.skipWaiting())
+// Install - cache semua aset
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS))
+      .then(() => self.skipWaiting())
   );
 });
 
-// ── ACTIVATE: hapus cache lama ──
-self.addEventListener('activate', event => {
-  event.waitUntil(
+// Activate - hapus cache lama
+self.addEventListener('activate', e => {
+  e.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(
-        keys
-          .filter(key => key !== CACHE_NAME)
-          .map(key => {
-            console.log('[SW] Deleting old cache:', key);
-            return caches.delete(key);
-          })
-      )
+      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
     ).then(() => self.clients.claim())
   );
 });
 
-// ── FETCH: Cache First, fallback ke Network ──
-self.addEventListener('fetch', event => {
-  // Abaikan request non-GET dan request ke domain lain
-  if (event.request.method !== 'GET') return;
-  if (!event.request.url.startsWith(self.location.origin)) return;
-
-  event.respondWith(
-    caches.match(event.request).then(cached => {
+// Fetch - cache first, network fallback
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then(cached => {
       if (cached) return cached;
-
-      // Tidak ada di cache → ambil dari network, simpan ke cache
-      return fetch(event.request).then(response => {
-        // Hanya cache response yang valid
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
+      return fetch(e.request).then(res => {
+        if (res && res.status === 200 && res.type === 'basic') {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
         }
-        const toCache = response.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, toCache);
-        });
-        return response;
-      }).catch(() => {
-        // Network error → kembalikan halaman utama dari cache
-        if (event.request.mode === 'navigate') {
-          return caches.match(OFFLINE_URL);
-        }
-      });
+        return res;
+      }).catch(() => caches.match('/bumil_pintar.html'));
     })
   );
+});
+
+// Background sync placeholder
+self.addEventListener('sync', e => {
+  console.log('Background sync:', e.tag);
+});
+
+// Push notification
+self.addEventListener('push', e => {
+  const data = e.data ? e.data.json() : { title: 'Bumil Pintar', body: 'Ada pengingat kehamilan untuk Anda!' };
+  e.waitUntil(
+    self.registration.showNotification(data.title || 'Bumil Pintar', {
+      body: data.body || 'Ada pengingat kehamilan untuk Anda!',
+      icon: '/icon-192.png',
+      badge: '/icon-96.png',
+      vibrate: [200, 100, 200],
+      data: { url: data.url || '/' }
+    })
+  );
+});
+
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  e.waitUntil(clients.openWindow(e.notification.data.url || '/'));
 });

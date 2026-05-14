@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "bumilpintar.twa",
+        "sha256_cert_fingerprints": ["C9:F4:A9:D8:65:45:5A:A1:43:31:1F:15:50:FA:0F:19:4F:F3:D0:8F:96:E5:3A:FC:1C:C9:BA:25:BB:B0:22:EF"]
+      }
+    }]
